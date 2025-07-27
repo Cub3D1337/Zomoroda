@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/27 12:38:39 by hwahmane         ###   ########.fr       */
+/*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
+/*   Updated: 2025/07/27 12:12:16 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	main(int ac, char **av)
+void	destroy_cub(t_cub *cub)
 {
-	// TODOS
-	t_cub	cub;
+	if (cub->img.img_ptr)
+		mlx_destroy_image(cub->mlx, cub->img.img_ptr);
+	if (cub->mlx_win)
+		mlx_destroy_window(cub->mlx, cub->mlx_win);
+	mlx_destroy_display(cub->mlx);
+	free(cub->mlx);
+}
 
-	(void)ac;
-	(void)av;
-	init_map(&cub);
-	init_cub(&cub);
-	init_image_buffer(&cub);
-	draw(&cub);
-	init_events(&cub);
-	mlx_loop(cub.mlx);
-	ft_exit(&cub);
-	return (EXIT_SUCCESS);
+int	ft_exit(t_cub *cub)
+{
+	destroy_cub(cub);
+	ft_printf("Programme exit successfuly\n");
+	exit(EXIT_SUCCESS);
 }

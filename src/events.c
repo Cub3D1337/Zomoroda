@@ -1,0 +1,81 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
+/*   Updated: 2025/07/27 13:18:11 by hwahmane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <cub3d.h>
+
+int ft_loop_hook(t_cub *cub)
+{
+	double	current;
+
+	if (!cub || !cub->img.img_ptr)
+		ft_exit(cub);
+	// Increment frame
+	cub->frames++;
+	current = get_time_ms();
+	
+	if (current - cub->last_time >= 1000.0)
+	{
+		cub->fps = cub->frames;     // Store the counted frames before resetting
+		cub->frames = 0;
+		cub->last_time = current;
+        printf("FPS: %d\n", cub->fps);
+	}
+    move(cub);
+	return (EXIT_SUCCESS);
+}
+
+int	ft_key_press(int keycode, t_cub *cub)
+{
+	if (keycode == ESCAPE_KEY)
+		ft_exit(cub);
+	else if (keycode == W_KEY)
+		cub->p.move_up = true;
+	else if (keycode == S_KEY)
+		cub->p.move_down = true;
+    else if (keycode == A_KEY)
+		cub->p.move_left = true;
+	else if (keycode == D_KEY)
+	    cub->p.move_right = true;
+
+	// else if (keycode == A_KEY)
+	// 	cub->p.rotate_left = true;
+	// else if (keycode == D_KEY)
+	// cub->p.rotate_right = true;
+	return (EXIT_SUCCESS);
+}
+
+int	ft_key_release(int keycode, t_cub *cub)
+{
+	if (keycode == W_KEY)
+		cub->p.move_up = false;
+	else if (keycode == S_KEY)
+		cub->p.move_down = false;
+    else if (keycode == A_KEY)
+		cub->p.move_left = false;
+	else if (keycode == D_KEY)
+		cub->p.move_right = false;
+        
+	// else if (keycode == A_KEY)
+	// 	cub->p.rotate_left = false;
+	// else if (keycode == D_KEY)
+	// 	cub->p.rotate_right = false;
+    printf("Release\n");
+	return (EXIT_SUCCESS);
+}
+
+void	init_events(t_cub *cub)
+{
+	mlx_hook(cub->mlx_win, ON_KEYDOWN, KeyPressMask, ft_key_press, cub);
+	mlx_hook(cub->mlx_win, ON_KEYUP, KeyReleaseMask, ft_key_release, cub);
+	// mlx_hook(cub->mlx_win, ON_DESTROY, DestroyNotifyMask, ft_exit, cub);
+	mlx_loop_hook(cub->mlx, ft_loop_hook, cub);
+}

@@ -1,6 +1,6 @@
 NAME = 			cub3d
 CC =			 cc
-FLAGS = 		-Wall -Wextra -Werror
+FLAGS = 		-Wall -Wextra -Werror -g
 LDFLAGS = 		-L./Libft -lft
 
 INC_DIR =		./includes
@@ -12,7 +12,8 @@ LIBFT =			$(LIBFT_DIR)/libft.a
 
 OBJS =			$(SRCS:.c=.o)
 
-SRCS =			$(SRC_DIR)/main.c
+SRCS =			$(SRC_DIR)/main.c $(SRC_DIR)/init.c $(SRC_DIR)/draw.c $(SRC_DIR)/events.c $(SRC_DIR)/utils.c $(SRC_DIR)/cleanup.c \
+				$(SRC_DIR)/move.c
 
 all:			$(LIBFT) $(NAME)
 
