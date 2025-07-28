@@ -3,35 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/07/27 13:18:11 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/07/28 13:49:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+// TODO: Limit FPS
+// TODO: Try to create a copy of the buffer image with the minimap only
+
 int ft_loop_hook(t_cub *cub)
 {
-	double	current;
-
-	if (!cub || !cub->img.img_ptr)
-		ft_exit(cub);
-	// Increment frame
-	cub->frames++;
-	current = get_time_ms();
+	time_t current;
+	time_t frame_time;
 	
+	current = get_time_ms();
+	frame_time = current - cub->last_frame_time;
+
+	if (frame_time < FRAME_DURATION)
+		return (EXIT_SUCCESS);  // Too soon, wait
+
+	cub->delta_time = (current - cub->last_frame_time) / 1000.0;
+	cub->last_frame_time = current;
+
+	cub->frames++;
 	if (current - cub->last_time >= 1000.0)
 	{
-		cub->fps = cub->frames;     // Store the counted frames before resetting
+		cub->fps = cub->frames;
 		cub->frames = 0;
 		cub->last_time = current;
-        printf("FPS: %d\n", cub->fps);
+		printf("FPS: %d\n", cub->fps);
 	}
-    move(cub);
+
+	move(cub);
 	return (EXIT_SUCCESS);
 }
+
+
+// int ft_loop_hook(t_cub *cub)
+// {
+// 	double	current;
+
+// 	if (!cub || !cub->img.img_ptr)
+// 		ft_exit(cub);
+// 	// Increment frame
+// 	current = get_time_ms();  // ms
+
+// 	cub->delta_time = (current - cub->last_frame_time) / 1000.0;
+// 	cub->last_frame_time = current;
+
+// 	// FPS display update every 1s
+// 	cub->frames++;
+// 	if (current - cub->last_time >= 1000.0)
+// 	{
+// 		cub->fps = cub->frames;
+// 		cub->frames = 0;
+// 		cub->last_time = current;
+// 		printf("FPS: %d\n", cub->fps);
+// 	}
+//     move(cub);
+// 	return (EXIT_SUCCESS);
+// }
 
 int	ft_key_press(int keycode, t_cub *cub)
 {
@@ -68,7 +103,6 @@ int	ft_key_release(int keycode, t_cub *cub)
 	// 	cub->p.rotate_left = false;
 	// else if (keycode == D_KEY)
 	// 	cub->p.rotate_right = false;
-    printf("Release\n");
 	return (EXIT_SUCCESS);
 }
 

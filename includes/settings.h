@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/07/27 15:57:45 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/07/28 13:48:13 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@
 # define WIDTH 1080
 # define HEIGHT 720
 
+#define TARGET_FPS 60
+#define FRAME_DURATION (1000.0 / TARGET_FPS) // ~16.66 ms for each frame == 60 FPS
+
 # define MAP_WIDTH 16
 # define MAP_HEIGHT 16
 # define MAP_SIZE  20
 
-# define SPEED 0.5
+# define SPEED 20
 # define ROT_SPEED 0.015
+# define PLY_SIZE 6
 
 enum e_events_hooks
 {

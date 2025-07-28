@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:02:58 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/07/27 16:13:54 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/07/28 14:34:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	put_pixel(t_cub *cub, int x, int y, int color)
 
 double	get_time_ms(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
+
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000.0) + (tv.tv_usec / 1000.0);
 }
@@ -39,9 +40,10 @@ void   get_player_pos(t_cub *cub)
 		while (pos.x < MAP_WIDTH)
 		{
 			if (cub->map.array[pos.y][pos.x] == 2)
+			
 			{
-				cub->p.x = (pos.x * MAP_SIZE) + (MAP_SIZE / 2) - (cub->p.size / 2);
-				cub->p.y = (pos.y * MAP_SIZE) + (MAP_SIZE / 2) - (cub->p.size / 2);
+				cub->p.x = (pos.x * MAP_SIZE) + (MAP_SIZE / 2);
+				cub->p.y = (pos.y * MAP_SIZE) + (MAP_SIZE / 2);
                 return ;
 			}
 			pos.x++;
