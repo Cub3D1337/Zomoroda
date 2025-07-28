@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/07/27 15:41:59 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/07/28 14:35:32 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	draw_map(t_cub *cub)
 
 void	draw_player(t_cub *cub)
 {
-	draw_square(cub, cub->p.x, cub->p.y, cub->p.size, 0xff0000);
+	draw_square(cub, cub->p.x - (cub->p.half), cub->p.y - (cub->p.half), cub->p.size, 0xff0000);
 }
 
 void	draw(t_cub *cub)

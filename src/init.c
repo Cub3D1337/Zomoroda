@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/07/27 16:01:46 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/07/28 13:27:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void init_map(t_cub	*cub)
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,1,2,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 	};
 
@@ -43,9 +43,10 @@ void init_cub(t_cub	*cub)
 {
 
 	cub->mlx = mlx_init();
-	cub->mlx_win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub");
+	cub->mlx_win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3D");
 	// Init Player
-	cub->p.size = 6;
+	cub->p.size = PLY_SIZE;
+	cub->p.half = PLY_SIZE / 2;
 	get_player_pos(cub);
     // MVT
     cub->p.move_up = false;
@@ -56,8 +57,8 @@ void init_cub(t_cub	*cub)
 	cub->p.rotate_right = false;
 	// cub->p.angle = (3 * M_PI) / 2;
 	// Utils
-	cub->last_time = 0.0;
 	cub->frames = 0;
+	cub->last_time = 0.0;
 	cub->last_frame_time = 0.0;
 }
 
