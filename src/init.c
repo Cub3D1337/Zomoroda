@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/03 12:41:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/03 15:24:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void init_cub(t_cub	*cub)
 	cub->p.move_right = false;
 	cub->p.rotate_left = false;
 	cub->p.rotate_right = false;
-	// cub->p.angle = (3 * M_PI) / 2;
+	cub->p.angle = (3 * M_PI) / 2;
 	// Utils
 	cub->frames = 0;
 	cub->last_time = 0.0;
