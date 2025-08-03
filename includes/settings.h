@@ -6,25 +6,33 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/07/28 13:48:13 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/03 15:17:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTINGS_H
 # define SETTINGS_H
 
+#ifndef M_PI
+#	define M_PI 3.14159265358979323846
+#endif
+
+#ifndef M_PI_2
+#	define M_PI_2 1.57079632679489661923
+#endif
+
 # define WIDTH 1080
 # define HEIGHT 720
 
-#define TARGET_FPS 60
-#define FRAME_DURATION (1000.0 / TARGET_FPS) // ~16.66 ms for each frame == 60 FPS
+# define TARGET_FPS 60
+# define FRAME_DURATION (1000.0 / TARGET_FPS) // ~16.66 ms for each frame == 60 FPS
 
 # define MAP_WIDTH 16
 # define MAP_HEIGHT 16
 # define MAP_SIZE  20
 
-# define SPEED 20
-# define ROT_SPEED 0.015
+# define SPEED 90
+# define ROT_SPEED 0.07
 # define PLY_SIZE 6
 
 enum e_events_hooks

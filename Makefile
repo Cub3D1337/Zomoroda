@@ -20,7 +20,7 @@ all:			$(LIBFT) $(NAME)
 $(NAME):		$(OBJS)
 					$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) $(LDFLAGS)
 
-%.o: %.c		${INC_DIR}/cub3d.h ${INC_DIR}/mlx.h
+%.o: %.c		${INC_DIR}/cub3d.h ${INC_DIR}/mlx.h ${INC_DIR}/includes.h
 					$(CC) $(CFLAGS) $(INCLUDES) -O3 -c $< -o $@
 
 $(LIBFT):

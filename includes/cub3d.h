@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/27 13:00:30 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:08:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "mlx.h"
 # include "../Libft/includes/libft.h"
-# include <sys/time.h>
-# include <stdio.h>
+# include "includes.h"
 # include "settings.h"
 # include "typedef.h"
 
-void init_map(t_cub	*cub);
-void init_cub(t_cub	*cub);
+void    init_map(t_cub	*cub);
+void    init_cub(t_cub	*cub);
 void	init_image_buffer(t_cub *cub);
 
+void	init_image(t_cub *cub);
+void	dup_map(t_cub *cub);
+void	init_map_image_buffer(t_cub *cub);
 
 
 void	draw_square(t_cub *cub, int x, int y, int size, int color);
