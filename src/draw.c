@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/07/28 14:35:32 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/03 14:43:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	draw_map(t_cub *cub)
 		{
 			if (cub->map.array[pos.y][pos.x] == 1)
 				color = 0xffffff;
-			else if (cub->map.array[pos.y][pos.x] == 2)
-				color = 0xffff00;
 			else
 				color = 0x000000;
 			draw_square(cub, pos.x * MAP_SIZE, pos.y * MAP_SIZE, MAP_SIZE, color);
@@ -55,7 +53,33 @@ void	draw_map(t_cub *cub)
 
 void	draw_player(t_cub *cub)
 {
+	t_pointi	pos;
+	double		radiant_angle;
+	int			line_len;
+	int			i;
+
 	draw_square(cub, cub->p.x - (cub->p.half), cub->p.y - (cub->p.half), cub->p.size, 0xff0000);
+	line_len = 20;
+	i = 0;
+	// Draw simple line from center of player to (x2, y2)
+	while (i < line_len)
+	{
+		pos.x = cub->p.x + cos(cub->p.angle) * i;
+		pos.y = cub->p.y + sin(cub->p.angle) * i;
+		put_pixel(cub, pos.x, pos.y, 0xff0000);
+		i++;
+	}
+}
+
+void	show_fps(t_cub *cub)
+{
+	char	*fps_notif;
+
+	fps_notif = ft_conststrjoin(ft_strdup("FPS: "), ft_itoa(cub->fps));
+	mlx_string_put(cub->mlx, cub->mlx_win, WIDTH - 80, 30, 0xFFFFFF, fps_notif);
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win,
+		cub->img.img_ptr, 0, 0);
+	free(fps_notif);
 }
 
 void	draw(t_cub *cub)
@@ -64,5 +88,6 @@ void	draw(t_cub *cub)
 		HEIGHT * cub->img.line_length);
 	draw_map(cub);
 	draw_player(cub);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img.img_ptr, 0, 0);
+	show_fps(cub);
+	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img.img_ptr, 0, 0);
 }
