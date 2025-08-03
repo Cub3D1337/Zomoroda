@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/03 15:11:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/03 15:21:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int ft_loop_hook(t_cub *cub)
 
 		// I need to call the fps fuction every frame
 	}
-	printf("FPS: %d\n", cub->fps);
+	// printf("FPS: %d\n", cub->fps);
 	move(cub);
 	draw(cub);
 	return (EXIT_SUCCESS);

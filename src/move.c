@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:41:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/03 15:16:23 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/03 15:49:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,6 @@ void	rotate(t_cub *cub)
 		cub->p.angle += 2 * M_PI;
 	if (cub->p.angle >= 2 * M_PI)
 		cub->p.angle -= 2 * M_PI;
-}
-
-void reset_player(t_cub *cub)
-{
-	draw_square(cub, cub->p.prev_x - (cub->p.half), cub->p.prev_y - (cub->p.half), cub->p.size, 0x000000);
-	// TODO: the detailed implementation
-	// t_pointi	incr_pos;
-	// t_pointi	norm_pos;
-
-	// norm_pos.y = (int)cub->p.prev_y - (cub->p.half);
-	// norm_pos.x = (int)cub->p.prev_x - (cub->p.half);
-	// incr_pos.y = 0;
-	// while (incr_pos.y < cub->p.size)
-	// {
-	// 	incr_pos.x = 0;
-	// 	while (incr_pos.x < cub->p.size)
-	// 	{
-	// 		put_pixel(cub, (norm_pos.x + incr_pos.x),
-	// 			(norm_pos.y + incr_pos.y), 0x000000);
-	// 		incr_pos.x++;
-	// 	}
-	// 	incr_pos.y++;
-	// }
 }
 
 t_bool	check_boundaries(t_cub *cub)
@@ -83,28 +60,25 @@ t_bool	check_boundaries(t_cub *cub)
 
 void	move_with_steps(t_cub *cub, t_pointd delta)
 {
-	double		step;
-	double		len;
-	int			steps;
+	double		step = 0.5;
+	double		len = sqrt(delta.x * delta.x + delta.y * delta.y);
+	int			steps = (int)(len / step);
 	t_pointd	delta_steps;
-	
-	step = 0.5;
-	len = sqrt(delta.x * delta.x + delta.y * delta.y);
-	steps = len / step;
+
+	if (steps <= 0)
+		steps = 1;
 	delta_steps.x = delta.x / steps;
 	delta_steps.y = delta.y / steps;
-	if (steps == 0)
-		steps = 1;
 	while (steps--)
 	{
+		// Try move X
 		cub->p.x += delta_steps.x;
+		if (!check_boundaries(cub))
+			cub->p.x -= delta_steps.x;
+		// Try move Y
 		cub->p.y += delta_steps.y;
 		if (!check_boundaries(cub))
-		{
-			cub->p.x -= delta_steps.x;
 			cub->p.y -= delta_steps.y;
-			break;
-		}
 	}
 }
 
@@ -114,28 +88,18 @@ void move(t_cub *cub)
 	t_pointd	delta;
 
 	if (cub->p.rotate_left || cub->p.rotate_right)
-	{	
 		rotate(cub);
-	}
 	if (cub->p.move_up || cub->p.move_down
 		|| cub->p.move_left || cub->p.move_right)
 	{
-		// Save previous position BEFORE moving
 		cub->p.prev_y = cub->p.y;
 		cub->p.prev_x = cub->p.x;
 		delta.x = 0;
 		delta.y = 0;
 		speed = SPEED * cub->delta_time;
-
-		// if (cub->p.move_up)
-		// 	delta.y -= speed;
-		// if (cub->p.move_down)
-		// 	delta.y += speed;
-		// if (cub->p.move_left)
-		// 	delta.x -= speed;
-		// if (cub->p.move_right)
-		// 	delta.x += speed;
-
+		//? The cos and sin give the percent of tilt for the x and y axis
+		//? so this percent for eaxh side is mulipated by speed (conclusion: we get the speed for each axe)
+		//? we get the full angle because this is the player view angle
 		if (cub->p.move_up)
 		{
 			delta.x += cos(cub->p.angle) * speed;
@@ -146,7 +110,8 @@ void move(t_cub *cub)
 			delta.x -= cos(cub->p.angle) * speed;
 			delta.y -= sin(cub->p.angle) * speed;
 		}
-
+		//? We get the (full angle -+ quadrant) because this is the player left and right edges
+		//? same mvt applyed for those edges
 		if (cub->p.move_left)
 		{
 			delta.x += cos(cub->p.angle - M_PI_2) * speed;
@@ -157,13 +122,7 @@ void move(t_cub *cub)
 			delta.x += cos(cub->p.angle + M_PI_2) * speed;
 			delta.y += sin(cub->p.angle + M_PI_2) * speed;
 		}
-
-
-
 		if (delta.x != 0 || delta.y != 0)
 			move_with_steps(cub, delta);
-
-		// Reset the square at previous position
-		reset_player(cub); // NOW this will use prev_x / prev_y
 	}
 }
