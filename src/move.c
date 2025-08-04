@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:41:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/03 15:49:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/03 16:03:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	rotate(t_cub *cub)
+static void	rotate(t_cub *cub)
 {
 	if (cub->p.rotate_left)
 	{
@@ -23,13 +23,14 @@ void	rotate(t_cub *cub)
 		cub->p.angle += ROT_SPEED;
 	}
 	//TODO: You need to understand the Normalize angle to 0 ~ 2π
+	//? So now the angle is always in the valid range [0, 2π).
 	if (cub->p.angle < 0)
 		cub->p.angle += 2 * M_PI;
 	if (cub->p.angle >= 2 * M_PI)
 		cub->p.angle -= 2 * M_PI;
 }
 
-t_bool	check_boundaries(t_cub *cub)
+static t_bool	check_boundaries(t_cub *cub)
 {
 	t_pointi	ply_corners[4];
 	int			i;
@@ -58,7 +59,7 @@ t_bool	check_boundaries(t_cub *cub)
 	return (true);
 }
 
-void	move_with_steps(t_cub *cub, t_pointd delta)
+static void	move_with_steps(t_cub *cub, t_pointd delta)
 {
 	double		step = 0.5;
 	double		len = sqrt(delta.x * delta.x + delta.y * delta.y);
@@ -82,21 +83,8 @@ void	move_with_steps(t_cub *cub, t_pointd delta)
 	}
 }
 
-void move(t_cub *cub)
+static void	update_position(t_cub *cub, t_pointd delta, double speed)
 {
-	double		speed;
-	t_pointd	delta;
-
-	if (cub->p.rotate_left || cub->p.rotate_right)
-		rotate(cub);
-	if (cub->p.move_up || cub->p.move_down
-		|| cub->p.move_left || cub->p.move_right)
-	{
-		cub->p.prev_y = cub->p.y;
-		cub->p.prev_x = cub->p.x;
-		delta.x = 0;
-		delta.y = 0;
-		speed = SPEED * cub->delta_time;
 		//? The cos and sin give the percent of tilt for the x and y axis
 		//? so this percent for eaxh side is mulipated by speed (conclusion: we get the speed for each axe)
 		//? we get the full angle because this is the player view angle
@@ -124,5 +112,24 @@ void move(t_cub *cub)
 		}
 		if (delta.x != 0 || delta.y != 0)
 			move_with_steps(cub, delta);
+}
+
+
+void move(t_cub *cub)
+{
+	t_pointd	delta;
+	double		speed;
+
+	if (cub->p.rotate_left || cub->p.rotate_right)
+		rotate(cub);
+	if (cub->p.move_up || cub->p.move_down
+		|| cub->p.move_left || cub->p.move_right)
+	{
+		cub->p.prev_y = cub->p.y;
+		cub->p.prev_x = cub->p.x;
+		delta.x = 0.0;
+		delta.y = 0.0;
+		speed = SPEED * cub->delta_time;
+		update_position(cub, delta, speed);
 	}
 }

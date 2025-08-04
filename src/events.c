@@ -6,14 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/03 15:21:37 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/03 16:09:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-// TODO: Limit FPS
-// TODO: Try to create a copy of the buffer image with the minimap only
 
 int ft_loop_hook(t_cub *cub)
 {
@@ -44,7 +41,7 @@ int ft_loop_hook(t_cub *cub)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_key_press(int keycode, t_cub *cub)
+static int	ft_key_press(int keycode, t_cub *cub)
 {
 	if (keycode == ESCAPE_KEY)
 		ft_exit(cub);
@@ -64,7 +61,7 @@ int	ft_key_press(int keycode, t_cub *cub)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_key_release(int keycode, t_cub *cub)
+static int	ft_key_release(int keycode, t_cub *cub)
 {
 	if (keycode == W_KEY)
 		cub->p.move_up = false;
