@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/29 17:08:37 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/03 16:37:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,17 @@ void	init_image(t_cub *cub);
 void	dup_map(t_cub *cub);
 void	init_map_image_buffer(t_cub *cub);
 
-
+void	draw_line(t_cub *cub, int x, int y, double angle, int line_len, int color);
 void	draw_square(t_cub *cub, int x, int y, int size, int color);
 void	draw_map(t_cub *cub);
 void	draw_player(t_cub *cub);
 void	draw(t_cub *cub);
 
-
 void	init_events(t_cub *cub);
 
 void    move(t_cub *cub);
+
+void	raycasting(t_cub *cub);
 
 void   get_player_pos(t_cub *cub);
 void	put_pixel(t_cub *cub, int x, int y, int color);
