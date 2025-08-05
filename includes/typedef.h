@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/03 12:45:49 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/05 18:04:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,31 @@ typedef struct s_cub
 	double		last_time;
 	double		last_frame_time;
 	double		delta_time;
+	// Debug
+	int			count;
 }			t_cub;
+
+typedef enum e_side
+{
+	HORIZONTAL,
+	VERTICAL,
+}			t_side;
+
+typedef struct s_dda
+{
+	t_pointi	map_pos;
+	t_pointi	dir_step;
+	t_pointd	grid_step;
+	t_bool		hit;
+	t_side		side;			
+	t_pointd	hypotenuse_dist;
+}				t_dda;
+
+typedef struct s_dda_result
+{
+	t_pointd	hit_point;
+	double		dist;
+}				t_dda_result;
+
 
 #endif
