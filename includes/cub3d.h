@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/03 16:37:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/05 17:21:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	init_events(t_cub *cub);
 void    move(t_cub *cub);
 
 void	raycasting(t_cub *cub);
+void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result);
 
 void   get_player_pos(t_cub *cub);
 void	put_pixel(t_cub *cub, int x, int y, int color);
