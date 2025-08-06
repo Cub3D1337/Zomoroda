@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 16:08:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/05 18:05:11 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/06 10:52:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	draw_ray(t_cub *cub, int x, double ray_angle)
 	t_pointd	ray_pos;
 	t_pointd	ray_step;
 
-	ray_pos.x = cub->p.x;
-	ray_pos.y = cub->p.y;
+	ray_pos.x = cub->p.pos.x;
+	ray_pos.y = cub->p.pos.y;
 	ray_step.x = cos(ray_angle) * 0.6;
 	ray_step.y = sin(ray_angle) * 0.6;
 	while (true)
@@ -55,16 +55,13 @@ void	raycasting(t_cub *cub)
 	int		x;
 
 	x = 0;
-	cub->count = 0;
 	ray_angle = cub->p.angle - (FOV / 2);
 	angle_step = FOV / WIDTH;
 	while (x < WIDTH)
 	{
-		cub->count++;
 		// draw_ray(cub, x, ray_angle);
 		dda_draw_ray(cub, x, ray_angle);
 		ray_angle += angle_step;
 		x++;
 	}
-	printf("ray count: %d\n", cub->count);
 }

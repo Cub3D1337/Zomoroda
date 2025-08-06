@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:40:59 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/03 15:48:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/06 10:52:12 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void	init_image(t_cub *cub)
 
 void reset_player(t_cub *cub)
 {
-	// draw_square(cub, cub->p.prev_x - (cub->p.half), cub->p.prev_y - (cub->p.half), cub->p.size, 0x00ff00);
+	// draw_square(cub, cub->p.prev_pos.x - (cub->p.half), cub->p.prev_pos.y - (cub->p.half), cub->p.size, 0x00ff00);
 	t_pointi	incr_pos;
 	t_pointi	norm_pos;
 	int			color;
 
-	norm_pos.y = (int)cub->p.prev_y - (cub->p.half);
-	norm_pos.x = (int)cub->p.prev_x - (cub->p.half);
+	norm_pos.y = (int)cub->p.prev_pos.y - (cub->p.half);
+	norm_pos.x = (int)cub->p.prev_pos.x - (cub->p.half);
 	incr_pos.y = 0;
 	while (incr_pos.y < cub->p.size)
 	{
@@ -83,13 +83,13 @@ void reset_player(t_cub *cub)
 
 void reset_player(t_cub *cub)
 {
-	draw_square(cub, cub->p.prev_x - (cub->p.half), cub->p.prev_y - (cub->p.half), cub->p.size, 0x000000);
+	draw_square(cub, cub->p.prev_pos.x - (cub->p.half), cub->p.prev_pos.y - (cub->p.half), cub->p.size, 0x000000);
 	// TODO: the detailed implementation
 	// t_pointi	incr_pos;
 	// t_pointi	norm_pos;
 
-	// norm_pos.y = (int)cub->p.prev_y - (cub->p.half);
-	// norm_pos.x = (int)cub->p.prev_x - (cub->p.half);
+	// norm_pos.y = (int)cub->p.prev_pos.y - (cub->p.half);
+	// norm_pos.x = (int)cub->p.prev_pos.x - (cub->p.half);
 	// incr_pos.y = 0;
 	// while (incr_pos.y < cub->p.size)
 	// {
