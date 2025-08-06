@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/05 18:04:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/06 10:48:17 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
-	double	prev_x;
-	double	prev_y;
+	t_pointd	pos;
+	t_pointd	prev_pos;
 	int		size;
 	int		half;
 	t_bool	move_up;
@@ -71,7 +69,6 @@ typedef struct s_cub
 	double		last_frame_time;
 	double		delta_time;
 	// Debug
-	int			count;
 }			t_cub;
 
 typedef enum e_side
