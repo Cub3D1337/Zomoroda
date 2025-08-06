@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/06 10:51:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/06 11:07:56 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,36 +68,28 @@ void	draw_line(t_cub *cub, int x, int y, double angle, int line_len, int color)
 
 void	draw_line_to(t_cub *cub, t_pointd from, t_pointd to, int color)
 {
-	int		x0 = (int)from.x;
-	int		y0 = (int)from.y;
-	int		x1 = (int)to.x;
-	int		y1 = (int)to.y;
-	int		dx = abs(x1 - x0);
-	int		dy = -abs(y1 - y0);
-	int		sx = (x0 < x1) ? 1 : -1;
-	int		sy = (y0 < y1) ? 1 : -1;
-	int		err = dx + dy;
-	int		e2;
-
-	while (1)
+	int			i;
+	double		steps;
+	t_pointd	dist;
+	t_pointd	inc;
+	t_pointd	start;
+	
+	i = 0;
+	dist.x = to.x - from.x;
+	dist.y = to.y - from.y;
+	steps = fmax(fabs(dist.x), fabs(dist.y));
+	inc.x = dist.x / steps;
+	inc.y = dist.y / steps;
+	start.x = from.x;
+	start.y = from.y;
+	while (i <= steps)
 	{
-		put_pixel(cub, x0, y0, color);
-		if (x0 == x1 && y0 == y1)
-			break ;
-		e2 = 2 * err;
-		if (e2 >= dy)
-		{
-			err += dy;
-			x0 += sx;
-		}
-		if (e2 <= dx)
-		{
-			err += dx;
-			y0 += sy;
-		}
+		put_pixel(cub, (int)start.x, (int)start.y, color);
+		start.x += inc.x;
+		start.y += inc.y;
+		i++;
 	}
 }
-
 
 void	draw_player(t_cub *cub)
 {
