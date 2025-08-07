@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 16:08:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/06 18:09:32 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/07 11:11:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	draw_ray(t_cub *cub, int x, double ray_angle)
 	ray_dir.x = cos(ray_angle);
 	ray_dir.y = sin(ray_angle);
 	dda(cub, ray_dir, &result);
-	line_height = MAP_SIZE / result.dist * (WIDTH / 2);
+	//TODO: Remove fish-eye effect
+	result.dist = cos(ray_angle - cub->p.angle) * result.dist;
+	line_height = (MAP_SIZE / result.dist) * (WIDTH / 2);
 	if (line_height > HEIGHT)
     	line_height = HEIGHT;
 	// The draw begin from to of window to bottom you see this because we increase y++,
@@ -48,13 +50,14 @@ void	draw_ray(t_cub *cub, int x, double ray_angle)
 	start_y = (HEIGHT - line_height) / 2;
 	end_y = start_y + line_height;
 	y = start_y;
-	// Walls
-	while (y < end_y)
-	{
-		if (check_minimap_edge(x, y))
-			put_pixel(cub, x, y, 0xff5500);
-		y++;
-	}
+	//TODO Walls with Textures
+	mapping_textures(cub, ray_dir, result, x, line_height, start_y, end_y);
+	// while (y < end_y)
+	// {
+	// 	if (check_minimap_edge(x, y))
+	// 		put_pixel(cub, x, y, 0xff5500);
+	// 	y++;
+	// }
 	// Floor
 	while (end_y < HEIGHT)
 	{

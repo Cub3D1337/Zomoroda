@@ -13,7 +13,7 @@ LIBFT =			$(LIBFT_DIR)/libft.a
 OBJS =			$(SRCS:.c=.o)
 
 SRCS =			$(SRC_DIR)/main.c $(SRC_DIR)/init.c $(SRC_DIR)/draw.c $(SRC_DIR)/events.c $(SRC_DIR)/utils.c $(SRC_DIR)/cleanup.c \
-				$(SRC_DIR)/move.c $(SRC_DIR)/raycasting.c $(SRC_DIR)/dda.c
+				$(SRC_DIR)/move.c $(SRC_DIR)/raycasting.c $(SRC_DIR)/dda.c $(SRC_DIR)/textures.c
 
 all:			$(LIBFT) $(NAME)
 

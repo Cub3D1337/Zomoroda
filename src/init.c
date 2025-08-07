@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/06 10:51:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/07 11:14:17 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,3 +72,37 @@ void	init_image_buffer(t_cub *cub)
 			&cub->img.bits_per_pixel, &cub->img.line_length,
 			&cub->img.endian);
 }
+
+int	init_textures(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	set_texture_paths(cub);
+	while (i < 1)
+	{
+		// Load the image from file
+		cub->textures[i].img_ptr = mlx_xpm_file_to_image(
+			cub->mlx,
+			cub->textures[i].relative_path,
+			&cub->textures[i].img_width,
+			&cub->textures[i].img_height
+		);
+		if (!cub->textures[i].img_ptr)
+		{
+			printf("Failed to load texture %s\n", cub->textures[i].relative_path);
+			return (1);
+		}
+
+		// Get image address and metadata
+		cub->textures[i].img_pixels_ptr = mlx_get_data_addr(
+			cub->textures[i].img_ptr,
+			&cub->textures[i].bits_per_pixel,
+			&cub->textures[i].line_length,
+			&cub->textures[i].endian
+		);
+		i++;
+	}
+	return (0);
+}
+

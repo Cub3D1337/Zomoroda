@@ -6,17 +6,14 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/06 10:53:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/07 10:52:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../Libft/includes/libft.h"
 # include "includes.h"
-# include "settings.h"
-# include "typedef.h"
 
 void    init_map(t_cub	*cub);
 void    init_cub(t_cub	*cub);
@@ -47,7 +44,5 @@ double	get_time_ms(void);
 
 void	destroy_cub(t_cub *cub);
 int	ft_exit(t_cub *cub);
-
-
 
 #endif
