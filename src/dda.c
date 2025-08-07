@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:18:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/06 17:09:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/07 10:37:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void	setup_dda(t_cub *cub, t_dda *dda, t_pointd ray_dir)
 
 void	compute_ray_lenght(t_cub *cub, t_dda *dda, t_pointd ray_dir, t_dda_result *result)
 {
+	//? Store info for Textures process
+	result->side = dda->side;
+	result->map_pos.x = dda->map_pos.x;
+	result->map_pos.y = dda->map_pos.y;
 	//? Use the last side distance depending on hit side
 	if (dda->side == HORIZONTAL)
 	{

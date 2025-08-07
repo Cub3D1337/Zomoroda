@@ -6,14 +6,29 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/03 12:45:37 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/07 11:16:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+void	destroy_textures(t_cub *cub)
+{
+	int i;
+
+	i = 0;
+	while (i < 1)
+	{
+		if (cub->textures[i].img_ptr)
+			mlx_destroy_image(cub->mlx, cub->textures[i].img_ptr);
+		i++;
+	}
+}
+
+
 void	destroy_cub(t_cub *cub)
 {
+	destroy_textures(cub);
 	if (cub->img.img_ptr)
 		mlx_destroy_image(cub->mlx, cub->img.img_ptr);
 	if (cub->mlx_win)

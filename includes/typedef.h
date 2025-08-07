@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/06 10:48:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/07 11:13:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
+typedef struct	s_img_texture {
+	void	*img_ptr;
+	char	*img_pixels_ptr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+
+	char	*relative_path;
+	int		img_width;
+	int		img_height;
+}				t_img_texture;
+
 typedef struct s_player
 {
 	t_pointd	pos;
@@ -61,6 +73,9 @@ typedef struct s_cub
 	t_img		img;
 	t_map_data	map;
 	t_player	p;
+
+	// Textures
+	t_img_texture	textures[4];
 
 	// FPS
 	int			frames;
@@ -89,6 +104,8 @@ typedef struct s_dda
 
 typedef struct s_dda_result
 {
+	t_side		side;
+	t_pointi	map_pos;
 	t_pointd	hit_point;
 	double		dist;
 }				t_dda_result;
