@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/06 11:07:56 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/06 17:07:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ void	draw(t_cub *cub)
 	ft_memset(cub->img.img_pixels_ptr, 0,
 		HEIGHT * cub->img.line_length);
 	draw_map(cub);
-	draw_player(cub);
 	raycasting(cub);
+	draw_player(cub);
 	show_fps(cub);
 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img.img_ptr, 0, 0);
 }

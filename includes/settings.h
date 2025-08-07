@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/04 18:17:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/06 16:16:23 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define MAP_SIZE  20
 
 # define SPEED 90
-# define ROT_SPEED 0.07
+# define ROT_SPEED 0.05
 # define PLY_SIZE 6
 
 # define FOV M_PI / 3
