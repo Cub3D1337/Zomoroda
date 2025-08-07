@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:18:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/06 10:54:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/06 17:09:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	compute_ray_lenght(t_cub *cub, t_dda *dda, t_pointd ray_dir, t_dda_result *
 	//? Final position = Start position + Direction × Distance
 	result->hit_point.x = cub->p.pos.x + (ray_dir.x * result->dist);
 	result->hit_point.y = cub->p.pos.y + (ray_dir.y * result->dist);
-	draw_line_to(cub, cub->p.pos, result->hit_point, 0x00ff00);
+	draw_line_to(cub, cub->p.pos, result->hit_point, 0x00FF00);
 }
 
 void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result)
@@ -91,5 +91,5 @@ void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result)
 			dda.hit = true;
 	}
 	compute_ray_lenght(cub, &dda, ray_dir, result);
-	draw_square(cub, result->hit_point.x - cub->p.half, result->hit_point.y - cub->p.half, 5, 0x0000ff);
+	// draw_square(cub, result->hit_point.x - cub->p.half, result->hit_point.y - cub->p.half, 4, 0x0000FF);
 }
