@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:48:21 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/07 13:37:05 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/08 00:27:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,38 +37,44 @@ int get_texel(t_img_texture *texture, int x, int y)
 	return *(unsigned int *)pixel;
 }
 
-void	mapping_textures(t_cub *cub, t_pointd ray_dir, t_dda_result result,
-	int x, double line_height, int start_y, int end_y)
+void mapping_textures(t_cub *cub, t_pointd ray_dir, t_dda_result result,
+    int x, double line_height, int start_y, int end_y)
 {
-	double	wall_x;
-	int		tex_x;
-	double	step;
-	double	tex_pos;
+    double wall_x;
+    int texture_x;
+    int texture_y;
+    double step;
+    double tex_pos;
+    int color;
 
-	// 1. Calculate where the wall was hit (fractional X on wall tile)
-	if (result.side == HORIZONTAL)
-		wall_x = cub->p.pos.y + result.dist * ray_dir.y;
-	else
-		wall_x = cub->p.pos.x + result.dist * ray_dir.x;
-	wall_x -= floor(wall_x);
+    // 1. Wall hit X position (use uncorrected distance)
+    if (result.side == VERTICAL)
+        wall_x = cub->p.pos.y + result.dist * ray_dir.y;
+    else
+        wall_x = cub->p.pos.x + result.dist * ray_dir.x;
+    wall_x -= floor(wall_x);
 
-	// 2. Convert wall_x to texture x coordinate
-	tex_x = (int)(wall_x * cub->textures[0].img_width);
-	if ((result.side == HORIZONTAL && ray_dir.x > 0) ||
-		(result.side == VERTICAL && ray_dir.y < 0))
-		tex_x = cub->textures[0].img_width - tex_x - 1;
+    // 2. Texture X
+    texture_x = (int)(wall_x * cub->textures[0].img_width);
+    if ((result.side == VERTICAL && ray_dir.x > 0) ||
+        (result.side == HORIZONTAL && ray_dir.y < 0))
+        texture_x = cub->textures[0].img_width - texture_x - 1;
 
-	// 3. Calculate step and starting texture y coordinate
-	step = (double)cub->textures[0].img_height / line_height;
-	tex_pos = (start_y - HEIGHT / 2 + line_height / 2) * step;
+    // 3. Step in texture per screen pixel
+    step = (double)cub->textures[0].img_height / line_height;
 
-	for (int y = start_y; y < end_y; y++)
-	{
-		int tex_y = (int)tex_pos & (cub->textures[0].img_height - 1);
-		tex_pos += step;
+    // 4. Initial texture position
+    tex_pos = (start_y - HEIGHT / 2 + line_height / 2) * step;
+    while (start_y < end_y)
+    {
+        texture_y = (int)tex_pos;
+        if (texture_y < 0) texture_y = 0;
+        if (texture_y >= cub->textures[0].img_height)
+            texture_y = cub->textures[0].img_height - 1;
 
-		int color = get_texel(&cub->textures[0], tex_x, tex_y);
-		put_pixel(cub, x, y, color);
-	}
+        tex_pos += step;
+        color = get_texel(&cub->textures[0], texture_x, texture_y);
+        put_pixel(cub, x, start_y, color);
+        start_y++;
+    }
 }
-

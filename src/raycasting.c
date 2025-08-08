@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 16:08:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/07 11:11:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/08 00:26:35 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,12 @@ void	draw_ray(t_cub *cub, int x, double ray_angle)
 	ray_dir.y = sin(ray_angle);
 	dda(cub, ray_dir, &result);
 	//TODO: Remove fish-eye effect
-	result.dist = cos(ray_angle - cub->p.angle) * result.dist;
-	line_height = (MAP_SIZE / result.dist) * (WIDTH / 2);
+	// result.dist = cos(ray_angle - cub->p.angle) * result.dist;
+	
+	double proj_plane_dist = (WIDTH / 2) / tan(FOV / 2);
+	line_height = (MAP_SIZE / result.dist) * proj_plane_dist;
+
+	// line_height = (MAP_SIZE / result.dist) * (WIDTH / 2);
 	if (line_height > HEIGHT)
     	line_height = HEIGHT;
 	// The draw begin from to of window to bottom you see this because we increase y++,
@@ -62,7 +66,8 @@ void	draw_ray(t_cub *cub, int x, double ray_angle)
 	while (end_y < HEIGHT)
 	{
 		if (check_minimap_edge(x, end_y))
-			put_pixel(cub, x, end_y, 0x222222);
+			// put_pixel(cub, x, end_y, 0x222222);
+			put_pixel(cub, x, end_y, 0x005500);
 		end_y++;
 	}
 	// Sky
