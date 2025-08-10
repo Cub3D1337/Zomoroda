@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/07 11:13:41 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/08 11:48:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ typedef struct s_cub
 
 	// Textures
 	t_img_texture	textures[4];
+
+	// Projection Plan
+	double		projection_plane;
 
 	// FPS
 	int			frames;
