@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/06 16:16:23 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/08 11:31:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@
 # define ROT_SPEED 0.05
 # define PLY_SIZE 6
 
-# define FOV M_PI / 3
+// # define FOV M_PI / 3	
+# define FOV (60 * (M_PI / 180)) // Convert 60° to radians
+
 
 enum e_events_hooks
 {

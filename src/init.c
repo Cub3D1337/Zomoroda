@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/07 11:14:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/08 11:48:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void init_cub(t_cub	*cub)
 	cub->frames = 0;
 	cub->last_time = 0.0;
 	cub->last_frame_time = 0.0;
+	// Projection Plan
+	cub->projection_plane = (WIDTH / 2.0) / tan(FOV / 2.0);
 }
 
 void	init_image_buffer(t_cub *cub)

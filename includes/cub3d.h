@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/07 10:52:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/07 23:04:43 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_events(t_cub *cub);
 
 void    move(t_cub *cub);
 
+t_bool	check_minimap_edge(int x, int y);
 void	raycasting(t_cub *cub);
 void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result);
 

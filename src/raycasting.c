@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 16:08:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/07 11:11:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/10 15:08:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,51 +27,46 @@ t_bool	check_minimap_edge(int x, int y)
 	return (false);
 }
 
-
-void	draw_ray(t_cub *cub, int x, double ray_angle)
+void draw_ray(t_cub *cub, int x, double ray_angle)
 {
-	t_pointd		ray_dir;
-	t_dda_result	result;
-	double			line_height;
-	int				start_y;
-	int				end_y;
-	int				y;
+    t_pointd     ray_dir;
+    t_dda_result result;
+    double       perp_dist;
+    double       line_height;
+    int          start_y;
+    int          end_y;
 
-	ray_dir.x = cos(ray_angle);
-	ray_dir.y = sin(ray_angle);
-	dda(cub, ray_dir, &result);
-	//TODO: Remove fish-eye effect
-	result.dist = cos(ray_angle - cub->p.angle) * result.dist;
-	line_height = (MAP_SIZE / result.dist) * (WIDTH / 2);
-	if (line_height > HEIGHT)
-    	line_height = HEIGHT;
-	// The draw begin from to of window to bottom you see this because we increase y++,
-	// That's mean the window's top y = 0 and bottom y = HEIGHT
-	start_y = (HEIGHT - line_height) / 2;
-	end_y = start_y + line_height;
-	y = start_y;
-	//TODO Walls with Textures
-	mapping_textures(cub, ray_dir, result, x, line_height, start_y, end_y);
-	// while (y < end_y)
-	// {
-	// 	if (check_minimap_edge(x, y))
-	// 		put_pixel(cub, x, y, 0xff5500);
-	// 	y++;
-	// }
-	// Floor
-	while (end_y < HEIGHT)
-	{
-		if (check_minimap_edge(x, end_y))
-			put_pixel(cub, x, end_y, 0x222222);
-		end_y++;
-	}
-	// Sky
-	while (start_y > 0)
-	{
-		if (check_minimap_edge(x, start_y))
-			put_pixel(cub, x, start_y, 0x0099ff);
-		start_y--;
-	}
+    // Ray direction
+    ray_dir.x = cos(ray_angle);
+    ray_dir.y = sin(ray_angle);
+
+    // Perform DDA
+    dda(cub, ray_dir, &result);
+
+    // --- IMPORTANT FIX ---
+    // Convert "hit distance" into perpendicular distance to projection plane
+    // This removes the fisheye and keeps texture scale constant
+    perp_dist = result.dist * cos(ray_angle - cub->p.angle);
+
+    // Wall height in screen space
+    line_height = (MAP_SIZE / perp_dist) * cub->projection_plane;
+
+    // Clamp values
+    start_y = (HEIGHT / 2) - (int)(line_height / 2);
+    if (start_y < 0) start_y = 0;
+    end_y = (HEIGHT / 2) + (int)(line_height / 2);
+    if (end_y >= HEIGHT) end_y = HEIGHT - 1;
+
+    // Draw the textured wall column
+    mapping_textures(cub, ray_dir, result, x, line_height, start_y, end_y);
+
+    // Draw floor
+    for (int y = end_y + 1; y < HEIGHT; ++y)
+        put_pixel(cub, x, y, 0x005500); // Dark grey floor
+
+    // Draw sky
+    for (int y = 0; y < start_y; ++y)
+        put_pixel(cub, x, y, 0x0099ff); // Light blue sky
 }
 
 void	raycasting(t_cub *cub)
