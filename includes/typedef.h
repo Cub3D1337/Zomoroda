@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/08 11:48:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/12 17:01:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,14 @@ typedef struct s_dda_result
 	double		dist;
 }				t_dda_result;
 
+typedef struct s_texture_data
+{
+	t_img_texture	*tex;
+	double			wallX;
+	t_pointi		tex_cord;
+	double			step;
+	double			tex_pos;
+	int				color;
+}				t_texture_data;
 
 #endif

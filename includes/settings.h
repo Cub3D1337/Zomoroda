@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/08 11:31:10 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/18 13:47:35 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #	define M_PI_2 1.57079632679489661923
 #endif
 
-# define WIDTH 1080
+# define WIDTH 1280
 # define HEIGHT 720
 
 # define TARGET_FPS 60
@@ -29,9 +29,9 @@
 
 # define MAP_WIDTH 16
 # define MAP_HEIGHT 16
-# define MAP_SIZE  20
+# define MAP_SIZE  10
 
-# define SPEED 90
+# define SPEED 50
 # define ROT_SPEED 0.05
 # define PLY_SIZE 6
 

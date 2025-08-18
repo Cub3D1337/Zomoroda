@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 16:08:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/10 15:08:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/18 13:45:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,24 @@ void draw_ray(t_cub *cub, int x, double ray_angle)
 
     // Clamp values
     start_y = (HEIGHT / 2) - (int)(line_height / 2);
-    if (start_y < 0) start_y = 0;
+    if (start_y < 0)
+        start_y = 0;
     end_y = (HEIGHT / 2) + (int)(line_height / 2);
-    if (end_y >= HEIGHT) end_y = HEIGHT - 1;
+    if (end_y >= HEIGHT)
+        end_y = HEIGHT - 1;
 
     // Draw the textured wall column
     mapping_textures(cub, ray_dir, result, x, line_height, start_y, end_y);
 
     // Draw floor
     for (int y = end_y + 1; y < HEIGHT; ++y)
-        put_pixel(cub, x, y, 0x005500); // Dark grey floor
+        if (check_minimap_edge(x, y))
+            put_pixel(cub, x, y, 0x005500); // Dark grey floor
 
     // Draw sky
     for (int y = 0; y < start_y; ++y)
-        put_pixel(cub, x, y, 0x0099ff); // Light blue sky
+        if (check_minimap_edge(x, y))
+            put_pixel(cub, x, y, 0x0099ff); // Light blue sky
 }
 
 void	raycasting(t_cub *cub)
