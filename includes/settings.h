@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/18 13:47:35 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/19 14:59:19 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define WIDTH 1280
 # define HEIGHT 720
 
-# define TARGET_FPS 60
+# define TARGET_FPS 500
 # define FRAME_DURATION (1000.0 / TARGET_FPS) // ~16.66 ms for each frame == 60 FPS
 
 # define MAP_WIDTH 16
@@ -32,12 +32,14 @@
 # define MAP_SIZE  10
 
 # define SPEED 50
-# define ROT_SPEED 0.05
+# define ROT_SPEED 3.5
+# define TINY_STEP 0.5
 # define PLY_SIZE 6
+
+# define TEX_NUM 1
 
 // # define FOV M_PI / 3	
 # define FOV (60 * (M_PI / 180)) // Convert 60° to radians
-
 
 enum e_events_hooks
 {

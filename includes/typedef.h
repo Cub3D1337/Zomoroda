@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/12 17:01:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/19 18:04:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,21 @@ typedef struct s_img
 	void	*img_ptr;
 	char	*img_pixels_ptr;
 	int		bits_per_pixel;
+	int		bytes_per_pixel;
 	int		line_length;
 	int		endian;
 }				t_img;
 
 typedef struct	s_img_texture {
-	void	*img_ptr;
-	char	*img_pixels_ptr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void			*img_ptr;
+	char			*img_pixels_ptr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
 
-	char	*relative_path;
-	int		img_width;
-	int		img_height;
+	char			*relative_path;
+	int				img_width;
+	int				img_height;
 }				t_img_texture;
 
 typedef struct s_player
@@ -64,6 +65,8 @@ typedef struct s_player
 	t_bool	rotate_left;
 	t_bool	rotate_right;
 	double	angle;
+	double	cosA;
+	double	sinA;
 }				t_player;
 
 typedef struct s_cub
@@ -77,9 +80,10 @@ typedef struct s_cub
 	// Textures
 	t_img_texture	textures[4];
 
+	//TODO: Default calculation
 	// Projection Plan
 	double		projection_plane;
-
+	
 	// FPS
 	int			frames;
 	int			fps;
@@ -98,6 +102,7 @@ typedef enum e_side
 typedef struct s_dda
 {
 	t_pointi	map_pos;
+	t_pointd	p_cell;
 	t_pointi	dir_step;
 	t_pointd	grid_step;
 	t_bool		hit;
@@ -108,6 +113,7 @@ typedef struct s_dda
 typedef struct s_dda_result
 {
 	t_side		side;
+	t_pointi	dir_step;
 	t_pointi	map_pos;
 	t_pointd	hit_point;
 	double		dist;

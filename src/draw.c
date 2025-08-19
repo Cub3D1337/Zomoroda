@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/12 17:13:18 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/19 17:02:07 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 void	draw_square(t_cub *cub, int x, int y, int size, int color)
 {
 	t_pointi	incr_pos;
+	unsigned int	*pixels;
+	unsigned int	pitch;
 
 	incr_pos.y = 0;
+	pixels = (unsigned int *) cub->img.img_pixels_ptr;
+	pitch = cub->img.line_length / sizeof(unsigned int);
 	while (incr_pos.y < size)
 	{
 		incr_pos.x = 0;
 		while (incr_pos.x < size)
 		{
-			put_pixel(cub, (x + incr_pos.x), (y + incr_pos.y), color);
+			pixels[(y + incr_pos.y) * pitch + (x + incr_pos.x)] = color;
 			incr_pos.x++;
 		}
 		incr_pos.y++;
@@ -73,7 +77,7 @@ void	draw_line_to(t_cub *cub, t_pointd from, t_pointd to, int color)
 	t_pointd	dist;
 	t_pointd	inc;
 	t_pointd	start;
-	
+
 	i = 0;
 	dist.x = to.x - from.x;
 	dist.y = to.y - from.y;
@@ -100,6 +104,45 @@ void	draw_player(t_cub *cub)
 	draw_line(cub, cub->p.pos.x, cub->p.pos.y, cub->p.angle, 20, 0xff0000);
 }
 
+// void	draw_sky_and_floor(t_cub *cub)
+// {
+// 	// Draw floor
+// 	for (int y = 0; y < HEIGHT / 2; ++y)
+// 		for (int x = 0; x < WIDTH - 1; x++)
+// 			put_pixel(cub, x, y, 0x0099ff); // Light blue sky
+
+// 	// Draw sky
+//     for (int y = HEIGHT / 2; y < HEIGHT - 1; ++y)
+// 		for (int x = 0; x < WIDTH - 1; x++)
+// 			put_pixel(cub, x, y, 0x005500); // Dark grey floor
+// }
+
+void	draw_sky_and_floor(t_cub *cub)
+{
+	unsigned int	color;
+	t_pointi		pos;
+	unsigned int	*pixels;
+	unsigned int	pitch;
+
+	pos.y = 0;
+	pixels = (unsigned int *) cub->img.img_pixels_ptr;
+	pitch = cub->img.line_length / sizeof(unsigned int);
+	while (pos.y < HEIGHT)
+	{
+		pos.x = 0;
+		if ((pos.y < HEIGHT / 2))
+			color = 0x0099ff;
+		else
+			color = 0x005500;
+		while (pos.x < WIDTH)
+		{
+			pixels[pos.y * pitch + pos.x] = color;
+			pos.x++;
+		}
+		pos.y++;
+	}	
+}
+
 void	show_fps(t_cub *cub)
 {
 	char	*fps_notif;
@@ -115,6 +158,7 @@ void	draw(t_cub *cub)
 {
 	ft_memset(cub->img.img_pixels_ptr, 0,
 		HEIGHT * cub->img.line_length);
+	draw_sky_and_floor(cub);
 	draw_map(cub);
 	raycasting(cub);
 	draw_player(cub);

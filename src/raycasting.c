@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 16:08:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/18 13:45:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/19 17:11:54 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,6 @@ void draw_ray(t_cub *cub, int x, double ray_angle)
 
     // Draw the textured wall column
     mapping_textures(cub, ray_dir, result, x, line_height, start_y, end_y);
-
-    // Draw floor
-    for (int y = end_y + 1; y < HEIGHT; ++y)
-        if (check_minimap_edge(x, y))
-            put_pixel(cub, x, y, 0x005500); // Dark grey floor
-
-    // Draw sky
-    for (int y = 0; y < start_y; ++y)
-        if (check_minimap_edge(x, y))
-            put_pixel(cub, x, y, 0x0099ff); // Light blue sky
 }
 
 void	raycasting(t_cub *cub)

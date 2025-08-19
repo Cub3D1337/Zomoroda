@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:18:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/08 10:55:32 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/19 18:02:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,21 @@ void	setup_dda(t_cub *cub, t_dda *dda, t_pointd ray_dir)
 	// Those values is modified after each jump to check collision with wall 
 	dda->map_pos.x = (int)cub->p.pos.x / MAP_SIZE;
 	dda->map_pos.y = (int)cub->p.pos.y / MAP_SIZE;
+	dda->p_cell.x = cub->p.pos.x / MAP_SIZE;
+	dda->p_cell.y = cub->p.pos.y / MAP_SIZE;
+
 	// Grid jump step on x and y (Horizontal and Vertical)
 	dda->grid_step.x = fabs(1 / ray_dir.x);
 	dda->grid_step.y = fabs(1 / ray_dir.y);
-	// Hit flag
-	dda->hit = false;
 	// Setup initial hypotenuse_dist (x, y) lenght to begin a simple and constant jump grid
 	if (ray_dir.x < 0)
-		dda->hypotenuse_dist.x = ((cub->p.pos.x / MAP_SIZE) - dda->map_pos.x) * dda->grid_step.x;
+		dda->hypotenuse_dist.x = ((dda->p_cell.x) - dda->map_pos.x) * dda->grid_step.x;
 	else
-		dda->hypotenuse_dist.x = ((dda->map_pos.x + 1) - (cub->p.pos.x / MAP_SIZE)) * dda->grid_step.x;
+		dda->hypotenuse_dist.x = ((dda->map_pos.x + 1) - (dda->p_cell.x)) * dda->grid_step.x;
 	if (ray_dir.y < 0)
-		dda->hypotenuse_dist.y = ((cub->p.pos.y / MAP_SIZE) - dda->map_pos.y) * dda->grid_step.y;
+		dda->hypotenuse_dist.y = ((dda->p_cell.y) - dda->map_pos.y) * dda->grid_step.y;
 	else
-		dda->hypotenuse_dist.y = ((dda->map_pos.y + 1) - (cub->p.pos.y / MAP_SIZE)) * dda->grid_step.y;
+		dda->hypotenuse_dist.y = ((dda->map_pos.y + 1) - (dda->p_cell.y)) * dda->grid_step.y;
 	// Setup dir step
 	setup_dir_step(dda, ray_dir);
 }
@@ -52,17 +53,18 @@ void	compute_ray_lenght(t_cub *cub, t_dda *dda, t_pointd ray_dir, t_dda_result *
 {
 	//? Store info for Textures process
 	result->side = dda->side;
+	result->dir_step = dda->dir_step;
 	result->map_pos.x = dda->map_pos.x;
 	result->map_pos.y = dda->map_pos.y;
 	//? Use the last side distance depending on hit side
 	if (dda->side == HORIZONTAL)
 	{
-		result->dist = (dda->map_pos.x - (cub->p.pos.x / MAP_SIZE)
+		result->dist = (dda->map_pos.x - (dda->p_cell.x)
 			+ (1 - dda->dir_step.x) / 2) / ray_dir.x;
 	}
 	else
 	{		
-		result->dist = (dda->map_pos.y - (cub->p.pos.y / MAP_SIZE)
+		result->dist = (dda->map_pos.y - (dda->p_cell.y)
 			+ (1 - dda->dir_step.y) / 2) / ray_dir.y;
 	}
 	result->dist *= MAP_SIZE;
@@ -77,7 +79,7 @@ void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result)
 	t_dda	dda;
 
 	setup_dda(cub, &dda, ray_dir);
-	while (!dda.hit)
+	while (true)
 	{
 		if (dda.hypotenuse_dist.x <= dda.hypotenuse_dist.y)
 		{
@@ -92,7 +94,7 @@ void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result)
 			dda.side = VERTICAL;
 		}
 		if (cub->map.array[dda.map_pos.y][dda.map_pos.x] == 1)
-			dda.hit = true;
+			break ;
 	}
 	compute_ray_lenght(cub, &dda, ray_dir, result);
 	// draw_square(cub, result->hit_point.x - cub->p.half, result->hit_point.y - cub->p.half, 4, 0x0000FF);

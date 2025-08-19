@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/18 13:24:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/19 18:04:43 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,17 @@ void init_map(t_cub	*cub)
 			cub->map.array[i][j] = tmp[i][j];
 }
 
-void init_cub(t_cub	*cub)
+void	init_defult_calculation(t_cub	*cub)
 {
+	// Projection Plan
+	cub->projection_plane = (WIDTH / 2.0) / tan(FOV / 2.0);
+	// Cos / Sin of player angle
+	cub->p.cosA = cos(cub->p.angle);
+	cub->p.sinA = sin(cub->p.angle);
+}
 
+void	init_cub(t_cub	*cub)
+{
 	cub->mlx = mlx_init();
 	cub->mlx_win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3D");
 	// Init Player
@@ -96,8 +104,7 @@ void init_cub(t_cub	*cub)
 	cub->frames = 0;
 	cub->last_time = 0.0;
 	cub->last_frame_time = 0.0;
-	// Projection Plan
-	cub->projection_plane = (WIDTH / 2.0) / tan(FOV / 2.0);
+	init_defult_calculation(cub);
 }
 
 void	init_image_buffer(t_cub *cub)
@@ -109,6 +116,8 @@ void	init_image_buffer(t_cub *cub)
 	cub->img.img_pixels_ptr = mlx_get_data_addr(cub->img.img_ptr,
 			&cub->img.bits_per_pixel, &cub->img.line_length,
 			&cub->img.endian);
+	// For put_pixel inline pointer math
+	cub->img.bytes_per_pixel = cub->img.bits_per_pixel / 8;
 }
 
 int	init_textures(t_cub *cub)
@@ -117,7 +126,7 @@ int	init_textures(t_cub *cub)
 
 	i = 0;
 	set_texture_paths(cub);
-	while (i < 1)
+	while (i < TEX_NUM)
 	{
 		// Load the image from file
 		cub->textures[i].img_ptr = mlx_xpm_file_to_image(
