@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/19 20:11:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 21:15:21 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@
 
 # define MAP_WIDTH 32
 # define MAP_HEIGHT 32
-# define MAP_SIZE  10
+# define BLOCK_SIZE  12
+# define MINIMAP_SIZE 220
 
 # define SPEED 50
 # define ROT_SPEED 3.5
 # define TINY_STEP 0.5
-# define PLY_SIZE 6
+# define PLY_SIZE 4
 
 # define TEX_NUM 1
 

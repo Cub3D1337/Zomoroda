@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:18:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/20 08:33:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 20:54:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	setup_dda(t_cub *cub, t_dda *dda, t_pointd ray_dir)
 {
 	// Get player pos in grid map, the value truncate to int
 	// Those values is modified after each jump to check collision with wall 
-	dda->map_pos.x = (int)cub->p.pos.x / MAP_SIZE;
-	dda->map_pos.y = (int)cub->p.pos.y / MAP_SIZE;
+	dda->map_pos.x = (int)cub->p.pos.x / BLOCK_SIZE;
+	dda->map_pos.y = (int)cub->p.pos.y / BLOCK_SIZE;
 	// Like map_pos but i keep the fractional part
-	dda->p_cell.x = cub->p.pos.x / MAP_SIZE;
-	dda->p_cell.y = cub->p.pos.y / MAP_SIZE;
+	dda->p_cell.x = cub->p.pos.x / BLOCK_SIZE;
+	dda->p_cell.y = cub->p.pos.y / BLOCK_SIZE;
 
 	// Grid jump step on x and y (Horizontal and Vertical)
 	dda->grid_step.x = fabs(1 / ray_dir.x);
@@ -68,11 +68,10 @@ void	compute_ray_lenght(t_cub *cub, t_dda *dda, t_pointd ray_dir, t_dda_result *
 		result->dist = (dda->map_pos.y - (dda->p_cell.y)
 			+ (1 - dda->dir_step.y) / 2) / ray_dir.y;
 	}
-	result->dist *= MAP_SIZE;
+	result->dist *= BLOCK_SIZE;
 	//? Final position = Start position + Direction × Distance
 	result->hit_point.x = cub->p.pos.x + (ray_dir.x * result->dist);
 	result->hit_point.y = cub->p.pos.y + (ray_dir.y * result->dist);
-	draw_line_to(cub, cub->p.pos, result->hit_point, 0x00FF00);
 }
 
 void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result)
@@ -98,5 +97,4 @@ void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result)
 			break ;
 	}
 	compute_ray_lenght(cub, &dda, ray_dir, result);
-	// draw_square(cub, result->hit_point.x - cub->p.half, result->hit_point.y - cub->p.half, 4, 0x0000FF);
 }

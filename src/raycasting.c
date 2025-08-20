@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 16:08:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/19 17:11:54 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 20:50:35 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 t_bool	check_wall_hit(t_cub *cub, int x, int y)
 {
-	if (cub->map.array[y / MAP_SIZE][x / MAP_SIZE] == 1)
+	if (cub->map.array[y / BLOCK_SIZE][x / BLOCK_SIZE] == 1)
 		return (true);
 	return (false);
 }
 
 t_bool	check_minimap_edge(int x, int y)
 {
-	if (x >= MAP_WIDTH * MAP_SIZE
-		|| y >= MAP_HEIGHT * MAP_SIZE)
+	if (x >= MINIMAP_SIZE
+		|| y >= MINIMAP_SIZE)
 		return (true);
 	return (false);
 }
@@ -49,7 +49,7 @@ void draw_ray(t_cub *cub, int x, double ray_angle)
     perp_dist = result.dist * cos(ray_angle - cub->p.angle);
 
     // Wall height in screen space
-    line_height = (MAP_SIZE / perp_dist) * cub->projection_plane;
+    line_height = (BLOCK_SIZE / perp_dist) * cub->projection_plane;
 
     // Clamp values
     start_y = (HEIGHT / 2) - (int)(line_height / 2);

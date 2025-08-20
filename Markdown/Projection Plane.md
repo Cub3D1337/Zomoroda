@@ -12,12 +12,12 @@ This distance is used to scale world objects (like walls) so that their height l
 
 # ✅ What does it do in projection?
 ```C
-line_height = (MAP_SIZE / result.dist) * projection_plane;
+line_height = (BLOCK_SIZE / result.dist) * projection_plane;
 ```
 
 Here's what's happening:
 
-    `MAP_SIZE / result.dist`: gives a raw unscaled height — e.g., how big the wall "should" look at this distance.
+    `BLOCK_SIZE / result.dist`: gives a raw unscaled height — e.g., how big the wall "should" look at this distance.
 
     * projection_plane: scales it to screen space, based on current screen width and FOV.
 
@@ -25,7 +25,7 @@ Example:
 
 Suppose:
 ```C
-    MAP_SIZE = 64 (each wall block is 64 units high)
+    BLOCK_SIZE = 64 (each wall block is 64 units high)
 
     result.dist = 128 (you’re 2 blocks away from wall)
 
@@ -44,7 +44,7 @@ So the wall will be drawn 160 pixels high in screen space — looks smaller the 
 ✅ 100% correct.
 # ✅ Do I need to use it everywhere?
 
-You should use it any time you're converting real-world units (MAP_SIZE) into screen-space pixels based on distance and FOV — especially for vertical projections.
+You should use it any time you're converting real-world units (BLOCK_SIZE) into screen-space pixels based on distance and FOV — especially for vertical projections.
 
 That includes:
 

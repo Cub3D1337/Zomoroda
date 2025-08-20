@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:40:59 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/06 10:52:12 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 21:17:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_map_image_buffer(t_cub *cub)
 	// if (cub->dup_map.img_ptr)
 	// 	mlx_destroy_image(cub->mlx, cub->dup_map.img_ptr);
 	cub->dup_map.img_ptr = mlx_new_image(cub->mlx,
-			MAP_WIDTH * MAP_SIZE, MAP_HEIGHT * MAP_SIZE);
+			MAP_WIDTH * BLOCK_SIZE, MAP_HEIGHT * BLOCK_SIZE);
 	cub->dup_map.img_pixels_ptr = mlx_get_data_addr(cub->dup_map.img_ptr,
 			&cub->dup_map.bits_per_pixel, &cub->dup_map.line_length,
 			&cub->dup_map.endian);
@@ -30,10 +30,10 @@ void	dup_map(t_cub *cub)
 	int			color;
 
 	pos.y = 0;
-	while (pos.y < MAP_HEIGHT * MAP_SIZE)
+	while (pos.y < MAP_HEIGHT * BLOCK_SIZE)
 	{
 		pos.x = 0;
-		while (pos.x < MAP_WIDTH * MAP_SIZE)
+		while (pos.x < MAP_WIDTH * BLOCK_SIZE)
 		{
 			*(unsigned int *)(cub->dup_map.img_pixels_ptr
 				+ (pos.y * cub->dup_map.line_length + pos.x * (cub->dup_map.bits_per_pixel / 8)))
@@ -103,3 +103,80 @@ void reset_player(t_cub *cub)
 	// 	incr_pos.y++;
 	// }
 }
+
+// Convert world pos -> minimap pos
+t_pointd	world_to_minimap(t_cub *cub, t_pointd world)
+{
+	t_pointd mini;
+
+	// offset relative to player
+	double rel_x = world.x - cub->p.pos.x;
+	double rel_y = world.y - cub->p.pos.y;
+
+	// scale from world units to minimap pixels
+	mini.x = (MINIMAP_SIZE / 2) + rel_x;
+	mini.y = (MINIMAP_SIZE / 2) + rel_y;
+
+	return mini;
+}
+
+// void	draw_sky_and_floor(t_cub *cub)
+// {
+// 	// Draw floor
+// 	for (int y = 0; y < HEIGHT / 2; ++y)
+// 		for (int x = 0; x < WIDTH - 1; x++)
+// 			put_pixel(cub, x, y, 0x0099ff); // Light blue sky
+
+// 	// Draw sky
+//     for (int y = HEIGHT / 2; y < HEIGHT - 1; ++y)
+// 		for (int x = 0; x < WIDTH - 1; x++)
+// 			put_pixel(cub, x, y, 0x005500); // Dark grey floor
+// }
+
+void	draw_line_to(t_cub *cub, t_pointd from, t_pointd to, int color)
+{
+	int			i;
+	double		steps;
+	t_pointd	dist;
+	t_pointd	inc;
+	t_pointd	start;
+
+	i = 0;
+	dist.x = to.x - from.x;
+	dist.y = to.y - from.y;
+	steps = fmax(fabs(dist.x), fabs(dist.y));
+	inc.x = dist.x / steps;
+	inc.y = dist.y / steps;
+	start.x = from.x;
+	start.y = from.y;
+	while (i <= steps)
+	{
+		put_pixel(cub, (int)start.x, (int)start.y, color);
+		start.x += inc.x;
+		start.y += inc.y;
+		i++;
+	}
+}
+
+//? Default draw_map
+// void	draw_map(t_cub *cub)
+// {
+// 	t_pointi	pos;
+// 	int			color;
+
+// 	pos.y = 0;
+// 	while (pos.y < MAP_HEIGHT)
+// 	{
+// 		pos.x = 0;
+// 		while (pos.x < MAP_WIDTH)
+// 		{
+// 			if (cub->map.array[pos.y][pos.x] == 1)
+// 				color = 0xffffff;
+// 			else
+// 				color = 0x000000;
+// 			draw_square(cub, pos.x * BLOCK_SIZE, pos.y * BLOCK_SIZE, BLOCK_SIZE, color);
+// 			pos.x++;
+// 		}
+// 		pos.y++;
+// 	}
+// }

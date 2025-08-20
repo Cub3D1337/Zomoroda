@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:02:58 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/19 18:07:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 16:56:23 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ void   get_player_pos(t_cub *cub)
 		while (pos.x < MAP_WIDTH)
 		{
 			if (cub->map.array[pos.y][pos.x] == 2)
-			
 			{
-				cub->p.pos.x = (pos.x * MAP_SIZE) + (MAP_SIZE / 2);
-				cub->p.pos.y = (pos.y * MAP_SIZE) + (MAP_SIZE / 2);
+				cub->p.pos.x = (pos.x * BLOCK_SIZE) + (BLOCK_SIZE / 2);
+				cub->p.pos.y = (pos.y * BLOCK_SIZE) + (BLOCK_SIZE / 2);
                 return ;
 			}
 			pos.x++;

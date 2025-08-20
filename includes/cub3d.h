@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/07 23:04:43 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 15:04:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	draw_square(t_cub *cub, int x, int y, int size, int color);
 void	draw_map(t_cub *cub);
 void	draw_player(t_cub *cub);
 void	draw(t_cub *cub);
+//TODO: Map buffer
+void	draw_init_map(t_cub *cub);
+
 
 void	init_events(t_cub *cub);
 

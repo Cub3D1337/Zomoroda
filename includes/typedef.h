@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/19 20:15:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 21:30:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,20 @@ typedef struct s_pointd
 typedef struct s_map_data
 {
 	int	array[MAP_HEIGHT][MAP_WIDTH];
+	int	map_width;
+	int	map_height;
+	int	padding;
 }				t_map_data;
+
+typedef struct t_map_ctx
+{
+	t_pointd		start;
+	t_pointd		end;
+	t_pointd		norm_ply_pos;
+	t_pointi		rows;
+	unsigned int	*pixels;
+	unsigned int	pitch;
+}			t_map_ctx;
 
 typedef struct s_img
 {
@@ -74,6 +87,7 @@ typedef struct s_cub
 	void		*mlx;
 	void		*mlx_win;
 	t_img		img;
+	t_img		map_img;
 	t_map_data	map;
 	t_player	p;
 

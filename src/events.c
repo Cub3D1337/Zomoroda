@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/19 15:34:10 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 21:22:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ int ft_loop_hook(t_cub *cub)
 	{
 		cub->fps = cub->frames;
 		cub->frames = 0;
-		cub->last_time = current;  // accumulate
-
-		// I need to call the fps fuction every frame
+		cub->last_time = current;
 	}
-	// printf("Delta Time: %f\n", cub->delta_time);
 	move(cub);
 	draw(cub);
 	return (EXIT_SUCCESS);
