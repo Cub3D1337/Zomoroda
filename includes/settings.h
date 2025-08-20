@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/19 14:59:19 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/19 20:11:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define TARGET_FPS 500
 # define FRAME_DURATION (1000.0 / TARGET_FPS) // ~16.66 ms for each frame == 60 FPS
 
-# define MAP_WIDTH 16
-# define MAP_HEIGHT 16
+# define MAP_WIDTH 32
+# define MAP_HEIGHT 32
 # define MAP_SIZE  10
 
 # define SPEED 50

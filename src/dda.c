@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:18:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/19 18:02:55 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 08:33:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	setup_dda(t_cub *cub, t_dda *dda, t_pointd ray_dir)
 	// Those values is modified after each jump to check collision with wall 
 	dda->map_pos.x = (int)cub->p.pos.x / MAP_SIZE;
 	dda->map_pos.y = (int)cub->p.pos.y / MAP_SIZE;
+	// Like map_pos but i keep the fractional part
 	dda->p_cell.x = cub->p.pos.x / MAP_SIZE;
 	dda->p_cell.y = cub->p.pos.y / MAP_SIZE;
 

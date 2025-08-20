@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/19 18:04:37 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/19 20:15:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_pointd
 
 typedef struct s_map_data
 {
-	int	array[16][16];
+	int	array[MAP_HEIGHT][MAP_WIDTH];
 }				t_map_data;
 
 typedef struct s_img
