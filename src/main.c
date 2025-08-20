@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/20 14:16:49 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 22:33:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	main(int ac, char **av)
 {
 	t_cub	cub;
 
-	parsing(ac, av);
+	// TODO: Not used it
+	// parsing(ac, av);
 	init_map(&cub);
 	init_cub(&cub);
 	init_textures(&cub);

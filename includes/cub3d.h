@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/20 15:04:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 22:34:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "includes.h"
+# include "parsing.h"
 
 void    init_map(t_cub	*cub);
 void    init_cub(t_cub	*cub);
