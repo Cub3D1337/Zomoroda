@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:48:21 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/19 17:17:47 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 21:37:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int get_texel(t_img_texture *texture, int x, int y)
 	return *(unsigned int *)pixel;
 }
 
-void mapping_textures(
+void	mapping_textures(
 	t_cub *cub, t_pointd ray_dir, t_dda_result result,
 	int x, double line_height, int start_y, int end_y)
 {
@@ -73,9 +73,9 @@ void mapping_textures(
 		
 	// 1) Use exact hit position from DDA (avoids compression artifacts)
 	if (result.side == HORIZONTAL)
-		data.wallX = result.hit_point.y / MAP_SIZE;
+		data.wallX = result.hit_point.y / BLOCK_SIZE;
 	else
-		data.wallX = result.hit_point.x / MAP_SIZE;
+		data.wallX = result.hit_point.x / BLOCK_SIZE;
 	data.wallX -= floor(data.wallX); // fractional part only
 	// 2) Texture column index
 	data.tex_cord.x = (int)(data.wallX * data.tex->img_width);
@@ -132,9 +132,9 @@ void mapping_textures(
 		
 // 	// 1) Use exact hit position from DDA (avoids compression artifacts)
 // 	if (result.side == HORIZONTAL)
-// 		data.wallX = result.hit_point.y / MAP_SIZE;
+// 		data.wallX = result.hit_point.y / BLOCK_SIZE;
 // 	else
-// 		data.wallX = result.hit_point.x / MAP_SIZE;
+// 		data.wallX = result.hit_point.x / BLOCK_SIZE;
 // 	data.wallX -= floor(data.wallX); // fractional part only
 // 	// 2) Texture column index
 // 	data.tex_cord.x = (int)(data.wallX * data.tex->img_width);

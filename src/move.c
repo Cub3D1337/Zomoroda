@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:41:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/19 15:26:07 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 12:25:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,19 @@ static t_bool	check_boundaries(t_cub *cub)
 	int			i;
 
 	if ((int)cub->p.pos.x - cub->p.half < 0
-		|| (int) cub->p.pos.x + cub->p.half >= (MAP_WIDTH * MAP_SIZE) + 1
+		|| (int) cub->p.pos.x + cub->p.half >= (MAP_WIDTH * BLOCK_SIZE) + 1
 		|| (int)cub->p.pos.y - cub->p.half < 0
-		|| (int)cub->p.pos.y + cub->p.half >= (MAP_HEIGHT * MAP_SIZE) + 1)
+		|| (int)cub->p.pos.y + cub->p.half >= (MAP_HEIGHT * BLOCK_SIZE) + 1)
 		return (false);
-	ply_corners[0].x = (cub->p.pos.x - cub->p.half) / MAP_SIZE;
-	ply_corners[0].y = (cub->p.pos.y - cub->p.half) / MAP_SIZE;
-	ply_corners[1].x = (cub->p.pos.x + cub->p.half - 1) / MAP_SIZE;
-	ply_corners[1].y = (cub->p.pos.y - cub->p.half) / MAP_SIZE;
-	ply_corners[2].x = (cub->p.pos.x - cub->p.half) / MAP_SIZE;
-	ply_corners[2].y = (cub->p.pos.y + cub->p.half - 1) / MAP_SIZE;
-	ply_corners[3].x = (cub->p.pos.x + cub->p.half - 1) / MAP_SIZE;
-	ply_corners[3].y = (cub->p.pos.y + cub->p.half - 1) / MAP_SIZE;
+	ply_corners[0].x = (cub->p.pos.x - cub->p.half) / BLOCK_SIZE;
+	ply_corners[0].y = (cub->p.pos.y - cub->p.half) / BLOCK_SIZE;
+	ply_corners[1].x = (cub->p.pos.x + cub->p.half - 1) / BLOCK_SIZE;
+	ply_corners[1].y = (cub->p.pos.y - cub->p.half) / BLOCK_SIZE;
+	ply_corners[2].x = (cub->p.pos.x - cub->p.half) / BLOCK_SIZE;
+	ply_corners[2].y = (cub->p.pos.y + cub->p.half - 1) / BLOCK_SIZE;
+	ply_corners[3].x = (cub->p.pos.x + cub->p.half - 1) / BLOCK_SIZE;
+	ply_corners[3].y = (cub->p.pos.y + cub->p.half - 1) / BLOCK_SIZE;
+
 	i = 0;
 	while (i < 4)
 	{

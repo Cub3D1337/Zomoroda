@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/18 18:47:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 14:26:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	destroy_cub(t_cub *cub)
 	destroy_textures(cub);
 	if (cub->img.img_ptr)
 		mlx_destroy_image(cub->mlx, cub->img.img_ptr);
+	//TODO: For Map Buffer
+	if (cub->map_img.img_ptr)
+		mlx_destroy_image(cub->mlx, cub->map_img.img_ptr);
 	if (cub->mlx_win)
 		mlx_destroy_window(cub->mlx, cub->mlx_win);
 	mlx_destroy_display(cub->mlx);
