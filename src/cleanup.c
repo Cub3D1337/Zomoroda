@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/07 11:16:14 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/18 18:47:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ void	destroy_textures(t_cub *cub)
 	int i;
 
 	i = 0;
-	while (i < 1)
+	while (i < TEX_NUM)
 	{
 		if (cub->textures[i].img_ptr)
 			mlx_destroy_image(cub->mlx, cub->textures[i].img_ptr);
 		i++;
 	}
 }
-
 
 void	destroy_cub(t_cub *cub)
 {

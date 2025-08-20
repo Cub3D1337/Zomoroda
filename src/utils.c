@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:02:58 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/06 10:48:43 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/19 18:07:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	put_pixel(t_cub *cub, int x, int y, int color)
 	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 		return ;
 	*(unsigned int *)(cub->img.img_pixels_ptr
-		+ (y * cub->img.line_length + x * (cub->img.bits_per_pixel / 8)))
+		+ (y * cub->img.line_length + x * cub->img.bytes_per_pixel))
 		= color;
 }
 
