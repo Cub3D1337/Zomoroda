@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:51:53 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/07 11:00:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/20 15:03:51 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@
 # include "settings.h"
 # include "typedef.h"
 # include "textures.h"
+# include "parsing.h"
 
 #endif
