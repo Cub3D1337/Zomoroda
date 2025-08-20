@@ -1,0 +1,6 @@
+*.vscode
+cub3d
+*.o
+*.a
+*.ghc
+cub3D

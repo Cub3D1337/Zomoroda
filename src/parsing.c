@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 14:23:52 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/20 14:26:31 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/20 22:34:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-parsing(int ac, char **av)
+void    parsing(int ac, char **av)
 {
-    
+    return ;
 }
