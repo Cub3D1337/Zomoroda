@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 16:08:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/20 20:50:35 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/23 16:42:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void draw_ray(t_cub *cub, int x, double ray_angle)
     line_height = (BLOCK_SIZE / perp_dist) * cub->projection_plane;
 
     // Clamp values
-    start_y = (HEIGHT / 2) - (int)(line_height / 2);
+    start_y = cub->half_height - (int)(line_height / 2) + (int)cub->p.pitch;
     if (start_y < 0)
         start_y = 0;
-    end_y = (HEIGHT / 2) + (int)(line_height / 2);
+    end_y = cub->half_height + (int)(line_height / 2) + (int)cub->p.pitch;
     if (end_y >= HEIGHT)
         end_y = HEIGHT - 1;
 

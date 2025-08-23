@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:18:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/20 20:54:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/23 16:52:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	setup_dda(t_cub *cub, t_dda *dda, t_pointd ray_dir)
 {
 	// Get player pos in grid map, the value truncate to int
 	// Those values is modified after each jump to check collision with wall 
-	dda->map_pos.x = (int)cub->p.pos.x / BLOCK_SIZE;
-	dda->map_pos.y = (int)cub->p.pos.y / BLOCK_SIZE;
-	// Like map_pos but i keep the fractional part
 	dda->p_cell.x = cub->p.pos.x / BLOCK_SIZE;
 	dda->p_cell.y = cub->p.pos.y / BLOCK_SIZE;
+	// Like p_pos but whitout the fractional part
+	dda->map_pos.x = (int)dda->p_cell.x;
+	dda->map_pos.y = (int)dda->p_cell.y;
 
 	// Grid jump step on x and y (Horizontal and Vertical)
 	dda->grid_step.x = fabs(1 / ray_dir.x);

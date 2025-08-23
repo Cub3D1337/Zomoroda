@@ -1,6 +1,6 @@
 # ✅ What projection_plane actually is
 ```C
-double projection_plane = (WIDTH / 2.0) / tan(FOV / 2.0);
+double projection_plane = (cub->half_width.0) / tan(FOV / 2.0);
 ```
 
 This is precomputed to represent the distance between the player (camera) and the projection plane (screen), assuming a symmetric Field of View (FOV).
@@ -60,7 +60,7 @@ You're right again: you don’t need to recompute it every frame or every ray.
 
 Just compute once in your init_cub():
 ```C
-cub->proj_plane = (WIDTH / 2.0) / tan(FOV / 2.0);
+cub->proj_plane = (cub->half_width.0) / tan(FOV / 2.0);
 ```
 
 Then use cub->proj_plane everywhere.
