@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:44:45 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 14:23:08 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/23 16:58:12 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,19 @@ char *trim_texture_path(const char *path)
     if (!path)
         return NULL;
 
+    // skip leading spaces/tabs
+    while (*path == ' ' || *path == '\t')
+        path++;
+
     p = ft_strdup(path);
     if (!p)
         return NULL;
+
     len = ft_strlen(p);
     while (len > 0 && (p[len - 1] == ' ' || p[len - 1] == '\t'
             || p[len - 1] == '\n' || p[len - 1] == '\r'))
         p[--len] = '\0';
+
     if (len == 0)
     {
         free(p);
@@ -43,10 +49,10 @@ int validate_texture_file(const char *path, const char *id)
     if (fd < 0)
     {
         fdprintf(2, "Error\nCannot open %s texture file: %s\n", id, path);
-        return (0);
+        return 0;
     }
     close(fd);
-    return (1);
+    return 1;
 }
 
 int set_texture(char **slot, const char *path_start, const char *id)
@@ -69,7 +75,6 @@ int set_texture(char **slot, const char *path_start, const char *id)
     *slot = p;
     return (1);
 }
-
 
 int check_player_spawn(t_config *cfg, int *px, int *py)
 {

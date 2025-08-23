@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:41:59 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 14:15:49 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/23 16:58:27 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,18 @@ int handle_line_before_map(char *line, t_config *cfg, int *seen_map, int fd)
     {
         free(line);
         close(fd);
-        return (0);
+        return 0;
     }
     if (r == 2)
     {
         if (is_map_line(line))
             return handle_map_line(line, cfg, seen_map, fd);
-        return handle_invalid_line(line, fd);
+        free(line);
+        close(fd);
+        return error("Error\nInvalid line before map\n");
     }
     free(line);
-    return (1);
+    return 1;
 }
 
 int parsing(int ac, char **av, t_config *cfg)
@@ -91,4 +93,3 @@ int parsing(int ac, char **av, t_config *cfg)
         return (0);
     return (1);
 }
-
