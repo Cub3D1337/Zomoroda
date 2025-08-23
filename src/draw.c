@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/20 21:20:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/23 17:08:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,14 @@
 void	draw_square(t_cub *cub, int x, int y, int size, int color)
 {
 	t_pointi	incr_pos;
-	unsigned int	*pixels;
-	unsigned int	pitch;
 
 	incr_pos.y = 0;
-	pixels = (unsigned int *) cub->img.img_pixels_ptr;
-	pitch = cub->img.line_length / sizeof(unsigned int);
 	while (incr_pos.y < size)
 	{
 		incr_pos.x = 0;
 		while (incr_pos.x < size)
 		{
-			pixels[(y + incr_pos.y) * pitch + (x + incr_pos.x)] = color;
+			cub->img.pixels[(y + incr_pos.y) * cub->img.pitch + (x + incr_pos.x)] = color;
 			incr_pos.x++;
 		}
 		incr_pos.y++;
@@ -48,10 +44,10 @@ void	draw_line(t_cub *cub, int x, int y, double angle, int line_len, int color)
 	}
 }
 
+// TODO: Rotate the player itself xd
 void	draw_player(t_cub *cub)
 {
 	t_pointi	pos;
-	double		radiant_angle;
 	t_pointi	minimap_pos;
 
 	minimap_pos.x = (MINIMAP_SIZE / 2);
@@ -64,19 +60,12 @@ void	draw_sky_and_floor(t_cub *cub)
 {
 	unsigned int	color;
 	t_pointi		pos;
-	unsigned int	*pixels;
-	unsigned int	pitch;
 
 	pos.y = 0;
-	pixels = (unsigned int *) cub->img.img_pixels_ptr;
-	pitch = cub->img.line_length / sizeof(unsigned int);
 	while (pos.y < HEIGHT)
 	{
 		pos.x = 0;
-		if ((pos.y < HEIGHT / 2))
-			color = 0x0099ff;
-		else
-			color = 0x005500;
+		color = cub->color[pos.y < cub->p.horizon];
 		while (pos.x < WIDTH)
 		{
 			if (pos.x < MINIMAP_SIZE && pos.y < MINIMAP_SIZE)
@@ -84,8 +73,7 @@ void	draw_sky_and_floor(t_cub *cub)
 				pos.x++;
 				continue ;
 			}
-			if (!(pos.x < 0 || pos.x >= WIDTH || pos.y < 0 || pos.y >= HEIGHT))
-				pixels[pos.y * pitch + pos.x] = color;
+			cub->img.pixels[pos.y * cub->img.pitch + pos.x] = color;
 			pos.x++;
 		}
 		pos.y++;
@@ -105,8 +93,9 @@ void	show_fps(t_cub *cub)
 
 void	draw(t_cub *cub)
 {
-	ft_memset(cub->img.img_pixels_ptr, 0,
-		HEIGHT * cub->img.line_length);
+	//! Bro after i comment this line i get a boost FPS (x3.5)
+	// ft_memset(cub->img.img_pixels_ptr, 0,
+	// 	HEIGHT * cub->img.line_length);
 	draw_sky_and_floor(cub);
 	draw_map(cub);
 	raycasting(cub);

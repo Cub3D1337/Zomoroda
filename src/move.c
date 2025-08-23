@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:41:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/20 12:25:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/23 16:06:48 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,41 @@
 
 static void	rotate(t_cub *cub)
 {
-	double	rot_speed;
+	t_pointd	rot_speed;
 
-	rot_speed = ROT_SPEED * cub->delta_time;
-	if (cub->p.rotate_left)
+	if (cub->p.rotate_left || cub->p.rotate_right)
 	{
-		cub->p.angle -= rot_speed;
+		rot_speed.x = H_ROT_SPEED * cub->delta_time;
+		if (cub->p.rotate_left)
+		{
+			cub->p.angle -= rot_speed.x;
+		}
+		else if (cub->p.rotate_right)
+		{
+			cub->p.angle += rot_speed.x;
+		}
+		if (cub->p.angle < 0)
+			cub->p.angle += 2 * M_PI;
+		if (cub->p.angle >= 2 * M_PI)
+			cub->p.angle -= 2 * M_PI;
+		cub->p.cosA = cos(cub->p.angle);
+		cub->p.sinA = sin(cub->p.angle);
 	}
-	else if (cub->p.rotate_right)
+
+	if (cub->p.rotate_up || cub->p.rotate_down)
 	{
-		cub->p.angle += rot_speed;
+		// Update pitch (up/down)
+		rot_speed.y = V_ROT_SPEED * cub->delta_time;
+		if (cub->p.rotate_up)
+			cub->p.pitch += rot_speed.y;
+		else if (cub->p.rotate_down)
+			cub->p.pitch -= rot_speed.y;
+		if (cub->p.pitch > MAX_PITCH) 
+			cub->p.pitch = MAX_PITCH;
+		if (cub->p.pitch < MIN_PITCH) 
+			cub->p.pitch = MIN_PITCH;
+		cub->p.horizon = (cub->half_height) + (int)cub->p.pitch;
 	}
-	if (cub->p.angle < 0)
-		cub->p.angle += 2 * M_PI;
-	if (cub->p.angle >= 2 * M_PI)
-		cub->p.angle -= 2 * M_PI;
-	cub->p.cosA = cos(cub->p.angle);
-	cub->p.sinA = sin(cub->p.angle);
 }
 
 static t_bool	check_boundaries(t_cub *cub)
@@ -125,7 +143,8 @@ void	move(t_cub *cub)
 	t_pointd	delta;
 	double		speed;
 
-	if (cub->p.rotate_left || cub->p.rotate_right)
+	if (cub->p.rotate_left || cub->p.rotate_right
+		|| cub->p.rotate_up || cub->p.rotate_down)
 		rotate(cub);
 	if (cub->p.move_up || cub->p.move_down
 		|| cub->p.move_left || cub->p.move_right)

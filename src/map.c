@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 14:35:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/20 21:35:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/23 17:09:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,16 @@
 
 static void	draw_map_square(t_cub *cub, int x, int y, int size, int color)
 {
-	t_pointi		incr_pos;
-	unsigned int	*pixels;
-	unsigned int	pitch;
+	t_pointi	incr_pos;
 
 	incr_pos.y = 0;
-	pixels = (unsigned int *) cub->map_img.img_pixels_ptr;
-	pitch = cub->map_img.line_length / sizeof(unsigned int);
 	while (incr_pos.y < size)
 	{
 		incr_pos.x = 0;
 		while (incr_pos.x < size)
 		{
-			if (!(x < 0 || x >= cub->map.map_width || y < 0 
-				|| y >= cub->map.map_height))
-				pixels[(y + incr_pos.y) * pitch + (x + incr_pos.x)] = color;
+			cub->map_img.pixels[(y + incr_pos.y) * cub->map_img.pitch
+				+ (x + incr_pos.x)] = color;
 			incr_pos.x++;
 		}
 		incr_pos.y++;
@@ -61,39 +56,12 @@ void	draw_init_map(t_cub *cub)
 	}
 }
 
-void	draw_map0(t_cub *cub)
-{
-	t_pointi	pos;
-	int			color;
-	unsigned int	*pixels;
-	unsigned int	pitch;
-
-	pixels = (unsigned int *) cub->map_img.img_pixels_ptr;
-	pitch = cub->map_img.line_length / sizeof(unsigned int);	
-
-	pos.y = 0;
-	while (pos.y < cub->map.map_height)
-	{
-		pos.x = 0;
-		while (pos.x < cub->map.map_width)
-		{
-			color = pixels[(int)pos.y * pitch + (int)pos.x];
-			put_pixel(cub, pos.x, pos.y, color);
-			pos.x++;
-		}
-		pos.y++;
-	}
-}
-
 void	draw_map(t_cub *cub)
 {
 	t_map_ctx		ctx;
 	t_pointi		pos;
 	t_pointi		cord;
 	int				color;
-	
-	ctx.pixels = (unsigned int *) cub->map_img.img_pixels_ptr;
-	ctx.pitch = cub->map_img.line_length / sizeof(unsigned int);
 	
 	ctx.norm_ply_pos.x = cub->p.pos.x + cub->map.padding;
 	ctx.norm_ply_pos.y = cub->p.pos.y + cub->map.padding;
@@ -115,11 +83,36 @@ void	draw_map(t_cub *cub)
 		{
 			cord.x = (int)ctx.start.x + pos.x;
             cord.y = (int)ctx.start.y + pos.y;
-			
-			color = ctx.pixels[cord.y * ctx.pitch + cord.x];
+
+			color = cub->map_img.pixels[cord.y * cub->map_img.pitch + cord.x];
 			put_pixel(cub, pos.x, pos.y, color);
 			pos.x++;
 		}
 		pos.y++;
 	}
 }
+
+
+// void	draw_whole_map(t_cub *cub)
+// {
+// 	t_pointi	pos;
+// 	int			color;
+// 	unsigned int	*pixels;
+// 	unsigned int	pitch;
+
+// 	pixels = (unsigned int *) cub->map_img.img_pixels_ptr;
+// 	pitch = cub->map_img.line_length / sizeof(unsigned int);	
+
+// 	pos.y = 0;
+// 	while (pos.y < cub->map.map_height)
+// 	{
+// 		pos.x = 0;
+// 		while (pos.x < cub->map.map_width)
+// 		{
+// 			color = pixels[(int)pos.y * pitch + (int)pos.x];
+// 			put_pixel(cub, pos.x, pos.y, color);
+// 			pos.x++;
+// 		}
+// 		pos.y++;
+// 	}
+// }

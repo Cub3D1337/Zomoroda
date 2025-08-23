@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/20 21:30:18 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/23 16:32:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ typedef struct t_map_ctx
 	t_pointd		end;
 	t_pointd		norm_ply_pos;
 	t_pointi		rows;
-	unsigned int	*pixels;
-	unsigned int	pitch;
 }			t_map_ctx;
 
 typedef struct s_img
 {
+	// Fast rendering
+	unsigned int	*pixels;
+	unsigned int	pitch;
+	// Img members
 	void	*img_ptr;
 	char	*img_pixels_ptr;
 	int		bits_per_pixel;
@@ -53,17 +55,24 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
-typedef struct	s_img_texture {
-	void			*img_ptr;
-	char			*img_pixels_ptr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
+typedef struct s_img_texture
+{
+	// Hot (read every pixel)
+	unsigned int   *pixels_u32;
+	unsigned int    pitch_u32;
 
-	char			*relative_path;
-	int				img_width;
-	int				img_height;
-}				t_img_texture;
+	// MLX
+	void           *img_ptr;
+	char           *img_pixels_ptr;
+	int             bits_per_pixel;
+	int             line_length;
+	int             endian;
+
+	// Meta
+	char           *relative_path;
+	int             img_width;
+	int             img_height;
+}			t_img_texture;
 
 typedef struct s_player
 {
@@ -80,24 +89,31 @@ typedef struct s_player
 	double	angle;
 	double	cosA;
 	double	sinA;
+	double	pitch;
+	double	horizon;
+	t_bool	rotate_up;
+	t_bool	rotate_down;
 }				t_player;
 
 typedef struct s_cub
 {
 	void		*mlx;
 	void		*mlx_win;
+	int			half_height;
+	int			half_width;
 	t_img		img;
 	t_img		map_img;
 	t_map_data	map;
 	t_player	p;
-
 	// Textures
 	t_img_texture	textures[4];
-
 	//TODO: Default calculation
 	// Projection Plan
 	double		projection_plane;
-	
+	// COLOR
+	int			color[2];
+	// Mouse
+	t_pointd	mouse;
 	// FPS
 	int			frames;
 	int			fps;
