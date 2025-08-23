@@ -6,13 +6,13 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:41:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 13:46:24 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:10:14 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	validate_once_all_present(const t_config *cfg)
+int validate_once_all_present(const t_config *cfg)
 {
 	if (!cfg->no_texture || !cfg->so_texture || !cfg->we_texture
 		|| !cfg->ea_texture)
@@ -24,8 +24,7 @@ int	validate_once_all_present(const t_config *cfg)
 	return (1);
 }
 
-// -------------check_map_edges---------------
-int	check_column_top_bottom(t_config *cfg, int x)
+int check_column_top_bottom(t_config *cfg, int x)
 {
 	if (x >= cfg->map_w)
 		return (1);
@@ -37,7 +36,7 @@ int	check_column_top_bottom(t_config *cfg, int x)
 	return (check_column_top_bottom(cfg, x + 1));
 }
 
-int	check_row_sides(t_config *cfg, int y)
+int check_row_sides(t_config *cfg, int y)
 {
 	if (y >= cfg->map_h)
 		return (1);

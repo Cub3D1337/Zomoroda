@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:02:26 by wahmane           #+#    #+#             */
-/*   Updated: 2025/08/23 13:27:00 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/23 13:53:38 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	validate_player_and_close(t_config *cfg);
 char	*trim_texture_path(const char *path);
 int	validate_texture_file(const char *path, const char *id);
 int	set_texture(char **slot, const char *path_start, const char *id);
-int	check_player_spawn(t_config *cfg);
+int check_player_spawn(t_config *cfg, int *px, int *py);
 int	check_map_edges(t_config *cfg);
 
 int	error(const char *msg);

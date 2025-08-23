@@ -6,13 +6,13 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:43:28 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 13:44:16 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:17:58 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	push_line(t_vec *raw, char *line)
+int push_line(t_vec *raw, char *line)
 {
 	rstrip_newline(line);
 	if (!vec_push(raw, line))
@@ -23,71 +23,82 @@ int	push_line(t_vec *raw, char *line)
 	return (1);
 }
 
-int	read_map_lines(int fd, t_vec *raw)
+int read_map_lines(int fd, t_vec *raw)
 {
-	char	*line;
+    char *line;
 
-	while (line = get_next_line(fd))
-	{
-		if (!is_map_line(line))
-		{
-			if (!is_all_space(line))
-				free(line);
-			return (0);
-			free(line);
-			while ((line = get_next_line(fd)))
-			{
-				if (!is_all_space(line))
-				{
-					free(line);
-					return (0);
-				}
-				free(line);
-			}
-			break ;
-		}
-		if (!push_line(raw, line))
-			return (0);
-	}
-	return (1);
+    line = get_next_line(fd);
+    while (line)
+    {
+        rstrip_newline(line);
+
+        if (!is_map_line(line))
+        {
+            if (!is_all_space(line))
+            {
+                free(line);
+                return 0;
+            }
+            free(line);
+            while ((line = get_next_line(fd)))
+            {
+                rstrip_newline(line);
+                if (!is_all_space(line))
+                {
+                    free(line);
+                    return 0;
+                }
+                free(line);
+            }
+            break ;
+        }
+        if (!push_line(raw, line))
+            return 0;
+        line = get_next_line(fd);
+    }
+    return 1;
 }
 
-int	collect_map(int fd, char *first_line, t_config *cfg)
+int collect_map(int fd, char *first_line, t_config *cfg)
 {
-	t_vec	raw;
+    t_vec raw;
 
-	vec_init(&raw);
-	if (!push_line(&raw, first_line))
-		free(first_line);
-	return (error("Error\nOOM\n"));
-	if (!read_map_lines(fd, &raw))
-	{
-		vec_free(&raw);
-		return (error("Error\nInvalid map lines\n"));
-	}
-	if (raw.size == 0)
-	{
-		vec_free(&raw);
-		return (error("Error\nEmpty map\n"));
-	}
-	if (!build_rect_map(cfg, &raw))
-	{
-		vec_free(&raw);
-		return (0);
-	}
-	free(raw.data);
-	return (1);
+    vec_init(&raw);
+
+    if (!push_line(&raw, first_line))
+    {
+        free(first_line);
+        return error("Error\nOOM\n");
+    }
+
+    if (!read_map_lines(fd, &raw))
+    {
+        vec_free(&raw);
+        return error("Error\nInvalid map lines\n");
+    }
+
+    if (raw.size == 0)
+    {
+        vec_free(&raw);
+        return error("Error\nEmpty map\n");
+    }
+
+    if (!build_rect_map(cfg, &raw))
+    {
+        vec_free(&raw);
+        return 0;
+    }
+
+    free(raw.data);
+    return 1;
 }
 
-// -------------validat player---------------
-int	check_neighbors(t_config *cfg)
+int check_neighbors(t_config *cfg)
 {
-	int	y;
+	int y;
 
 	y = 0;
 	if (cfg->map_h <= 0)
-		return (1);
-	if (y >= cfg->map_h)
 		return (1);
 	while (y < cfg->map_h)
 	{
@@ -98,10 +109,10 @@ int	check_neighbors(t_config *cfg)
 	return (1);
 }
 
-int	validate_player_and_close(t_config *cfg)
+int validate_player_and_close(t_config *cfg)
 {
-	int	px;
-	int	py;
+	int px;
+	int py;
 
 	px = -1;
 	py = -1;
@@ -115,3 +126,4 @@ int	validate_player_and_close(t_config *cfg)
 		return (0);
 	return (1);
 }
+
