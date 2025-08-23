@@ -13,7 +13,10 @@ LIBFT =			$(LIBFT_DIR)/libft.a
 OBJS =			$(SRCS:.c=.o)
 
 SRCS =			$(SRC_DIR)/main.c $(SRC_DIR)/init.c $(SRC_DIR)/draw.c $(SRC_DIR)/events.c $(SRC_DIR)/utils.c $(SRC_DIR)/cleanup.c \
-				$(SRC_DIR)/map.c $(SRC_DIR)/move.c $(SRC_DIR)/raycasting.c $(SRC_DIR)/dda.c $(SRC_DIR)/textures.c $(SRC_DIR)/parsing/*
+				$(SRC_DIR)/map.c $(SRC_DIR)/move.c $(SRC_DIR)/raycasting.c $(SRC_DIR)/dda.c $(SRC_DIR)/textures.c $(SRC_DIR)/parsing/parsing.c \
+				$(SRC_DIR)/parsing/parsing2.c $(SRC_DIR)/parsing/parsing3.c $(SRC_DIR)/parsing/parsing4.c $(SRC_DIR)/parsing/parsing_command.c \
+				$(SRC_DIR)/parsing/parsing_command2.c $(SRC_DIR)/parsing/parsing_command3.c $(SRC_DIR)/parsing/parsing_command4.c \
+				$(SRC_DIR)/parsing/parsing_command5.c
 
 all:			$(LIBFT) $(NAME)
 

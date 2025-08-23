@@ -6,14 +6,13 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:40:52 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 13:40:54 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:10:00 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-// -------------validat player---------------
-int	check_cell_neighbors(t_config *cfg, int x, int y)
+int check_cell_neighbors(t_config *cfg, int x, int y)
 {
 	if (is_inside(x + 1, y, cfg) && cfg->map[y][x + 1] == ' ')
 		return (error("Error\nMap not closed (neighbor issue)\n"));
@@ -26,7 +25,7 @@ int	check_cell_neighbors(t_config *cfg, int x, int y)
 	return (1);
 }
 
-int	check_row(t_config *cfg, int y, int x)
+int check_row(t_config *cfg, int y, int x)
 {
 	if (x >= cfg->map_w)
 		return (1);
@@ -36,9 +35,9 @@ int	check_row(t_config *cfg, int y, int x)
 	return (check_row(cfg, y, x + 1));
 }
 
-int	check_cell_player(t_config *cfg, int x, int y, int *pc)
+int check_cell_player(t_config *cfg, int x, int y, int *pc)
 {
-	char	c;
+	char c;
 
 	c = cfg->map[y][x];
 	if (!ft_strchr(" 01NSEW", c))
@@ -53,7 +52,7 @@ int	check_cell_player(t_config *cfg, int x, int y, int *pc)
 	return (1);
 }
 
-int	check_row_player(t_config *cfg, int y, int x, int *pc)
+int check_row_player(t_config *cfg, int y, int x, int *pc)
 {
 	if (x >= cfg->map_w)
 		return (1);

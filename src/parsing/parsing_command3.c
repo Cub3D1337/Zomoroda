@@ -6,16 +6,16 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:40:40 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 13:40:42 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:09:38 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	read_int(const char **s, int *out)
+int read_int(const char **s, int *out)
 {
-	long	val;
-	int		digits;
+	long val;
+	int digits;
 
 	val = 0;
 	digits = 0;
@@ -35,11 +35,11 @@ int	read_int(const char **s, int *out)
 	return (1);
 }
 
-int	parse_rgb(const char *s, int out[3])
+int parse_rgb(const char *s, int out[3])
 {
-	int	r;
-	int	g;
-	int	b;
+	int r;
+	int g;
+	int b;
 
 	if (!read_int(&s, &r))
 		return (error("Error\nInvalid RGB (R)\n"));
@@ -63,9 +63,9 @@ int	parse_rgb(const char *s, int out[3])
 	return (1);
 }
 
-int	is_map_line(const char *line)
+int is_map_line(const char *line)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (line[i] && line[i] != '\n')
@@ -77,13 +77,13 @@ int	is_map_line(const char *line)
 	return (!is_all_space(line));
 }
 
-void	fill_row(char *dst, char *src, int w)
+void fill_row(char *dst, char *src, int w)
 {
-	int	j;
-	int	len;
+	int j;
+	int len;
 
-	j = 0;
 	len = ft_strlen(src);
+	j = 0;
 	while (j < w)
 	{
 		if (j < len)
@@ -95,13 +95,13 @@ void	fill_row(char *dst, char *src, int w)
 	dst[w] = '\0';
 }
 
-int	build_rect_map(t_config *cfg, t_vec *raw)
+int build_rect_map(t_config *cfg, t_vec *raw)
 {
-	int	i;
-	int	w;
+	int i;
+	int w;
 
-	i = 0;
 	w = 0;
+	i = 0;
 	while (i < raw->size)
 	{
 		if ((int)ft_strlen(raw->data[i]) > w)
