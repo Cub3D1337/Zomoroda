@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 17:04:03 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/23 17:56:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define WIDTH 1280
 # define HEIGHT 720
 
-# define TARGET_FPS 1000
+# define TARGET_FPS 900
 # define FRAME_DURATION (1000.0 / TARGET_FPS) // ~16.66 ms for each frame == 60 FPS
 
 # define MAP_WIDTH 32
