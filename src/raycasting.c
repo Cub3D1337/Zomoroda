@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 16:08:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/23 16:42:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/26 15:44:43 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_bool	check_minimap_edge(int x, int y)
 	return (false);
 }
 
-void draw_ray(t_cub *cub, int x, double ray_angle)
+static void draw_ray(t_cub *cub, int x, double ray_angle)
 {
     t_pointd     ray_dir;
     t_dda_result result;
@@ -70,8 +70,8 @@ void	raycasting(t_cub *cub)
 	int		x;
 
 	x = 0;
-	ray_angle = cub->p.angle - (FOV / 2);
-	angle_step = FOV / WIDTH;
+	ray_angle = cub->p.angle - (cub->fov / 2);
+	angle_step = cub->fov / WIDTH;
 	while (x < WIDTH)
 	{
 		draw_ray(cub, x, ray_angle);

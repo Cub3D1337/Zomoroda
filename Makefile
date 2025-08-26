@@ -6,6 +6,7 @@ LDFLAGS = 		-L./Libft -lft
 INC_DIR =		./includes
 LIBFT_DIR =		./Libft
 SRC_DIR = 		./src
+EVENTS_DIR =	./src/events
 
 INCLUDES =		-I${INC_DIR} -I./Libft/includes
 LIBFT =			$(LIBFT_DIR)/libft.a
@@ -13,6 +14,7 @@ LIBFT =			$(LIBFT_DIR)/libft.a
 OBJS =			$(SRCS:.c=.o)
 
 SRCS =			$(SRC_DIR)/main.c $(SRC_DIR)/init.c $(SRC_DIR)/draw.c $(SRC_DIR)/events.c $(SRC_DIR)/utils.c $(SRC_DIR)/cleanup.c \
+				$(EVENTS_DIR)/mouse.c $(EVENTS_DIR)/keys.c \
 				$(SRC_DIR)/map.c $(SRC_DIR)/move.c $(SRC_DIR)/raycasting.c $(SRC_DIR)/dda.c $(SRC_DIR)/textures.c $(SRC_DIR)/parsing/parsing.c \
 				$(SRC_DIR)/parsing/parsing2.c $(SRC_DIR)/parsing/parsing3.c $(SRC_DIR)/parsing/parsing4.c $(SRC_DIR)/parsing/parsing_command.c \
 				$(SRC_DIR)/parsing/parsing_command2.c $(SRC_DIR)/parsing/parsing_command3.c $(SRC_DIR)/parsing/parsing_command4.c \
@@ -23,7 +25,7 @@ all:			$(LIBFT) $(NAME)
 $(NAME):		$(OBJS)
 					$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) $(LDFLAGS)
 
-%.o: %.c		${INC_DIR}/cub3d.h $(INC_DIR)/parsing.h ${INC_DIR}/mlx.h ${INC_DIR}/includes.h
+%.o: %.c		${INC_DIR}/cub3d.h $(INC_DIR)/parsing.h ${INC_DIR}/mlx.h ${INC_DIR}/includes.h ${INC_DIR}/events.h
 					$(CC) $(CFLAGS) $(INCLUDES) -O3 -c $< -o $@
 
 $(LIBFT):

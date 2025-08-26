@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 17:08:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/26 14:56:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	draw_line(t_cub *cub, int x, int y, double angle, int line_len, int color)
 	}
 }
 
-// TODO: Rotate the player itself xd
 void	draw_player(t_cub *cub)
 {
 	t_pointi	pos;
@@ -56,7 +55,7 @@ void	draw_player(t_cub *cub)
 	draw_line(cub, minimap_pos.x, minimap_pos.y, cub->p.angle, 20, 0xff0000);
 }
 
-void	draw_sky_and_floor(t_cub *cub)
+void	draw_ceiling_and_floor(t_cub *cub)
 {
 	unsigned int	color;
 	t_pointi		pos;
@@ -93,13 +92,9 @@ void	show_fps(t_cub *cub)
 
 void	draw(t_cub *cub)
 {
-	//! Bro after i comment this line i get a boost FPS (x3.5)
-	// ft_memset(cub->img.img_pixels_ptr, 0,
-	// 	HEIGHT * cub->img.line_length);
-	draw_sky_and_floor(cub);
+	draw_ceiling_and_floor(cub);
 	draw_map(cub);
 	raycasting(cub);
 	draw_player(cub);
 	show_fps(cub);
-	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img.img_ptr, 0, 0);
 }

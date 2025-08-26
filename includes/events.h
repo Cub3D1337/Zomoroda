@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/26 15:45:42 by abnsila          ###   ########.fr       */
+/*   Created: 2025/08/26 15:35:50 by abnsila           #+#    #+#             */
+/*   Updated: 2025/08/26 15:41:35 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#ifndef EVENTS_H
+#define EVENTS_H
 
-int	main(int ac, char **av)
-{
-	t_cub	cub;
-	t_config	cfg;
+# include "includes.h"
 
-	init_config(&cfg);
-	if (parsing(ac, av, &cfg) == 0)
-		return (EXIT_FAILURE);
-	init_map(&cub);
-	init_cub(&cub);
-	init_textures(&cub);
-	init_image_buffer(&cub);
-	init_map_image_buffer(&cub);
-	init_events(&cub);
-	mlx_loop(cub.mlx);
-	ft_exit(&cub);
-	free_config(&cfg);
-	return (EXIT_SUCCESS);
-}
+// Mouse
+void	mouse_handler(t_cub *cub);
+int		ft_mouse_move(int x, int y, t_cub *cub);
+
+// Keys
+int		ft_key_press(int keycode, t_cub *cub);
+int		ft_key_release(int keycode, t_cub *cub);
+
+#endif
+
+

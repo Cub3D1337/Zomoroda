@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 16:32:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/26 11:54:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef struct s_pointd
 typedef struct s_map_data
 {
 	int	array[MAP_HEIGHT][MAP_WIDTH];
-	int	map_width;
-	int	map_height;
+	int	minimap_width;
+	int	minimap_height;
 	int	padding;
 }				t_map_data;
 
@@ -108,12 +108,15 @@ typedef struct s_cub
 	// Textures
 	t_img_texture	textures[4];
 	//TODO: Default calculation
+	double	frame_duration;
+	double	fov;
 	// Projection Plan
 	double		projection_plane;
 	// COLOR
 	int			color[2];
 	// Mouse
 	t_pointd	mouse;
+	t_bool		track_mouse;
 	// FPS
 	int			frames;
 	int			fps;

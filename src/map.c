@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 14:35:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/23 17:09:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/26 15:05:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	draw_init_map(t_cub *cub)
 	int			color;
 
 	ft_memset(cub->map_img.img_pixels_ptr, 0,
-		cub->map.map_height * cub->map_img.line_length);
+		cub->map.minimap_height * cub->map_img.line_length);
 	pos.y = 0;
 	while (pos.y < MAP_HEIGHT)
 	{
@@ -92,8 +92,8 @@ void	draw_map(t_cub *cub)
 	}
 }
 
-
-// void	draw_whole_map(t_cub *cub)
+// Draw Whole MiniMap
+// void	draw_map(t_cub *cub)
 // {
 // 	t_pointi	pos;
 // 	int			color;
@@ -104,10 +104,10 @@ void	draw_map(t_cub *cub)
 // 	pitch = cub->map_img.line_length / sizeof(unsigned int);	
 
 // 	pos.y = 0;
-// 	while (pos.y < cub->map.map_height)
+// 	while (pos.y < cub->map.minimap_height)
 // 	{
 // 		pos.x = 0;
-// 		while (pos.x < cub->map.map_width)
+// 		while (pos.x < cub->map.minimap_width)
 // 		{
 // 			color = pixels[(int)pos.y * pitch + (int)pos.x];
 // 			put_pixel(cub, pos.x, pos.y, color);

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:40:59 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/23 15:36:32 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/26 12:11:23 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,14 +120,14 @@ t_pointd	world_to_minimap(t_cub *cub, t_pointd world)
 	return mini;
 }
 
-// void	draw_sky_and_floor(t_cub *cub)
+// void	draw_ceiling_and_floor(t_cub *cub)
 // {
 // 	// Draw floor
 // 	for (int y = 0; y < cub->half_height; ++y)
 // 		for (int x = 0; x < WIDTH - 1; x++)
-// 			put_pixel(cub, x, y, 0x0099ff); // Light blue sky
+// 			put_pixel(cub, x, y, 0x0099ff); // Light blue ceiling
 
-// 	// Draw sky
+// 	// Draw ceiling 
 //     for (int y = cub->half_height; y < HEIGHT - 1; ++y)
 // 		for (int x = 0; x < WIDTH - 1; x++)
 // 			put_pixel(cub, x, y, 0x005500); // Dark grey floor

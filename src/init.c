@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 16:33:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/26 15:43:54 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,8 @@ void init_map(t_cub	*cub)
 			cub->map.array[i][j] = tmp[i][j];
 }
 
-void	init_defult_calculation(t_cub *cub)
+static inline void	init_player(t_cub *cub)
 {
-	// Screen
-	cub->half_height = HEIGHT / 2;
-	cub->half_width = WIDTH / 2;
-	//TODO: MAP
-	cub->map.map_width = (MAP_WIDTH * BLOCK_SIZE) + MINIMAP_SIZE;
-	cub->map.map_height = (MAP_HEIGHT * BLOCK_SIZE) + MINIMAP_SIZE;
-	cub->map.padding = MINIMAP_SIZE / 2;
-	// Projection Plan
-	cub->projection_plane = (cub->half_width) / tan(FOV / 2.0);
-	// Cos / Sin of player angle
-	cub->p.cosA = cos(cub->p.angle);
-	cub->p.sinA = sin(cub->p.angle);
-}
-
-void	init_cub(t_cub	*cub)
-{
-	cub->mlx = mlx_init();
-	cub->mlx_win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3D");
 	// Init Player
 	cub->p.size = PLY_SIZE;
 	cub->p.half = PLY_SIZE / 2;
@@ -107,27 +89,54 @@ void	init_cub(t_cub	*cub)
 	cub->p.rotate_up = false;
 	cub->p.rotate_down = false;
 	cub->p.angle = (3 * M_PI) / 2;
-	cub->p.pitch = cub->half_height * PITCH_SENSITIVITY;
+	cub->p.cosA = cos(cub->p.angle);
+	cub->p.sinA = sin(cub->p.angle);
+	cub->p.pitch = 0.0;
 	cub->p.horizon = cub->half_height;
+}
+
+static inline void	init_defult_calculation(t_cub *cub)
+{
+	// Screen
+	cub->half_height = HEIGHT / 2;
+	cub->half_width = WIDTH / 2;
+	// Minimap
+	cub->map.minimap_width = (MAP_WIDTH * BLOCK_SIZE) + MINIMAP_SIZE;
+	cub->map.minimap_height = (MAP_HEIGHT * BLOCK_SIZE) + MINIMAP_SIZE;
+	cub->map.padding = MINIMAP_SIZE / 2;
+	// Settings
+	cub->frame_duration = 1000.0 / TARGET_FPS; // ~16.66 ms for each frame == 60 FPS
+	cub->fov = 60 * (M_PI / 180); // Convert 60° to radians
+	// Projection Plan
+	cub->projection_plane = (cub->half_width) / tan(cub->fov / 2.0);
+	// Mouse
+	cub->mouse.x = cub->half_width;
+	cub->mouse.y = cub->half_height;
+}
+
+int	init_cub(t_cub	*cub)
+{
+	cub->mlx = mlx_init();
+	if (!cub->mlx)
+		return (EXIT_FAILURE);
+	cub->mlx_win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3D");
+	if (!cub->mlx_win)
+		return (EXIT_FAILURE);
+	init_defult_calculation(cub);
+	init_player(cub);
+	cub->track_mouse = true;
 	// COLOR
-	// cub->color[0] = 0x005500;
-	// cub->color[1] = 0x0099FF;
+	cub->color[1] = 0x0099FF;
 	cub->color[0] = 0x333333;
-	cub->color[1] = 0xee7700;
 	// Utils
 	cub->frames = 0;
 	cub->last_time = 0.0;
 	cub->last_frame_time = 0.0;
-	// Mouse
-	cub->mouse.x = cub->half_width;
-	cub->mouse.y = cub->half_height;
-	init_defult_calculation(cub);
+	return (EXIT_SUCCESS);
 }
 
 void	init_image_buffer(t_cub *cub)
 {
-	// if (cub->img.img_ptr)
-	// 	mlx_destroy_image(cub->mlx, cub->img.img_ptr);
 	cub->img.img_ptr = mlx_new_image(cub->mlx,
 			WIDTH, HEIGHT);
 	cub->img.img_pixels_ptr = mlx_get_data_addr(cub->img.img_ptr,
@@ -142,15 +151,12 @@ void	init_image_buffer(t_cub *cub)
 
 void	init_map_image_buffer(t_cub *cub)
 {
-	// if (cub->map_img.img_ptr)
-	// 	mlx_destroy_image(cub->mlx, cub->map_img.img_ptr);
 	//TODO: The initial setup of a buffer for the map image require:
 	//TODO: The long HORIZONTAL row = MAP_WIDTH
 	//TODO: The long VERTICAL = MAP_HIGHT
 	//TODO: Padding for each edge = MINIMAP_SIZE / 2
 	cub->map_img.img_ptr = mlx_new_image(cub->mlx,
-			(MAP_WIDTH * BLOCK_SIZE) + MINIMAP_SIZE,
-			(MAP_HEIGHT * BLOCK_SIZE) + MINIMAP_SIZE);
+			cub->map.minimap_width, cub->map.minimap_height);
 	cub->map_img.img_pixels_ptr = mlx_get_data_addr(cub->map_img.img_ptr,
 			&cub->map_img.bits_per_pixel, &cub->map_img.line_length,
 			&cub->map_img.endian);
@@ -162,11 +168,10 @@ void	init_map_image_buffer(t_cub *cub)
 	draw_init_map(cub);
 }
 
-
 static inline void prepare_texture_fast_fields(t_img_texture *t)
 {
     t->pixels_u32 = (unsigned int*)t->img_pixels_ptr;
-    t->pitch_u32  = (unsigned int)(t->line_length >> 2);
+    t->pitch_u32  = (unsigned int)(t->line_length  / sizeof(unsigned int));
 }
 
 int	init_textures(t_cub *cub)

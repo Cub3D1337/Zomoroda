@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/21 13:08:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/26 15:36:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include "includes.h"
 # include "parsing.h"
+# include "events.h"
 
 void    init_map(t_cub	*cub);
-void    init_cub(t_cub	*cub);
+int     init_cub(t_cub	*cub);
 void	init_image_buffer(t_cub *cub);
 
 void	init_image(t_cub *cub);
