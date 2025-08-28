@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 14:35:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/26 15:05:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/28 18:57:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static void	draw_map_square(t_cub *cub, int x, int y, int size, int color)
+static void	draw_map_square(t_cub *cub, t_pointi pos, int size, int color)
 {
 	t_pointi	incr_pos;
 
@@ -22,8 +22,8 @@ static void	draw_map_square(t_cub *cub, int x, int y, int size, int color)
 		incr_pos.x = 0;
 		while (incr_pos.x < size)
 		{
-			cub->map_img.pixels[(y + incr_pos.y) * cub->map_img.pitch
-				+ (x + incr_pos.x)] = color;
+			cub->map_img.pixels[(pos.y + incr_pos.y) * cub->map_img.pitch
+				+ (pos.x + incr_pos.x)] = color;
 			incr_pos.x++;
 		}
 		incr_pos.y++;
@@ -47,13 +47,59 @@ void	draw_init_map(t_cub *cub)
 				color = 0xffffff;
 			else
 				color = 0x333333;
-			//TODO: begin from + (MINIMAP_SIZE / 2)
-			draw_map_square(cub, cub->map.padding + pos.x * BLOCK_SIZE,
-			cub->map.padding + pos.y * BLOCK_SIZE, BLOCK_SIZE, color);
+			draw_map_square(cub,
+				(t_pointi){cub->map.padding + pos.x * BLOCK_SIZE,
+				cub->map.padding + pos.y * BLOCK_SIZE},
+				BLOCK_SIZE, color);
 			pos.x++;
 		}
 		pos.y++;
 	}
+}
+
+static void	draw_rect(t_cub *cub, t_rect rect)
+{
+	t_pointi	start;
+	t_pointi	end;
+	int			x;
+	int			row;
+
+	if (rect.side == HORIZONTAL)
+	{
+		start = (t_pointi){rect.pos.x, rect.pos.y};
+		end = (t_pointi){rect.pos.x + rect.len, rect.pos.y + rect.wid};
+	}
+	else
+	{
+		start = (t_pointi){rect.pos.x, rect.pos.y};
+		end = (t_pointi){rect.pos.x + rect.wid, rect.pos.y + rect.len};
+	}
+	while (start.y < end.y)
+	{
+		x = start.x;
+		row = start.y * cub->img.pitch;
+		while (x < end.x)
+			cub->img.pixels[row + x++] = rect.color;
+		start.y++;
+	}
+}
+
+static void	draw_border(t_cub *cub)
+{
+	t_rect	data;
+
+	data = (t_rect){(t_pointi){0, 0}, MINIMAP_SIZE + (BORDER * 2),
+		BORDER, HORIZONTAL, 0xcccccc};
+	draw_rect(cub, data);
+	data = (t_rect){(t_pointi){0, MINIMAP_SIZE + BORDER},
+		MINIMAP_SIZE + (BORDER * 2), BORDER, HORIZONTAL, 0xcccccc};
+	draw_rect(cub, data);
+	data = (t_rect){(t_pointi){0, BORDER}, MINIMAP_SIZE + BORDER,
+		BORDER, VERTICAL, 0xcccccc};
+	draw_rect(cub, data);
+	data = (t_rect){(t_pointi){MINIMAP_SIZE + BORDER, BORDER},
+		MINIMAP_SIZE + BORDER, BORDER, VERTICAL, 0xcccccc};
+	draw_rect(cub, data);
 }
 
 void	draw_map(t_cub *cub)
@@ -62,57 +108,25 @@ void	draw_map(t_cub *cub)
 	t_pointi		pos;
 	t_pointi		cord;
 	int				color;
-	
+
+	draw_border(cub);
 	ctx.norm_ply_pos.x = cub->p.pos.x + cub->map.padding;
 	ctx.norm_ply_pos.y = cub->p.pos.y + cub->map.padding;
-
-	ctx.start.x = ctx.norm_ply_pos.x - cub->map.padding;
-	ctx.end.x = ctx.norm_ply_pos.x + cub->map.padding;
-	
-	ctx.start.y = ctx.norm_ply_pos.y - cub->map.padding;
-	ctx.end.y = ctx.norm_ply_pos.y + cub->map.padding;
-
-	ctx.rows.x = (int)(ctx.end.x - ctx.start.x + 0.5);
-	ctx.rows.y = (int)(ctx.end.y - ctx.start.y + 0.5);
-
-	pos.y = 0;
-	while (pos.y < ctx.rows.y)
+	ctx.s.x = ctx.norm_ply_pos.x - cub->map.padding;
+	ctx.e.x = ctx.norm_ply_pos.x + cub->map.padding;
+	ctx.s.y = ctx.norm_ply_pos.y - cub->map.padding;
+	ctx.e.y = ctx.norm_ply_pos.y + cub->map.padding;
+	ctx.rows.x = (int)(ctx.e.x - ctx.s.x + 0.5);
+	ctx.rows.y = (int)(ctx.e.y - ctx.s.y + 0.5);
+	pos.y = -1;
+	while (++pos.y < ctx.rows.y)
 	{
 		pos.x = 0;
 		while (pos.x < ctx.rows.x)
 		{
-			cord.x = (int)ctx.start.x + pos.x;
-            cord.y = (int)ctx.start.y + pos.y;
-
+			cord = (t_pointi){(int)ctx.s.x + pos.x, (int)ctx.s.y + pos.y};
 			color = cub->map_img.pixels[cord.y * cub->map_img.pitch + cord.x];
-			put_pixel(cub, pos.x, pos.y, color);
-			pos.x++;
+			put_pixel(cub, pos.x++ + BORDER, pos.y + BORDER, color);
 		}
-		pos.y++;
 	}
 }
-
-// Draw Whole MiniMap
-// void	draw_map(t_cub *cub)
-// {
-// 	t_pointi	pos;
-// 	int			color;
-// 	unsigned int	*pixels;
-// 	unsigned int	pitch;
-
-// 	pixels = (unsigned int *) cub->map_img.img_pixels_ptr;
-// 	pitch = cub->map_img.line_length / sizeof(unsigned int);	
-
-// 	pos.y = 0;
-// 	while (pos.y < cub->map.minimap_height)
-// 	{
-// 		pos.x = 0;
-// 		while (pos.x < cub->map.minimap_width)
-// 		{
-// 			color = pixels[(int)pos.y * pitch + (int)pos.x];
-// 			put_pixel(cub, pos.x, pos.y, color);
-// 			pos.x++;
-// 		}
-// 		pos.y++;
-// 	}
-// }

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:41:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 16:06:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/28 16:25:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,26 +54,31 @@ static void	rotate(t_cub *cub)
 static t_bool	check_boundaries(t_cub *cub)
 {
 	t_pointi	ply_corners[4];
+	t_pointi	map;
+	t_pointd	p;
+	int			h;
 	int			i;
 
-	if ((int)cub->p.pos.x - cub->p.half < 0
-		|| (int) cub->p.pos.x + cub->p.half >= (MAP_WIDTH * BLOCK_SIZE) + 1
-		|| (int)cub->p.pos.y - cub->p.half < 0
-		|| (int)cub->p.pos.y + cub->p.half >= (MAP_HEIGHT * BLOCK_SIZE) + 1)
-		return (false);
-	ply_corners[0].x = (cub->p.pos.x - cub->p.half) / BLOCK_SIZE;
-	ply_corners[0].y = (cub->p.pos.y - cub->p.half) / BLOCK_SIZE;
-	ply_corners[1].x = (cub->p.pos.x + cub->p.half - 1) / BLOCK_SIZE;
-	ply_corners[1].y = (cub->p.pos.y - cub->p.half) / BLOCK_SIZE;
-	ply_corners[2].x = (cub->p.pos.x - cub->p.half) / BLOCK_SIZE;
-	ply_corners[2].y = (cub->p.pos.y + cub->p.half - 1) / BLOCK_SIZE;
-	ply_corners[3].x = (cub->p.pos.x + cub->p.half - 1) / BLOCK_SIZE;
-	ply_corners[3].y = (cub->p.pos.y + cub->p.half - 1) / BLOCK_SIZE;
-
+	p.x = cub->p.pos.x;
+	p.y = cub->p.pos.y;
+	h = cub->p.half;
+	// --- Check last boundarie wall to avoid undefined behaviore on raycasting and texture mapping ---
+	if ((int)p.x - h < BLOCK_SIZE
+		|| (int) p.x + h >= (MAP_WIDTH * BLOCK_SIZE) + 1 - BLOCK_SIZE
+		|| (int)p.y - h < BLOCK_SIZE
+		|| (int)p.y + h >= (MAP_HEIGHT * BLOCK_SIZE) + 1 - BLOCK_SIZE)
+			return (false);
+	// --- Define player hitbox corners ---
+	ply_corners[0] = (t_pointi) {(int)(p.x - h), (int)(p.y - h)}; // top-left
+	ply_corners[1] = (t_pointi) {(int)(p.x + h - 1), (int)(p.y - h)}; // top-right
+	ply_corners[2] = (t_pointi) {(int)(p.x - h), (int)(p.y + h - 1)}; // bottom-left
+	ply_corners[3] = (t_pointi) {(int)(p.x + h - 1), (int)(p.y + h - 1)}; // bottom-right
 	i = 0;
 	while (i < 4)
 	{
-		if (cub->map.array[ply_corners[i].y][ply_corners[i].x] == 1)
+		map.x = ply_corners[i].x / BLOCK_SIZE;
+		map.y = ply_corners[i].y / BLOCK_SIZE;
+		if (cub->map.array[map.y][map.x] == 1)
 			return (false);
 		i++;
 	}

@@ -6,26 +6,23 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/26 15:43:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/28 19:47:47 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int ft_loop_hook(t_cub *cub)
+int	ft_loop_hook(t_cub *cub)
 {
-	double current;
-	double frame_time;
+	double	current;
+	double	frame_time;
 
-	current = get_time_ms(); // return double ms
+	current = get_time_ms();
 	frame_time = current - cub->last_frame_time;
-
 	if (frame_time < cub->frame_duration)
-		return (EXIT_SUCCESS);  // Too soon, wait
-
+		return (EXIT_SUCCESS);
 	cub->delta_time = frame_time / 1000.0;
 	cub->last_frame_time = current;
-
 	cub->frames++;
 	if (current - cub->last_time >= 1000.0)
 	{
@@ -35,8 +32,7 @@ int ft_loop_hook(t_cub *cub)
 	}
 	mouse_handler(cub);
 	move(cub);
-	draw(cub);
-	// printf("Render call in %.2g ms\n", get_time_ms() - current);
+	render(cub);
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:48:21 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/23 17:11:09 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/28 19:59:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	mapping_textures(
 		data.tex = &cub->textures[0];
 	else if (result.side == VERTICAL && result.dir_step.y == -1)
 		data.tex = &cub->textures[1];
-	if (result.side == HORIZONTAL && result.dir_step.x == 1)
+	else if (result.side == HORIZONTAL && result.dir_step.x == 1)
 		data.tex = &cub->textures[2];
 	else if (result.side == HORIZONTAL && result.dir_step.x == -1)
 		data.tex = &cub->textures[3];

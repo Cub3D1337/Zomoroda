@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/20 14:26:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/28 19:54:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	destroy_textures(t_cub *cub)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < TEX_NUM)
@@ -30,7 +30,6 @@ void	destroy_cub(t_cub *cub)
 	destroy_textures(cub);
 	if (cub->img.img_ptr)
 		mlx_destroy_image(cub->mlx, cub->img.img_ptr);
-	//TODO: For Map Buffer
 	if (cub->map_img.img_ptr)
 		mlx_destroy_image(cub->mlx, cub->map_img.img_ptr);
 	if (cub->mlx_win)

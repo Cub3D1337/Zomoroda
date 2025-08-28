@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:40:04 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/26 15:42:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/28 19:54:09 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <cub3d.h>
+#include <cub3d.h>
 
-int	ft_key_press(int keycode, t_cub *cub)
+static void	trigger_escape(int keycode, t_cub *cub)
 {
 	if (keycode == ESCAPE_KEY)
 	{
@@ -22,9 +22,14 @@ int	ft_key_press(int keycode, t_cub *cub)
 			cub->track_mouse = false;
 		}
 		else
-			ft_exit(cub);			
+			ft_exit(cub);
 	}
-	else if (keycode == W_KEY)
+}
+
+int	ft_key_press(int keycode, t_cub *cub)
+{
+	trigger_escape(keycode, cub);
+	if (keycode == W_KEY)
 		cub->p.move_up = true;
 	else if (keycode == S_KEY)
 		cub->p.move_down = true;

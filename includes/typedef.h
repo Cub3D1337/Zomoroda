@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/26 11:54:10 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/28 18:55:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_map_data
 
 typedef struct t_map_ctx
 {
-	t_pointd		start;
-	t_pointd		end;
+	t_pointd		s;
+	t_pointd		e;
 	t_pointd		norm_ply_pos;
 	t_pointi		rows;
 }			t_map_ctx;
@@ -161,5 +161,22 @@ typedef struct s_texture_data
 	double			tex_pos;
 	int				color;
 }				t_texture_data;
+
+typedef struct s_rect
+{
+	t_pointi	pos;
+	int			len;
+	int			wid;
+	t_side		side;
+	int			color;
+}				t_rect;
+
+typedef struct s_line
+{
+	t_pointi	start;
+	double		angle;
+	int			line_len;
+	int			color;
+}				t_line;
 
 #endif

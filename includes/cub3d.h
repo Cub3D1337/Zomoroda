@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/26 15:36:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/28 18:59:25 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	init_image(t_cub *cub);
 void	dup_map(t_cub *cub);
 void	init_map_image_buffer(t_cub *cub);
 
-void	draw_line(t_cub *cub, int x, int y, double angle, int line_len, int color);
+void	draw_line(t_cub *cub, t_line line);
 void	draw_line_to(t_cub *cub, t_pointd from, t_pointd to, int color);
-void	draw_square(t_cub *cub, int x, int y, int size, int color);
+void	draw_square(t_cub *cub, t_pointi start, int size, int color);
 void	draw_map(t_cub *cub);
 void	draw_player(t_cub *cub);
-void	draw(t_cub *cub);
+void	render(t_cub *cub);
 //TODO: Map buffer
 void	draw_init_map(t_cub *cub);
 

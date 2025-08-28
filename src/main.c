@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/26 15:45:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/28 15:53:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	main(int ac, char **av)
 {
 	t_cub	cub;
-	t_config	cfg;
+	// t_config	cfg;
 
-	init_config(&cfg);
-	if (parsing(ac, av, &cfg) == 0)
-		return (EXIT_FAILURE);
+	// init_config(&cfg);
+	// if (parsing(ac, av, &cfg) == 0)
+	// 	return (EXIT_FAILURE);
 	init_map(&cub);
 	init_cub(&cub);
 	init_textures(&cub);
@@ -28,6 +28,6 @@ int	main(int ac, char **av)
 	init_events(&cub);
 	mlx_loop(cub.mlx);
 	ft_exit(&cub);
-	free_config(&cfg);
+	// free_config(&cfg);
 	return (EXIT_SUCCESS);
 }
