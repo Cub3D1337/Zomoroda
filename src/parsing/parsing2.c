@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:43:09 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 14:06:53 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:49:15 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@ int parse_color_line(char *line, t_config *cfg, int i)
 		return (parse_rgb(&line[i + 1], cfg->floor_rgb));
 	if (line[i] == 'C' && (line[i + 1] == ' ' || line[i + 1] == '\t'))
 		return (parse_rgb(&line[i + 1], cfg->ceil_rgb));
-	return (0);
+	return (2);
 }
 
 int parse_line_before_map(char *line, t_config *cfg)
 {
 	int i;
+	int color;
 
 	i = 0;
 	skip_spaces(line, &i);
@@ -51,7 +52,10 @@ int parse_line_before_map(char *line, t_config *cfg)
 		return (1);
 	if (parse_identifier_line(line, cfg, i))
 		return (1);
-	if (parse_color_line(line, cfg, i))
+	color = parse_color_line(line, cfg, i);
+	if (color == 0)
+		return (0);
+	else if (color == 1)
 		return (1);
 	return (2);
 }
