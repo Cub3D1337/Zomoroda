@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:02:26 by wahmane           #+#    #+#             */
-/*   Updated: 2025/08/23 13:53:38 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/23 18:03:23 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ typedef struct s_config {
     char **map;
     int   map_h, map_w;
     int   player_x, player_y;
-    char  player_dir; // 'N','S','E','W'
+    char  player_dir;
 } t_config;
-
-/* =============================== STRUCTS ================================== */
 
 typedef struct s_vec
 {
@@ -34,9 +32,6 @@ typedef struct s_vec
     int     size;
     int     cap;
 }   t_vec;
-
-/* ============================== PROTOTYPES ================================= */
-
 
 int	open_file(int ac, char **av, int *fd);
 int	handle_invalid_line(char *line, int fd);
