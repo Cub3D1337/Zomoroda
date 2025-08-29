@@ -3,7 +3,7 @@ SO              ./textures/greystone.xpm
                                                                                                                 WE ./textures/purplestone.xpm
             EA ./textures/wall.xpm
 F 220,100,0
-C 225,30,20
+C 225,30,12
 
 1111111111111111111111111111111111111111111111111
 11111101

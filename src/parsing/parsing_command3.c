@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:40:40 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/28 18:34:10 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/29 15:38:07 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int parse_rgb(const char *s, int out[3])
 	int g;
 	int b;
 
+	if (out[0] != -1)
+        return (error("Error\nDuplicate color\n"));
 	if (!read_int(&s, &r))
 		return (error("Error\nInvalid RGB (R)\n"));
 	if (*s != ',')
