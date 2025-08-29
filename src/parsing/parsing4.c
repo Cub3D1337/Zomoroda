@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:44:45 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 16:58:12 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/29 15:39:31 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,14 @@ int set_texture(char **slot, const char *path_start, const char *id)
 
     if (*slot)
         return (error("Error\nDuplicate texture identifier\n"));
-
     p = trim_texture_path(path_start);
     if (!p)
         return (error("Error\nEmpty texture path\n"));
-
     if (!validate_texture_file(p, id))
     {
         free(p);
         return (0);
     }
-
     *slot = p;
     return (1);
 }

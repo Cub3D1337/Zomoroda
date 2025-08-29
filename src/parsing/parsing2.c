@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:43:09 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 14:06:53 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/29 15:45:38 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int parse_identifier_line(char *line, t_config *cfg, int i)
 		return (set_texture(&cfg->we_texture, &line[i + 2], "WE"));
 	if (!ft_strncmp(&line[i], "EA", 2) && (line[i + 2] == ' ' || line[i + 2] == '\t'))
 		return (set_texture(&cfg->ea_texture, &line[i + 2], "EA"));
-	return (0);
+	return (2);
 }
 
 int parse_color_line(char *line, t_config *cfg, int i)
@@ -38,20 +38,28 @@ int parse_color_line(char *line, t_config *cfg, int i)
 		return (parse_rgb(&line[i + 1], cfg->floor_rgb));
 	if (line[i] == 'C' && (line[i + 1] == ' ' || line[i + 1] == '\t'))
 		return (parse_rgb(&line[i + 1], cfg->ceil_rgb));
-	return (0);
+	return (2);
 }
 
 int parse_line_before_map(char *line, t_config *cfg)
 {
 	int i;
+	int color;
+	int texture;
 
 	i = 0;
 	skip_spaces(line, &i);
 	if (line[i] == '\0' || line[i] == '\n')
 		return (1);
-	if (parse_identifier_line(line, cfg, i))
+	texture = parse_identifier_line(line, cfg, i);
+	if (texture == 0)
+		return (0);
+	else if (texture == 1)
 		return (1);
-	if (parse_color_line(line, cfg, i))
+	color = parse_color_line(line, cfg, i);
+	if (color == 0)
+		return (0);
+	else if (color == 1)
 		return (1);
 	return (2);
 }

@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:41:59 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 16:58:27 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:52:01 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int handle_line_before_map(char *line, t_config *cfg, int *seen_map, int fd)
         return error("Error\nInvalid line before map\n");
     }
     free(line);
-    return 1;
+    return (1);
 }
 
 int parsing(int ac, char **av, t_config *cfg)
@@ -79,8 +79,8 @@ int parsing(int ac, char **av, t_config *cfg)
     while (line)
     {
         rstrip_newline(line);
-        if (handle_line_before_map(line, cfg, &seen_map, fd) == 2)
-            break ;
+        if (handle_line_before_map(line, cfg, &seen_map, fd) == 0)
+            return (0);
 
         line = get_next_line(fd);
     }
