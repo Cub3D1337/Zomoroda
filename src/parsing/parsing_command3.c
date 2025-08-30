@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:40:40 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 14:09:38 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/08/29 15:38:07 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,20 @@ int parse_rgb(const char *s, int out[3])
 	int g;
 	int b;
 
+	if (out[0] != -1)
+        return (error("Error\nDuplicate color\n"));
 	if (!read_int(&s, &r))
 		return (error("Error\nInvalid RGB (R)\n"));
 	if (*s != ',')
 		return (error("Error\nInvalid RGB: missing comma\n"));
 	s++;
 	if (!read_int(&s, &g))
-		return (error("Error\nInvalid RGB (G)\n"));
+		return (error("Error\nInvalid RGB (G)\n"),0);
 	if (*s != ',')
 		return (error("Error\nInvalid RGB: missing comma\n"));
 	s++;
 	if (!read_int(&s, &b))
-		return (error("Error\nInvalid RGB (B)\n"));
+		return (error("Error\nInvalid RGB (B)\n"),0);
 	while (*s == ' ' || *s == '\t')
 		s++;
 	if (*s != '\0' && *s != '\n')
