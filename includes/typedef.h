@@ -6,24 +6,17 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/28 18:55:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/30 15:42:49 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
 
-typedef struct s_pointi
-{
-	int	x;
-	int	y;
-}				t_pointi;
-
-typedef struct s_pointd
-{
-	double	x;
-	double	y;
-}				t_pointd;
+# include "./typedef/global.h"
+# include "./typedef/dda.h"
+# include "./typedef/tex_type.h"
+# include "settings.h"
 
 typedef struct s_map_data
 {
@@ -55,25 +48,6 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
-typedef struct s_img_texture
-{
-	// Hot (read every pixel)
-	unsigned int   *pixels_u32;
-	unsigned int    pitch_u32;
-
-	// MLX
-	void           *img_ptr;
-	char           *img_pixels_ptr;
-	int             bits_per_pixel;
-	int             line_length;
-	int             endian;
-
-	// Meta
-	char           *relative_path;
-	int             img_width;
-	int             img_height;
-}			t_img_texture;
-
 typedef struct s_player
 {
 	t_pointd	pos;
@@ -95,6 +69,16 @@ typedef struct s_player
 	t_bool	rotate_down;
 }				t_player;
 
+typedef struct	s_fps
+{
+	int			frames;
+	int			fps;
+	double		last_time;
+	double		last_frame_time;
+	double		delta_time;
+	double		frame_duration;
+}				t_fps;
+
 typedef struct s_cub
 {
 	void		*mlx;
@@ -108,7 +92,6 @@ typedef struct s_cub
 	// Textures
 	t_img_texture	textures[4];
 	//TODO: Default calculation
-	double	frame_duration;
 	double	fov;
 	// Projection Plan
 	double		projection_plane;
@@ -117,66 +100,7 @@ typedef struct s_cub
 	// Mouse
 	t_pointd	mouse;
 	t_bool		track_mouse;
-	// FPS
-	int			frames;
-	int			fps;
-	double		last_time;
-	double		last_frame_time;
-	double		delta_time;
-	// Debug
+	t_fps		fps;
 }			t_cub;
-
-typedef enum e_side
-{
-	HORIZONTAL,
-	VERTICAL,
-}			t_side;
-
-typedef struct s_dda
-{
-	t_pointi	map_pos;
-	t_pointd	p_cell;
-	t_pointi	dir_step;
-	t_pointd	grid_step;
-	t_bool		hit;
-	t_side		side;			
-	t_pointd	hypotenuse_dist;
-}				t_dda;
-
-typedef struct s_dda_result
-{
-	t_side		side;
-	t_pointi	dir_step;
-	t_pointi	map_pos;
-	t_pointd	hit_point;
-	double		dist;
-}				t_dda_result;
-
-typedef struct s_texture_data
-{
-	t_img_texture	*tex;
-	double			wallX;
-	t_pointi		tex_cord;
-	double			step;
-	double			tex_pos;
-	int				color;
-}				t_texture_data;
-
-typedef struct s_rect
-{
-	t_pointi	pos;
-	int			len;
-	int			wid;
-	t_side		side;
-	int			color;
-}				t_rect;
-
-typedef struct s_line
-{
-	t_pointi	start;
-	double		angle;
-	int			line_len;
-	int			color;
-}				t_line;
 
 #endif

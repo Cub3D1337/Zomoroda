@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.h                                         :+:      :+:    :+:   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 15:51:53 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/30 15:43:22 by abnsila          ###   ########.fr       */
+/*   Created: 2025/08/30 14:58:04 by abnsila           #+#    #+#             */
+/*   Updated: 2025/08/30 15:03:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDES_H
-# define INCLUDES_H
+#ifndef REYCASTING_H
+# define REYCASTING_H
 
-# include <mlx.h>
-# include <stdio.h>
-# include <math.h>
-# include <time.h>
-# include <sys/time.h>
+# include "includes.h"
 
-# include "../Libft/includes/libft.h"
-# include "settings.h"
-# include "typedef.h"
+void	raycasting(t_cub *cub);
+void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result);
 
 #endif
