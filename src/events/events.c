@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/28 19:47:47 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/30 15:42:09 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ int	ft_loop_hook(t_cub *cub)
 	double	frame_time;
 
 	current = get_time_ms();
-	frame_time = current - cub->last_frame_time;
-	if (frame_time < cub->frame_duration)
+	frame_time = current - cub->fps.last_frame_time;
+	if (frame_time < cub->fps.frame_duration)
 		return (EXIT_SUCCESS);
-	cub->delta_time = frame_time / 1000.0;
-	cub->last_frame_time = current;
-	cub->frames++;
-	if (current - cub->last_time >= 1000.0)
+	cub->fps.delta_time = frame_time / 1000.0;
+	cub->fps.last_frame_time = current;
+	cub->fps.frames++;
+	if (current - cub->fps.last_time >= 1000.0)
 	{
-		cub->fps = cub->frames;
-		cub->frames = 0;
-		cub->last_time = current;
+		cub->fps.fps = cub->fps.frames;
+		cub->fps.frames = 0;
+		cub->fps.last_time = current;
 	}
 	mouse_handler(cub);
 	move(cub);
@@ -36,6 +36,7 @@ int	ft_loop_hook(t_cub *cub)
 	return (EXIT_SUCCESS);
 }
 
+// TODO: On mouse IN / On Mouse OUT
 void	init_events(t_cub *cub)
 {
 	mlx_hook(cub->mlx_win, ON_KEYDOWN, KeyPressMask, ft_key_press, cub);
