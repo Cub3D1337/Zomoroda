@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:18:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/23 16:52:57 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/30 15:03:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	setup_dir_step(t_dda *dda, t_pointd ray_dir)
+static void	setup_dir_step(t_dda *dda, t_pointd ray_dir)
 {
 	if (ray_dir.x < 0)
 		dda->dir_step.x = -1;
@@ -24,7 +24,7 @@ void	setup_dir_step(t_dda *dda, t_pointd ray_dir)
 		dda->dir_step.y = 1;
 }
 
-void	setup_dda(t_cub *cub, t_dda *dda, t_pointd ray_dir)
+static void	setup_dda(t_cub *cub, t_dda *dda, t_pointd ray_dir)
 {
 	// Get player pos in grid map, the value truncate to int
 	// Those values is modified after each jump to check collision with wall 
@@ -50,7 +50,7 @@ void	setup_dda(t_cub *cub, t_dda *dda, t_pointd ray_dir)
 	setup_dir_step(dda, ray_dir);
 }
 
-void	compute_ray_lenght(t_cub *cub, t_dda *dda, t_pointd ray_dir, t_dda_result *result)
+static void	compute_ray_lenght(t_cub *cub, t_dda *dda, t_pointd ray_dir, t_dda_result *result)
 {
 	//? Store info for Textures process
 	result->side = dda->side;

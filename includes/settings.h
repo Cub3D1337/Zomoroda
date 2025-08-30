@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 17:04:03 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/30 15:51:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,26 @@
 # define HEIGHT 720
 
 # define TARGET_FPS 1000
-# define FRAME_DURATION (1000.0 / TARGET_FPS) // ~16.66 ms for each frame == 60 FPS
 
 # define MAP_WIDTH 32
 # define MAP_HEIGHT 32
 # define BLOCK_SIZE  12
 # define MINIMAP_SIZE 220
+# define BORDER 5
 
 # define TINY_STEP 0.5
 # define PLY_SIZE 4
-# define SPEED 50
+// # define SPEED 50
+# define SPEED 150
 
 # define H_ROT_SPEED 3.5
 # define V_ROT_SPEED 1000
 # define MAX_PITCH HEIGHT
 # define MIN_PITCH -HEIGHT
-# define YAW_SENSITIVITY 0.0007
-# define PITCH_SENSITIVITY 0.5
+# define X_SENSITIVITY 0.0007
+# define Y_SENSITIVITY 0.5
 
 # define TEX_NUM 4
-
-// # define FOV M_PI / 3	
-# define FOV (60 * (M_PI / 180)) // Convert 60° to radians
-
-
 
 enum e_events_hooks
 {

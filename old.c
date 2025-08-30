@@ -138,3 +138,29 @@
 //     validate_config(cfg);
 //     return (1);
 // }
+
+
+//! Draw Whole MiniMap
+// void	draw_map(t_cub *cub)
+// {
+// 	t_pointi	pos;
+// 	int			color;
+// 	unsigned int	*pixels;
+// 	unsigned int	pitch;
+
+// 	pixels = (unsigned int *) cub->map_img.img_pixels_ptr;
+// 	pitch = cub->map_img.line_length / sizeof(unsigned int);	
+
+// 	pos.y = 0;
+// 	while (pos.y < cub->map.minimap_height)
+// 	{
+// 		pos.x = 0;
+// 		while (pos.x < cub->map.minimap_width)
+// 		{
+// 			color = pixels[(int)pos.y * pitch + (int)pos.x];
+// 			put_pixel(cub, pos.x, pos.y, color);
+// 			pos.x++;
+// 		}
+// 		pos.y++;
+// 	}
+// }

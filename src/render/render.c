@@ -1,71 +1,82 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 17:08:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/30 15:50:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	draw_square(t_cub *cub, int x, int y, int size, int color)
+static void	draw_square(t_cub *cub, t_pointi start, int size, int color)
 {
 	t_pointi	incr_pos;
+	int			row;
 
 	incr_pos.y = 0;
 	while (incr_pos.y < size)
 	{
 		incr_pos.x = 0;
+		row = (start.y + incr_pos.y) * cub->img.pitch;
 		while (incr_pos.x < size)
 		{
-			cub->img.pixels[(y + incr_pos.y) * cub->img.pitch + (x + incr_pos.x)] = color;
+			cub->img.pixels[row + start.x + incr_pos.x] = color;
 			incr_pos.x++;
 		}
 		incr_pos.y++;
 	}
 }
 
-void	draw_line(t_cub *cub, int x, int y, double angle, int line_len, int color)
+static void	draw_line(t_cub *cub, t_line line)
 {
 	int			i;
 	t_pointi	pos;
+	t_pointd	ang_dir;
+	t_pointd	constant;
 
 	i = 0;
-	while (i < line_len)
+	ang_dir = (t_pointd){cos(line.angle), sin(line.angle)};
+	constant.x = line.start.x + ang_dir.x;
+	constant.y = line.start.y + ang_dir.y;
+	while (i < line.line_len)
 	{
-		pos.x = x + cos(angle) * i;
-		pos.y = y + sin(angle) * i;
-		put_pixel(cub, pos.x, pos.y, color);
+		pos.x = constant.x + ang_dir.x * i;
+		pos.y = constant.y + ang_dir.y * i;
+		put_pixel(cub, pos.x, pos.y, line.color);
 		i++;
 	}
 }
 
-// TODO: Rotate the player itself xd
-void	draw_player(t_cub *cub)
+static void	draw_player(t_cub *cub)
 {
 	t_pointi	pos;
 	t_pointi	minimap_pos;
 
-	minimap_pos.x = (MINIMAP_SIZE / 2);
-	minimap_pos.y = (MINIMAP_SIZE / 2);
-	draw_square(cub, minimap_pos.x - cub->p.half, minimap_pos.y - cub->p.half, cub->p.size, 0xff0000);
-	draw_line(cub, minimap_pos.x, minimap_pos.y, cub->p.angle, 20, 0xff0000);
+	minimap_pos.x = cub->map.padding + BORDER;
+	minimap_pos.y = cub->map.padding + BORDER;
+	draw_square(cub,
+		(t_pointi){minimap_pos.x - cub->p.half, minimap_pos.y - cub->p.half},
+		cub->p.size, 0xff0000);
+	draw_line(cub, (t_line){(t_pointi){minimap_pos.x, minimap_pos.y},
+		cub->p.angle, 15, 0xff0000});
 }
 
-void	draw_sky_and_floor(t_cub *cub)
+static void	draw_ceiling_and_floor(t_cub *cub)
 {
 	unsigned int	color;
 	t_pointi		pos;
+	int				row;
 
 	pos.y = 0;
 	while (pos.y < HEIGHT)
 	{
 		pos.x = 0;
 		color = cub->color[pos.y < cub->p.horizon];
+		row = pos.y * cub->img.pitch;
 		while (pos.x < WIDTH)
 		{
 			if (pos.x < MINIMAP_SIZE && pos.y < MINIMAP_SIZE)
@@ -73,33 +84,24 @@ void	draw_sky_and_floor(t_cub *cub)
 				pos.x++;
 				continue ;
 			}
-			cub->img.pixels[pos.y * cub->img.pitch + pos.x] = color;
+			cub->img.pixels[row + pos.x] = color;
 			pos.x++;
 		}
 		pos.y++;
-	}	
+	}
 }
 
-void	show_fps(t_cub *cub)
+void	render(t_cub *cub)
 {
 	char	*fps_notif;
 
-	fps_notif = ft_conststrjoin(ft_strdup("FPS: "), ft_itoa(cub->fps));
+	draw_ceiling_and_floor(cub);
+	draw_minimap(cub);
+	raycasting(cub);
+	draw_player(cub);
+	fps_notif = ft_conststrjoin(ft_strdup("FPS: "), ft_itoa(cub->fps.fps));
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win,
 		cub->img.img_ptr, 0, 0);
 	mlx_string_put(cub->mlx, cub->mlx_win, WIDTH - 80, 30, 0xFFFFFF, fps_notif);
 	free(fps_notif);
-}
-
-void	draw(t_cub *cub)
-{
-	//! Bro after i comment this line i get a boost FPS (x3.5)
-	// ft_memset(cub->img.img_pixels_ptr, 0,
-	// 	HEIGHT * cub->img.line_length);
-	draw_sky_and_floor(cub);
-	draw_map(cub);
-	raycasting(cub);
-	draw_player(cub);
-	show_fps(cub);
-	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img.img_ptr, 0, 0);
 }

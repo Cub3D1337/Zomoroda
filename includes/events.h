@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.h                                         :+:      :+:    :+:   */
+/*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 15:51:53 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/30 15:43:22 by abnsila          ###   ########.fr       */
+/*   Created: 2025/08/26 15:35:50 by abnsila           #+#    #+#             */
+/*   Updated: 2025/08/30 15:04:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDES_H
-# define INCLUDES_H
+#ifndef EVENTS_H
+#define EVENTS_H
 
-# include <mlx.h>
-# include <stdio.h>
-# include <math.h>
-# include <time.h>
-# include <sys/time.h>
+# include "includes.h"
 
-# include "../Libft/includes/libft.h"
-# include "settings.h"
-# include "typedef.h"
+// Mouse
+void	mouse_handler(t_cub *cub);
+int		ft_mouse_move(int x, int y, t_cub *cub);
+
+// Keys
+int		ft_key_press(int keycode, t_cub *cub);
+int		ft_key_release(int keycode, t_cub *cub);
+
+// MVT
+void	move(t_cub *cub);
 
 #endif
+
+

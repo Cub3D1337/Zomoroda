@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.h                                         :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 15:51:53 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/30 15:43:22 by abnsila          ###   ########.fr       */
+/*   Created: 2025/08/30 15:05:24 by abnsila           #+#    #+#             */
+/*   Updated: 2025/08/30 15:11:54 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDES_H
-# define INCLUDES_H
+#ifndef RENDER_H
+# define RENDER_H
 
-# include <mlx.h>
-# include <stdio.h>
-# include <math.h>
-# include <time.h>
-# include <sys/time.h>
+# include "includes.h"
 
-# include "../Libft/includes/libft.h"
-# include "settings.h"
-# include "typedef.h"
+// Map Buffer
+void	draw_init_minimap(t_cub *cub);
+// MAP Chunk
+void	draw_minimap(t_cub *cub);
+void	render(t_cub *cub);
 
 #endif
