@@ -6,12 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:17:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/30 15:10:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/30 20:37:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+//TODO: Init textures for parsing cfg
 static void	set_texture_paths(t_cub *cub)
 {
 	cub->textures[0].relative_path = "./textures/north.xpm";
