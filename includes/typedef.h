@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/30 15:42:49 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/30 17:45:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@
 
 typedef struct s_map_data
 {
-	int	array[MAP_HEIGHT][MAP_WIDTH];
+	// int	array[MAP_HEIGHT][MAP_WIDTH];
+	char	**array;
+	int	w;
+	int	h;
 	int	minimap_width;
 	int	minimap_height;
 	int	padding;

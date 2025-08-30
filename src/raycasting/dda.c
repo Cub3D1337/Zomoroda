@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:18:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/30 15:03:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/30 17:52:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result)
 			dda.map_pos.y += dda.dir_step.y;	
 			dda.side = VERTICAL;
 		}
-		if (cub->map.array[dda.map_pos.y][dda.map_pos.x] == 1)
+		if (cub->map.array[dda.map_pos.y][dda.map_pos.x] == '1')
 			break ;
 	}
 	compute_ray_lenght(cub, &dda, ray_dir, result);
