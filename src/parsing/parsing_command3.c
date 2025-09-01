@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_command3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:40:40 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/29 15:38:07 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/01 18:09:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int is_map_line(const char *line)
 	i = 0;
 	while (line[i] && line[i] != '\n')
 	{
-		if (!ft_strchr(" 01NSEW", line[i]))
+		if (!ft_strchr(" 01NSEWD", line[i]))
 			return (0);
 		i++;
 	}
