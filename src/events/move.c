@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:41:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/30 19:52:19 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/01 16:56:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ static t_bool	check_boundaries(t_cub *cub)
 	{
 		map.x = ply_corners[i].x / BLOCK_SIZE;
 		map.y = ply_corners[i].y / BLOCK_SIZE;
-		if (cub->map.array[map.y][map.x] == '1')
+		if (cub->map.array[map.y][map.x] == '1'
+		|| cub->map.array[map.y][map.x] == 'D')
 			return (false);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:18:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/30 17:52:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/01 16:58:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	setup_dir_step(t_dda *dda, t_pointd ray_dir)
 		dda->dir_step.y = 1;
 }
 
-static void	setup_dda(t_cub *cub, t_dda *dda, t_pointd ray_dir)
+void	setup_dda(t_cub *cub, t_dda *dda, t_pointd ray_dir)
 {
 	// Get player pos in grid map, the value truncate to int
 	// Those values is modified after each jump to check collision with wall 
@@ -93,7 +93,13 @@ void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result)
 			dda.map_pos.y += dda.dir_step.y;	
 			dda.side = VERTICAL;
 		}
-		if (cub->map.array[dda.map_pos.y][dda.map_pos.x] == '1')
+		// Check Map Bounds
+		if (dda.map_pos.x < 0 || dda.map_pos.x >= cub->map.h
+		|| dda.map_pos.y < 0 || dda.map_pos.y >= cub->map.w)
+			break ;
+		// Wall && Close Door Hit
+		if (cub->map.array[dda.map_pos.y][dda.map_pos.x] == '1'
+			|| cub->map.array[dda.map_pos.y][dda.map_pos.x] == 'D')
 			break ;
 	}
 	compute_ray_lenght(cub, &dda, ray_dir, result);

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/30 19:24:25 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/01 14:33:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static inline void	init_player(t_cub *cub, t_config *cfg)
 	cub->p.horizon = cub->half_height;
 }
 
-static inline void	init_defult_calculation(t_cub *cub)
+static inline void	init_default_calculation(t_cub *cub)
 {
 	// Screen
 	cub->half_height = HEIGHT / 2;
@@ -69,7 +69,7 @@ int	init_cub(t_cub	*cub, t_config *cfg)
 	cub->mlx_win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3D");
 	if (!cub->mlx_win)
 		return (EXIT_FAILURE);
-	init_defult_calculation(cub);
+	init_default_calculation(cub);
 	init_map(cub, cfg);
 	init_player(cub, cfg);
 	cub->track_mouse = true;
@@ -79,7 +79,9 @@ int	init_cub(t_cub	*cub, t_config *cfg)
 					cfg->floor_rgb[1], cfg->floor_rgb[2]);
 	cub->fps.frames = 0;
 	cub->fps.last_time = 0.0;
-	cub->fps.last_frame_time = 0.0;	
+	cub->fps.last_frame_time = 0.0;
+	// Door
+	cub->trigger_door = false;
 	return (EXIT_SUCCESS);
 }
 
