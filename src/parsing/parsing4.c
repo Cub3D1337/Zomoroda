@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:44:45 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/29 15:39:31 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/01 18:09:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int check_player_spawn(t_config *cfg, int *px, int *py)
 		for (int x = 0; x < cfg->map_w; x++)
 		{
 			char c = cfg->map[y][x];
-			if (!ft_strchr(" 01NSEW", c))
+			if (!ft_strchr(" 01NSEWD", c))
 				return (error("Error\nInvalid character in map\n"));
 			if (ft_strchr("NSEW", c))
 			{

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:41:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/30 15:36:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/01 16:56:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ static t_bool	check_boundaries(t_cub *cub)
 	h = cub->p.half;
 	// --- Check last boundarie wall to avoid undefined behaviore on raycasting and texture mapping ---
 	if ((int)p.x - h < BLOCK_SIZE
-		|| (int) p.x + h >= (MAP_WIDTH * BLOCK_SIZE) + 1 - BLOCK_SIZE
+		|| (int) p.x + h >= (cub->map.w * BLOCK_SIZE) + 1 - BLOCK_SIZE
 		|| (int)p.y - h < BLOCK_SIZE
-		|| (int)p.y + h >= (MAP_HEIGHT * BLOCK_SIZE) + 1 - BLOCK_SIZE)
+		|| (int)p.y + h >= (cub->map.h * BLOCK_SIZE) + 1 - BLOCK_SIZE)
 			return (false);
 	// --- Define player hitbox corners ---
 	ply_corners[0] = (t_pointi) {(int)(p.x - h), (int)(p.y - h)}; // top-left
@@ -78,7 +78,8 @@ static t_bool	check_boundaries(t_cub *cub)
 	{
 		map.x = ply_corners[i].x / BLOCK_SIZE;
 		map.y = ply_corners[i].y / BLOCK_SIZE;
-		if (cub->map.array[map.y][map.x] == 1)
+		if (cub->map.array[map.y][map.x] == '1'
+		|| cub->map.array[map.y][map.x] == 'D')
 			return (false);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 14:35:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/30 15:06:13 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/01 18:10:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,17 @@ void	draw_init_minimap(t_cub *cub)
 	ft_memset(cub->map_img.img_pixels_ptr, 0,
 		cub->map.minimap_height * cub->map_img.line_length);
 	pos.y = 0;
-	while (pos.y < MAP_HEIGHT)
+	while (pos.y < cub->map.h)
 	{
 		pos.x = 0;
-		while (pos.x < MAP_WIDTH)
+		while (pos.x < cub->map.w)
 		{
-			if (cub->map.array[pos.y][pos.x] == 1)
+			if (cub->map.array[pos.y][pos.x] == '1')
 				color = 0xffffff;
+			else if (cub->map.array[pos.y][pos.x] == 'D')
+				color = 0x5555ff;
+			// else if (cub->map.array[pos.y][pos.x] == 'd')
+			// 	color = 0x9999ff;
 			else
 				color = 0x333333;
 			draw_map_square(cub,

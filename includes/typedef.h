@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/30 15:42:49 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/01 14:33:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@
 
 typedef struct s_map_data
 {
-	int	array[MAP_HEIGHT][MAP_WIDTH];
+	// int	array[MAP_HEIGHT][MAP_WIDTH];
+	char	**array;
+	int	w;
+	int	h;
 	int	minimap_width;
 	int	minimap_height;
 	int	padding;
@@ -90,7 +93,7 @@ typedef struct s_cub
 	t_map_data	map;
 	t_player	p;
 	// Textures
-	t_img_texture	textures[4];
+	t_img_texture	textures[5];
 	//TODO: Default calculation
 	double	fov;
 	// Projection Plan
@@ -101,6 +104,8 @@ typedef struct s_cub
 	t_pointd	mouse;
 	t_bool		track_mouse;
 	t_fps		fps;
+	// Door
+	t_bool		trigger_door;
 }			t_cub;
 
 #endif

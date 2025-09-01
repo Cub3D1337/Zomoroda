@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_command4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:40:52 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 14:10:00 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/01 18:09:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int check_cell_player(t_config *cfg, int x, int y, int *pc)
 	char c;
 
 	c = cfg->map[y][x];
-	if (!ft_strchr(" 01NSEW", c))
+	if (!ft_strchr(" 01NSEWD", c))
 		return (error("Error\nInvalid character in map\n"));
 	if (ft_strchr("NSEW", c))
 	{

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 15:24:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/30 15:31:14 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/31 17:03:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@ typedef enum e_side
 	HORIZONTAL,
 	VERTICAL,
 }			t_side;
+
+typedef enum e_tex_side
+{
+	SOUTH,
+	NORTH,
+	WEST,
+	EAST,
+	DOOR,
+}			t_tex_side;
+
+typedef enum e_door_status
+{
+	CLOSE,
+	OPEN,
+}			t_door_status;
 
 typedef struct s_pointi
 {
