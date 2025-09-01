@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/30 20:34:57 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/01 18:03:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define TINY_STEP 0.5
 # define PLY_SIZE 4
 # define SPEED 150
+# define TRACK_DOOR_CELL 5
 
 # define H_ROT_SPEED 3.5
 # define V_ROT_SPEED 1000
@@ -41,7 +42,7 @@
 # define X_SENSITIVITY 0.0007
 # define Y_SENSITIVITY 0.5
 
-# define TEX_NUM 4
+# define TEX_NUM 5
 
 enum e_events_hooks
 {
@@ -77,6 +78,7 @@ enum e_events_inputs
 	A_KEY = 97,
 	S_KEY = 115,
 	D_KEY = 100,
+	E_KEY = 101,
 };
 
 #endif
