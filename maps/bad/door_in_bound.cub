@@ -1,0 +1,12 @@
+NO                  ./textures/brick.xpm
+SO              ./textures/greystone.xpm
+                                                                                                                WE ./textures/purplestone.xpm
+            EA ./textures/wall.xpm
+F 220,100,0
+C 225,30,12
+
+       1
+     11SD
+    1100111
+1111110001111
+1111111111111
