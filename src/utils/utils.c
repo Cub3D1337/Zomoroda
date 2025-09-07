@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:02:58 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/30 19:20:36 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/06 11:07:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,11 @@ t_bool	check_minimap_edge(int x, int y)
 		|| y >= MINIMAP_SIZE + BORDER * 2)
 		return (true);
 	return (false);
+}
+
+t_bool	check_screen_edge(int x, int y)
+{
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return (false);
+	return (true);
 }
