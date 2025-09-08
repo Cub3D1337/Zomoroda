@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/05 17:50:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/08 12:59:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int ac, char **av)
 	t_config	cfg;
 
 	//TODO: Some map model can't be parsed
+	//TODO: Door Issue
 	init_config(&cfg);
 	if (parsing(ac, av, &cfg) == 0)
 		return (EXIT_FAILURE);

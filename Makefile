@@ -56,6 +56,6 @@ fclean:				clean
 re:					fclean all
 
 vg:
-	valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
+	valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) maps/good/m.cub
 
 .PHONY:				all clean fclean re

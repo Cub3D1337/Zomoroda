@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/07 16:29:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/08 10:44:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ enum e_events_hooks
 {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
-	ON_MOUSEMOVE = 6,
+	ON_MOUSE_MOVE = 6,
+	ON_MOUSE_ENTER = 7,
 	ON_DESTROY = 17,
 };
 
@@ -66,6 +67,7 @@ enum e_events_masks
 	DestroyNotifyMask = 0L,
 	KeyPressMask = 1L << 0,
 	KeyReleaseMask = 1L << 1,
+	EnterWindowMask = 1L << 4,
 	PointerMotionMask = 1L << 6,
 };
 

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:27:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/28 16:31:41 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/08 11:21:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	mouse_handler(t_cub *cub)
 {
 	t_pointd	delta;
 
+	if (cub->track_mouse == false)
+		return ;
 	delta.x = cub->mouse.x - cub->half_width;
 	delta.y = cub->mouse.y - cub->half_height;
 	if (delta.x == 0 && delta.y == 0)
@@ -46,8 +48,6 @@ void	mouse_handler(t_cub *cub)
 	mlx_mouse_move(cub->mlx, cub->mlx_win, cub->half_width, cub->half_height);
 	cub->mouse.x = cub->half_width;
 	cub->mouse.y = cub->half_height;
-	mlx_mouse_hide(cub->mlx, cub->mlx_win);
-	cub->track_mouse = true;
 	apply_mouse_rotation(cub, &delta);
 }
 
