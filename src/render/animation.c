@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:55:40 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/18 18:55:34 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/18 20:44:37 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,12 @@ void	animation(t_cub *cub)
 	// Update the last update time
 	cub->gun.last_update = current_time;
 	// Draw current frame
-	draw_sprite(cub, &cub->gun.sprites[cub->gun.frame], 2);
+	if (cub->gun.inspect)
+	{
+		draw_sprite(cub, &cub->gun.click_sprites[cub->gun.frame], 2);
+		if (cub->gun.frame == 3)
+			cub->gun.inspect = false;
+	}
+	else
+		draw_sprite(cub, &cub->gun.sprites[cub->gun.frame], 2);
 }

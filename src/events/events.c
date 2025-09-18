@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/08 11:17:36 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/18 20:43:18 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,18 @@ int	ft_loop_hook(t_cub *cub)
 	return (EXIT_SUCCESS);
 }
 
+int	mouse_hook(int button, int x, int y, t_cub *cub)
+{
+	if (button == 1)
+	{
+		cub->gun.frame = 0;
+		cub->gun.inspect = true;
+	}
+	else
+		cub->gun.inspect = false;
+	return (0);
+}
+
 // TODO: On mouse IN / On Mouse OUT
 void	init_events(t_cub *cub)
 {
@@ -53,5 +65,6 @@ void	init_events(t_cub *cub)
 	mlx_hook(cub->mlx_win, ON_DESTROY, DestroyNotifyMask, ft_exit, cub);
 	mlx_hook(cub->mlx_win, ON_MOUSE_MOVE, PointerMotionMask, ft_mouse_move, cub);
 	mlx_hook(cub->mlx_win, ON_MOUSE_ENTER, EnterWindowMask, ft_mouse_enter, cub);
+	mlx_mouse_hook(cub->mlx_win, mouse_hook, cub);
 	mlx_loop_hook(cub->mlx, ft_loop_hook, cub);
 }
