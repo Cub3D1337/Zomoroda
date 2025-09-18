@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/01 18:03:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/08 10:44:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,14 @@
 #	define M_PI_2 1.57079632679489661923
 #endif
 
-# define WIDTH 1280
+// # define WIDTH 1920
+// # define HEIGHT 1080
+
+# define WIDTH 1080
 # define HEIGHT 720
+
+// # define WIDTH 800
+// # define HEIGHT 500
 
 # define TARGET_FPS 1000
 
@@ -44,11 +50,15 @@
 
 # define TEX_NUM 5
 
+# define GUN_OFFSET 30
+# define GUN_OFFSET_SPEED 220
+
 enum e_events_hooks
 {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
-	ON_MOUSEMOVE = 6,
+	ON_MOUSE_MOVE = 6,
+	ON_MOUSE_ENTER = 7,
 	ON_DESTROY = 17,
 };
 
@@ -57,6 +67,7 @@ enum e_events_masks
 	DestroyNotifyMask = 0L,
 	KeyPressMask = 1L << 0,
 	KeyReleaseMask = 1L << 1,
+	EnterWindowMask = 1L << 4,
 	PointerMotionMask = 1L << 6,
 };
 

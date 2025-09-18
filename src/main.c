@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/31 11:49:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/08 12:59:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,15 @@ int	main(int ac, char **av)
 	t_cub		cub;
 	t_config	cfg;
 
-	//TODO: Some map model dont be parsed
+	//TODO: Some map model can't be parsed
+	//TODO: Door Issue
 	init_config(&cfg);
 	if (parsing(ac, av, &cfg) == 0)
 		return (EXIT_FAILURE);
 	print_config(&cfg);
 	init_cub(&cub, &cfg);
 	init_textures(&cub, &cfg);
+	init_sprites(&cub);
 	init_image_buffer(&cub);
 	init_map_image_buffer(&cub);
 	init_events(&cub);

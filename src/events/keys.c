@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:40:04 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/01 18:06:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/08 11:19:13 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ static void	toggle_escape(int keycode, t_cub *cub)
 	if (keycode == ESCAPE_KEY)
 	{
 		if (cub->track_mouse)
-		{
-			mlx_mouse_show(cub->mlx, cub->mlx_win);
 			cub->track_mouse = false;
-		}
 		else
 			ft_exit(cub);
 	}

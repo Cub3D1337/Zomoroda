@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/01 14:33:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/06 12:02:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,20 @@ typedef struct	s_fps
 	double		frame_duration;
 }				t_fps;
 
+# define MAX_SPRITES 32
+
+typedef struct s_animate
+{
+	t_img_texture sprites[MAX_SPRITES];
+	int			sprites_num;
+	int			frame;          // current frame
+	double		timer;          // accumulated time
+	double      frame_duration; // time each frame should last in seconds
+	double      last_update;    // last time the animation was updated
+	t_pointi	offset;
+}				t_animate;
+
+
 typedef struct s_cub
 {
 	void		*mlx;
@@ -94,6 +108,7 @@ typedef struct s_cub
 	t_player	p;
 	// Textures
 	t_img_texture	textures[5];
+	t_animate		gun;
 	//TODO: Default calculation
 	double	fov;
 	// Projection Plan
@@ -104,8 +119,6 @@ typedef struct s_cub
 	t_pointd	mouse;
 	t_bool		track_mouse;
 	t_fps		fps;
-	// Door
-	t_bool		trigger_door;
 }			t_cub;
 
 #endif

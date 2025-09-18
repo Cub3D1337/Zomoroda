@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/01 14:33:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/05 16:41:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,6 @@ static inline void	init_default_calculation(t_cub *cub)
 	// Screen
 	cub->half_height = HEIGHT / 2;
 	cub->half_width = WIDTH / 2;
-	// Minimap
-	// cub->map.minimap_width = (MAP_WIDTH * BLOCK_SIZE) + MINIMAP_SIZE;
-	// cub->map.minimap_height = (MAP_HEIGHT * BLOCK_SIZE) + MINIMAP_SIZE;
 	cub->map.padding = MINIMAP_SIZE / 2;
 	// Settings
 	cub->fps.frame_duration = 1000.0 / TARGET_FPS;
@@ -80,8 +77,6 @@ int	init_cub(t_cub	*cub, t_config *cfg)
 	cub->fps.frames = 0;
 	cub->fps.last_time = 0.0;
 	cub->fps.last_frame_time = 0.0;
-	// Door
-	cub->trigger_door = false;
 	return (EXIT_SUCCESS);
 }
 
