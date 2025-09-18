@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:44:45 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/18 16:44:34 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:05:03 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ int set_texture(char **slot, const char *path_start, const char *id)
     *slot = p;
     return (1);
 }
-
-
 
 int check_player_spawn(t_config *cfg, int *px, int *py)
 {

@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:41:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/18 16:44:45 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:12:13 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ int check_gate(t_config *cfg, int x, int y)
         && !((cfg->map[y][x - 1] == '1' && cfg->map[y][x + 1] == '1')
         || (cfg->map[y - 1][x] == '1' && cfg->map[y + 1][x] == '1')))
         return (error("Error\nGate must be placed between two walls\n"));
+	return(1);
 }
