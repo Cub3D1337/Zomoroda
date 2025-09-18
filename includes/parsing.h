@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:02:26 by wahmane           #+#    #+#             */
-/*   Updated: 2025/08/23 18:03:23 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:12:05 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ int	check_row_player(t_config *cfg, int y, int x, int *pc);
 int	validate_once_all_present(const t_config *cfg);
 int	check_column_top_bottom(t_config *cfg, int x);
 int	check_row_sides(t_config *cfg, int y);
+int check_gate(t_config *cfg, int x, int y);
 
 #endif
