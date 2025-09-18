@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:44:45 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/01 18:09:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/18 16:44:34 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,23 @@ int set_texture(char **slot, const char *path_start, const char *id)
     return (1);
 }
 
+
+
 int check_player_spawn(t_config *cfg, int *px, int *py)
 {
-	int pc = 0;
+	int     pc;
+	int     y;
+    int     x;
+    char    c;
 
-	for (int y = 0; y < cfg->map_h; y++)
+    y = 0;
+    pc = 0;
+	while (y < cfg->map_h)
 	{
-		for (int x = 0; x < cfg->map_w; x++)
+		x = 0;
+		while (x < cfg->map_w)
 		{
-			char c = cfg->map[y][x];
+			c = cfg->map[y][x];
 			if (!ft_strchr(" 01NSEWD", c))
 				return (error("Error\nInvalid character in map\n"));
 			if (ft_strchr("NSEW", c))
@@ -91,7 +99,11 @@ int check_player_spawn(t_config *cfg, int *px, int *py)
 				*py = y;
 				cfg->player_dir = c;
 			}
+            if (!check_gate(cfg, x, y))
+                return (0);
+			x++;
 		}
+		y++;
 	}
 	if (pc != 1)
 		return (error("Error\nThere must be exactly one player spawn\n"));

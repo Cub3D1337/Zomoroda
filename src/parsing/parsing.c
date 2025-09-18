@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:41:59 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/28 18:52:01 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/18 15:04:10 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,11 @@ int parsing(int ac, char **av, t_config *cfg)
     }
 
     close(fd);
-
     if (!validate_once_all_present(cfg))
         return (0);
     if (!validate_player_and_close(cfg))
         return (0);
+    // if (!validate_player_and_close(cfg))
+    //     return (0);
     return (1);
 }
