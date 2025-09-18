@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:17:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/18 18:48:49 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/18 20:28:01 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,33 @@ int	init_textures(t_cub *cub, t_config *cfg)
 
 static void	set_sprites_paths(t_cub *cub)
 {
-	// 8 frames
-	// cub->gun.sprites[0].relative_path = "./textures/animation/gun/sprite_0.xpm";
-	cub->gun.sprites[0].relative_path = "./textures/animation/gun/1.xpm";
-	cub->gun.sprites[1].relative_path = "./textures/animation/gun/2.xpm";
-	cub->gun.sprites[2].relative_path = "./textures/animation/gun/3.xpm";
+	// 4 frames
+	cub->gun.sprites[0].relative_path = "./textures/animation/bear/1.xpm";
+	cub->gun.sprites[1].relative_path = "./textures/animation/bear/2.xpm";
+	cub->gun.sprites[2].relative_path = "./textures/animation/bear/3.xpm";
+	cub->gun.sprites[3].relative_path = "./textures/animation/bear/4.xpm";
+	// 4 frames
+	cub->gun.click_sprites[0].relative_path = "./textures/animation/bear_click/1.xpm";
+	cub->gun.click_sprites[1].relative_path = "./textures/animation/bear_click/2.xpm";
+	cub->gun.click_sprites[2].relative_path = "./textures/animation/bear_click/3.xpm";
+	cub->gun.click_sprites[3].relative_path = "./textures/animation/bear_click/4.xpm";
 }
 
 static void	prepare_sprite_metadata(t_cub *cub, int i)
 {
 	t_img_texture	*t;
 
+	// Base sprites
 	t = &cub->gun.sprites[i];
+	t->img_pixels_ptr = mlx_get_data_addr(
+				t->img_ptr, &t->bits_per_pixel,
+				&t->line_length, &t->endian
+				);
+	t->pixels_u32 = (unsigned int *)t->img_pixels_ptr;
+	t->pitch_u32 = (unsigned int)(t->line_length / sizeof(unsigned int));
+
+	// Click sprites
+	t = &cub->gun.click_sprites[i];
 	t->img_pixels_ptr = mlx_get_data_addr(
 				t->img_ptr, &t->bits_per_pixel,
 				&t->line_length, &t->endian
@@ -90,16 +105,18 @@ int	init_sprites(t_cub *cub)
 	int	i;
 	
 	i = 0;
+	cub->gun.inspect = false;
 	cub->gun.frame = 0;
     cub->gun.timer = 0.0;
     cub->gun.frame_duration = 0.15; // Each frame lasts 0.1 seconds (10 FPS animation)
     cub->gun.last_update = get_time_ms() / 1000.0; // Convert to seconds
-    cub->gun.sprites_num = 3;
+    cub->gun.sprites_num = 4;
     cub->gun.offset = (t_pointi){0, 0};
 	set_sprites_paths(cub);
 	// Init sprites image buffers
 	while (i < cub->gun.sprites_num)
 	{
+		// Base sprites
 		cub->gun.sprites[i].img_ptr = mlx_xpm_file_to_image(
 				cub->mlx,
 				cub->gun.sprites[i].relative_path,
@@ -109,6 +126,18 @@ int	init_sprites(t_cub *cub)
 		if (!cub->gun.sprites[i].img_ptr)
 		{
 			printf("Failed to load sprite: %s\n", cub->gun.sprites[i].relative_path);
+			return (EXIT_FAILURE);
+		}
+		// Click sprites
+		cub->gun.click_sprites[i].img_ptr = mlx_xpm_file_to_image(
+				cub->mlx,
+				cub->gun.click_sprites[i].relative_path,
+				&cub->gun.click_sprites[i].img_width,
+				&cub->gun.click_sprites[i].img_height
+				);
+		if (!cub->gun.click_sprites[i].img_ptr)
+		{
+			printf("Failed to load click sprite: %s\n", cub->gun.click_sprites[i].relative_path);
 			return (EXIT_FAILURE);
 		}
 		prepare_sprite_metadata(cub, i);
