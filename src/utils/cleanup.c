@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/08 11:37:57 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/18 18:45:45 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	destroy_textures(t_cub *cub)
 		i++;
 	}
 		i = 0;
-	while (i < 4)
+	while (i < cub->gun.sprites_num)
 	{
 		if (cub->gun.sprites[i].img_ptr)
 			mlx_destroy_image(cub->mlx, cub->gun.sprites[i].img_ptr);
