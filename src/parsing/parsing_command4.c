@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_command4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:40:52 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/01 18:09:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/18 15:02:33 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int check_row(t_config *cfg, int y, int x)
 {
 	if (x >= cfg->map_w)
 		return (1);
-	if (cfg->map[y][x] == '0' || ft_strchr("NSEW", cfg->map[y][x]))
+	if (cfg->map[y][x] == '0' || ft_strchr("NSEWD", cfg->map[y][x]))
 		if (!check_cell_neighbors(cfg, x, y))
 			return (0);
 	return (check_row(cfg, y, x + 1));
