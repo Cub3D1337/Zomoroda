@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/08 10:44:10 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/18 18:52:21 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 
 # define TEX_NUM 5
 
-# define GUN_OFFSET 30
+# define GUN_OFFSET 50
 # define GUN_OFFSET_SPEED 220
 
 enum e_events_hooks

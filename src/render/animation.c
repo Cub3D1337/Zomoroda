@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:55:40 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/07 16:29:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/18 18:55:34 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,71 @@ static unsigned int	get_texel(const t_img_texture *t, int tx, int ty)
 	return (t->pixels_u32[(unsigned int)ty * t->pitch_u32 + (unsigned int)tx]);
 }
 
-static void	draw_sprite(t_cub *cub, t_img_texture *t)
+// static void	draw_sprite(t_cub *cub, t_img_texture *t)
+// {
+// 	t_pointi	pos;
+// 	t_pointi	cord;
+// 	int			color;
+// 	t_pointi	deplacement;
+	
+// 	pos = (t_pointi){0, 0};
+// 	deplacement = (t_pointi){cub->half_width - (t->img_width / 2)
+// 			, HEIGHT - t->img_height};
+// 	while (pos.y < t->img_height)
+// 	{
+// 		pos.x = 0;
+// 		cord.y = (pos.y + deplacement.y + cub->gun.offset.y + 50) * cub->img.pitch;
+// 		while (pos.x < t->img_width)
+// 		{
+// 			color = get_texel(t, pos.x, pos.y);
+// 			cord.x = pos.x + deplacement.x + cub->gun.offset.x;
+// 			if (check_screen_edge(cord.x, cord.y / cub->img.pitch) && color != 0xFF000000)
+// 				cub->img.pixels[cord.y + cord.x] = color;
+// 			pos.x++;
+// 		}
+// 		pos.y++;
+// 	}
+// }
+
+
+static void	draw_sprite(t_cub *cub, t_img_texture *t, double scale)
 {
 	t_pointi	pos;
 	t_pointi	cord;
 	int			color;
 	t_pointi	deplacement;
-	
-	pos = (t_pointi){0, 0};
-	deplacement = (t_pointi){cub->half_width - (t->img_width / 2)
-			, HEIGHT - t->img_height};
-	while (pos.y < t->img_height)
+	int			scaled_w;
+	int			scaled_h;
+
+	if (!t || scale <= 0.0)
+		return;
+
+	scaled_w = (int)(t->img_width * scale);
+	scaled_h = (int)(t->img_height * scale);
+
+	deplacement = (t_pointi){
+		cub->half_width - (scaled_w / 2),
+		HEIGHT - scaled_h
+	};
+
+	pos.y = 0;
+	while (pos.y < scaled_h)
 	{
 		pos.x = 0;
+		// map scaled y to original texture y
+		int tex_y = (int)((double)pos.y / scale);
 		cord.y = (pos.y + deplacement.y + cub->gun.offset.y + 50) * cub->img.pitch;
-		while (pos.x < t->img_width)
+
+		while (pos.x < scaled_w)
 		{
-			color = get_texel(t, pos.x, pos.y);
+			// map scaled x to original texture x
+			int tex_x = (int)((double)pos.x / scale);
+			color = get_texel(t, tex_x, tex_y);
+
 			cord.x = pos.x + deplacement.x + cub->gun.offset.x;
 			if (check_screen_edge(cord.x, cord.y / cub->img.pitch) && color != 0xFF000000)
 				cub->img.pixels[cord.y + cord.x] = color;
+
 			pos.x++;
 		}
 		pos.y++;
@@ -118,5 +163,5 @@ void	animation(t_cub *cub)
 	// Update the last update time
 	cub->gun.last_update = current_time;
 	// Draw current frame
-	draw_sprite(cub, &cub->gun.sprites[cub->gun.frame]);
+	draw_sprite(cub, &cub->gun.sprites[cub->gun.frame], 2);
 }

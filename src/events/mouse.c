@@ -3,37 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:27:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/08 11:21:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/18 18:54:47 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static void	apply_mouse_rotation(t_cub *cub, t_pointd *delta)
+// static void	apply_mouse_rotation(t_cub *cub, t_pointd *delta)
+// {
+// 	if (delta->x != 0)
+// 	{
+// 		cub->p.angle += delta->x * X_SENSITIVITY;
+// 		if (cub->p.angle < 0)
+// 			cub->p.angle += 2 * M_PI;
+// 		if (cub->p.angle >= 2 * M_PI)
+// 			cub->p.angle -= 2 * M_PI;
+// 		cub->p.cosA = cos(cub->p.angle);
+// 		cub->p.sinA = sin(cub->p.angle);
+// 	}
+// 	if (delta->y != 0)
+// 	{
+// 		cub->p.pitch -= delta->y * Y_SENSITIVITY;
+// 		if (cub->p.pitch > MAX_PITCH)
+// 			cub->p.pitch = MAX_PITCH;
+// 		if (cub->p.pitch < MIN_PITCH)
+// 			cub->p.pitch = MIN_PITCH;
+// 		cub->p.horizon = (cub->half_height) + (int)cub->p.pitch;
+// 	}
+// }
+
+static void apply_mouse_rotation(t_cub *cub, t_pointd *delta)
 {
-	if (delta->x != 0)
-	{
-		cub->p.angle += delta->x * X_SENSITIVITY;
-		if (cub->p.angle < 0)
-			cub->p.angle += 2 * M_PI;
-		if (cub->p.angle >= 2 * M_PI)
-			cub->p.angle -= 2 * M_PI;
-		cub->p.cosA = cos(cub->p.angle);
-		cub->p.sinA = sin(cub->p.angle);
-	}
-	if (delta->y != 0)
-	{
-		cub->p.pitch -= delta->y * Y_SENSITIVITY;
-		if (cub->p.pitch > MAX_PITCH)
-			cub->p.pitch = MAX_PITCH;
-		if (cub->p.pitch < MIN_PITCH)
-			cub->p.pitch = MIN_PITCH;
-		cub->p.horizon = (cub->half_height) + (int)cub->p.pitch;
-	}
+    if (delta->x != 0)
+    {
+        cub->p.angle += delta->x * X_SENSITIVITY;
+        if (cub->p.angle < 0)
+            cub->p.angle += 2 * M_PI;
+        if (cub->p.angle >= 2 * M_PI)
+            cub->p.angle -= 2 * M_PI;
+        cub->p.cosA = cos(cub->p.angle);
+        cub->p.sinA = sin(cub->p.angle);
+
+        // Gun sway horizontally
+        cub->gun.offset.x += delta->x * 0.5; // tweak factor
+        if (cub->gun.offset.x > GUN_OFFSET)
+            cub->gun.offset.x = GUN_OFFSET;
+        else if (cub->gun.offset.x < -GUN_OFFSET)
+            cub->gun.offset.x = -GUN_OFFSET;
+    }
+    if (delta->y != 0)
+    {
+        cub->p.pitch -= delta->y * Y_SENSITIVITY;
+        if (cub->p.pitch > MAX_PITCH)
+            cub->p.pitch = MAX_PITCH;
+        if (cub->p.pitch < MIN_PITCH)
+            cub->p.pitch = MIN_PITCH;
+        cub->p.horizon = (cub->half_height) + (int)cub->p.pitch;
+
+        // Gun sway vertically
+        cub->gun.offset.y += delta->y * 0.5; // tweak factor
+        if (cub->gun.offset.y > GUN_OFFSET)
+            cub->gun.offset.y = GUN_OFFSET;
+        else if (cub->gun.offset.y < -GUN_OFFSET)
+            cub->gun.offset.y = -GUN_OFFSET;
+    }
 }
+
 
 void	mouse_handler(t_cub *cub)
 {
