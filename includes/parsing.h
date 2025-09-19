@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:02:26 by wahmane           #+#    #+#             */
-/*   Updated: 2025/09/18 17:12:05 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/19 16:38:56 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,16 @@ int	validate_once_all_present(const t_config *cfg);
 int	check_column_top_bottom(t_config *cfg, int x);
 int	check_row_sides(t_config *cfg, int y);
 int check_gate(t_config *cfg, int x, int y);
+
+int	get_max_width(t_vec *raw);
+int	alloc_map_rows(t_config *cfg, t_vec *raw);
+int	skip_comma(const char **s);
+int	parse_component(const char **s, int *val, char comp);
+int	check_trailing(const char *s);
+
+int	skip_trailing_spaces(int fd, char *line);
+int	process_line(int fd, t_vec *raw, char *line);
+int	check_cell(t_config *cfg, int x, int y, int *pos[3]);
+
 
 #endif

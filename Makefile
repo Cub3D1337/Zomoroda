@@ -32,7 +32,7 @@ SRCS =				$(SRC_DIR)/main.c $(INIT) $(EVENTS) $(RAYCASTING) $(TEX) $(RENDER) $(U
 					$(SRC_DIR)/parsing/parsing.c \
 					$(SRC_DIR)/parsing/parsing2.c $(SRC_DIR)/parsing/parsing3.c $(SRC_DIR)/parsing/parsing4.c $(SRC_DIR)/parsing/parsing_command.c \
 					$(SRC_DIR)/parsing/parsing_command2.c $(SRC_DIR)/parsing/parsing_command3.c $(SRC_DIR)/parsing/parsing_command4.c \
-					$(SRC_DIR)/parsing/parsing_command5.c
+					$(SRC_DIR)/parsing/parsing_command5.c $(SRC_DIR)/parsing/parsing_command6.c $(SRC_DIR)/parsing/parsing_command7.c
 
 all:				$(LIBFT) $(NAME)
 
