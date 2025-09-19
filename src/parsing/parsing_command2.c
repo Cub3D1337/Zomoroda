@@ -12,7 +12,7 @@
 
 #include <cub3d.h>
 
-void init_config(t_config *cfg)
+void	init_config(t_config *cfg)
 {
 	cfg->no_texture = NULL;
 	cfg->so_texture = NULL;
@@ -32,9 +32,9 @@ void init_config(t_config *cfg)
 	cfg->player_dir = '0';
 }
 
-void free_config(t_config *cfg)
+void	free_config(t_config *cfg)
 {
-	int i;
+	int	i;
 
 	if (cfg->no_texture)
 		free(cfg->no_texture);
@@ -53,10 +53,10 @@ void free_config(t_config *cfg)
 	}
 }
 
-int check_extension(char **av)
+int	check_extension(char **av)
 {
-	const char *ext;
-	int len;
+	const char	*ext;
+	int			len;
 
 	ext = ".cub";
 	if (!av || !av[1])
@@ -70,9 +70,9 @@ int check_extension(char **av)
 	return (1);
 }
 
-int is_all_space(const char *s)
+int	is_all_space(const char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s)
@@ -87,9 +87,9 @@ int is_all_space(const char *s)
 	return (1);
 }
 
-void free_split(char **arr)
+void	free_split(char **arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!arr)
