@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:41:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/07 17:06:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/19 16:51:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,25 +118,25 @@ static void	update_position(t_cub *cub, t_pointd *delta, double speed)
 	{
 		delta->x += cub->p.cosA * speed;
 		delta->y += cub->p.sinA * speed;
-		cub->gun.offset.y++;
+		cub->obj.offset.y++;
 	}
 	if (cub->p.move_down)
 	{
 		delta->x -= cub->p.cosA * speed;
 		delta->y -= cub->p.sinA * speed;
-		cub->gun.offset.y--;
+		cub->obj.offset.y--;
 	}
 	if (cub->p.move_left)
 	{
 		delta->x += cos(cub->p.angle - M_PI_2) * speed;
 		delta->y += sin(cub->p.angle - M_PI_2) * speed;
-		cub->gun.offset.x++;
+		cub->obj.offset.x++;
 	}
 	if (cub->p.move_right)
 	{
 		delta->x += cos(cub->p.angle + M_PI_2) * speed;
 		delta->y += sin(cub->p.angle + M_PI_2) * speed;
-		cub->gun.offset.x--;
+		cub->obj.offset.x--;
 	}
 }
 

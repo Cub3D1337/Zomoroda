@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/18 20:25:39 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/19 16:52:33 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static void	destroy_textures(t_cub *cub)
 		i++;
 	}
 		i = 0;
-	while (i < cub->gun.sprites_num)
+	while (i < cub->obj.sprites_num)
 	{
-		if (cub->gun.sprites[i].img_ptr)
-			mlx_destroy_image(cub->mlx, cub->gun.sprites[i].img_ptr);
-		if (cub->gun.click_sprites[i].img_ptr)
-			mlx_destroy_image(cub->mlx, cub->gun.click_sprites[i].img_ptr);
+		if (cub->obj.sprites[i].img_ptr)
+			mlx_destroy_image(cub->mlx, cub->obj.sprites[i].img_ptr);
+		if (cub->obj.inspect_sprites[i].img_ptr)
+			mlx_destroy_image(cub->mlx, cub->obj.inspect_sprites[i].img_ptr);
 		i++;
 	}
 }

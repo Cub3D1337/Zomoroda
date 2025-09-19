@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:55:40 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/18 20:44:37 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/19 16:52:33 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static unsigned int	get_texel(const t_img_texture *t, int tx, int ty)
 // 	while (pos.y < t->img_height)
 // 	{
 // 		pos.x = 0;
-// 		cord.y = (pos.y + deplacement.y + cub->gun.offset.y + 50) * cub->img.pitch;
+// 		cord.y = (pos.y + deplacement.y + cub->obj.offset.y + 50) * cub->img.pitch;
 // 		while (pos.x < t->img_width)
 // 		{
 // 			color = get_texel(t, pos.x, pos.y);
-// 			cord.x = pos.x + deplacement.x + cub->gun.offset.x;
+// 			cord.x = pos.x + deplacement.x + cub->obj.offset.x;
 // 			if (check_screen_edge(cord.x, cord.y / cub->img.pitch) && color != 0xFF000000)
 // 				cub->img.pixels[cord.y + cord.x] = color;
 // 			pos.x++;
@@ -74,7 +74,7 @@ static void	draw_sprite(t_cub *cub, t_img_texture *t, double scale)
 		pos.x = 0;
 		// map scaled y to original texture y
 		int tex_y = (int)((double)pos.y / scale);
-		cord.y = (pos.y + deplacement.y + cub->gun.offset.y + 50) * cub->img.pitch;
+		cord.y = (pos.y + deplacement.y + cub->obj.offset.y + 50) * cub->img.pitch;
 
 		while (pos.x < scaled_w)
 		{
@@ -82,7 +82,7 @@ static void	draw_sprite(t_cub *cub, t_img_texture *t, double scale)
 			int tex_x = (int)((double)pos.x / scale);
 			color = get_texel(t, tex_x, tex_y);
 
-			cord.x = pos.x + deplacement.x + cub->gun.offset.x;
+			cord.x = pos.x + deplacement.x + cub->obj.offset.x;
 			if (check_screen_edge(cord.x, cord.y / cub->img.pitch) && color != 0xFF000000)
 				cub->img.pixels[cord.y + cord.x] = color;
 
@@ -95,24 +95,24 @@ static void	draw_sprite(t_cub *cub, t_img_texture *t, double scale)
 static void	update_y_gun_offset(t_cub *cub)
 {
 	// Vertical offset (movement up/down)
-	if (cub->p.move_up && cub->gun.offset.y < GUN_OFFSET)
-		cub->gun.offset.y += (int)(GUN_OFFSET_SPEED * cub->fps.delta_time);
-	else if (cub->p.move_down && cub->gun.offset.y > -GUN_OFFSET)
-		cub->gun.offset.y -= (int)(GUN_OFFSET_SPEED * cub->fps.delta_time);
+	if (cub->p.move_up && cub->obj.offset.y < GUN_OFFSET)
+		cub->obj.offset.y += (int)(GUN_OFFSET_SPEED * cub->fps.delta_time);
+	else if (cub->p.move_down && cub->obj.offset.y > -GUN_OFFSET)
+		cub->obj.offset.y -= (int)(GUN_OFFSET_SPEED * cub->fps.delta_time);
 	else
 	{
 		// ease back toward 0 when no vertical input
-		if (cub->gun.offset.y > 0)
+		if (cub->obj.offset.y > 0)
 		{
-			cub->gun.offset.y -= GUN_OFFSET_SPEED * cub->fps.delta_time;
-			if (cub->gun.offset.y < 0)
-				cub->gun.offset.y = 0;
+			cub->obj.offset.y -= GUN_OFFSET_SPEED * cub->fps.delta_time;
+			if (cub->obj.offset.y < 0)
+				cub->obj.offset.y = 0;
 		}
-		else if (cub->gun.offset.y < 0)
+		else if (cub->obj.offset.y < 0)
 		{
-			cub->gun.offset.y += GUN_OFFSET_SPEED * cub->fps.delta_time;
-			if (cub->gun.offset.y > 0)
-				cub->gun.offset.y = 0;
+			cub->obj.offset.y += GUN_OFFSET_SPEED * cub->fps.delta_time;
+			if (cub->obj.offset.y > 0)
+				cub->obj.offset.y = 0;
 		}
 	}
 }
@@ -120,24 +120,24 @@ static void	update_y_gun_offset(t_cub *cub)
 static void	update_x_gun_offset(t_cub *cub)
 {
 	// Horizontal offset (movement left/right)
-	if (cub->p.move_left && cub->gun.offset.x < GUN_OFFSET)
-		cub->gun.offset.x += (int)(GUN_OFFSET_SPEED * cub->fps.delta_time);
-	else if (cub->p.move_right && cub->gun.offset.x > -GUN_OFFSET)
-		cub->gun.offset.x -= (int)(GUN_OFFSET_SPEED * cub->fps.delta_time);
+	if (cub->p.move_left && cub->obj.offset.x < GUN_OFFSET)
+		cub->obj.offset.x += (int)(GUN_OFFSET_SPEED * cub->fps.delta_time);
+	else if (cub->p.move_right && cub->obj.offset.x > -GUN_OFFSET)
+		cub->obj.offset.x -= (int)(GUN_OFFSET_SPEED * cub->fps.delta_time);
 	else
 	{
 		// ease back toward 0 when no horizontal input
-		if (cub->gun.offset.x > 0)
+		if (cub->obj.offset.x > 0)
 		{
-			cub->gun.offset.x -= GUN_OFFSET_SPEED * cub->fps.delta_time;
-			if (cub->gun.offset.x < 0)
-				cub->gun.offset.x = 0;
+			cub->obj.offset.x -= GUN_OFFSET_SPEED * cub->fps.delta_time;
+			if (cub->obj.offset.x < 0)
+				cub->obj.offset.x = 0;
 		}
-		else if (cub->gun.offset.x < 0)
+		else if (cub->obj.offset.x < 0)
 		{
-			cub->gun.offset.x += GUN_OFFSET_SPEED * cub->fps.delta_time;
-			if (cub->gun.offset.x > 0)
-				cub->gun.offset.x = 0;
+			cub->obj.offset.x += GUN_OFFSET_SPEED * cub->fps.delta_time;
+			if (cub->obj.offset.x > 0)
+				cub->obj.offset.x = 0;
 		}
 	}
 }
@@ -151,24 +151,24 @@ void	animation(t_cub *cub)
 	update_x_gun_offset(cub);
 	
    current_time = get_time_ms() / 1000.0; // Current time in seconds
-   delta_time = current_time - cub->gun.last_update;
+   delta_time = current_time - cub->obj.last_update;
 	// Update the timer with the time passed since last frame
-	cub->gun.timer += delta_time;
+	cub->obj.timer += delta_time;
 	// Advance frames if enough time has passed
-	while (cub->gun.timer >= cub->gun.frame_duration)
+	while (cub->obj.timer >= cub->obj.frame_duration)
 	{
-		cub->gun.timer -= cub->gun.frame_duration;
-		cub->gun.frame = (cub->gun.frame + 1) % cub->gun.sprites_num;
+		cub->obj.timer -= cub->obj.frame_duration;
+		cub->obj.frame = (cub->obj.frame + 1) % cub->obj.sprites_num;
 	}
 	// Update the last update time
-	cub->gun.last_update = current_time;
+	cub->obj.last_update = current_time;
 	// Draw current frame
-	if (cub->gun.inspect)
+	if (cub->obj.inspect)
 	{
-		draw_sprite(cub, &cub->gun.click_sprites[cub->gun.frame], 2);
-		if (cub->gun.frame == 3)
-			cub->gun.inspect = false;
+		draw_sprite(cub, &cub->obj.inspect_sprites[cub->obj.frame], 2);
+		if (cub->obj.frame == 3)
+			cub->obj.inspect = false;
 	}
 	else
-		draw_sprite(cub, &cub->gun.sprites[cub->gun.frame], 2);
+		draw_sprite(cub, &cub->obj.sprites[cub->obj.frame], 2);
 }
