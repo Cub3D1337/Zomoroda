@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/08 12:59:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/20 14:22:24 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
+#define MINIAUDIO_IMPLEMENTATION
+#include "miniaudio.h"
 
 void print_config(const t_config *cfg)
 {
@@ -42,13 +43,59 @@ void print_config(const t_config *cfg)
 	printf("  Direction: %c\n", cfg->player_dir);
 }
 
+int play_music_loop(ma_engine *engine, ma_sound *sound, const char *filename)
+{
+    ma_result result;
+
+    // Initialize audio engine
+    result = ma_engine_init(NULL, engine);
+    if (result != MA_SUCCESS) {
+        printf("Failed to initialize audio engine\n");
+        return -1;
+    }
+
+    // Initialize sound from file (looping)
+    result = ma_sound_init_from_file(engine, filename, MA_SOUND_FLAG_LOOPING, NULL, NULL, sound);
+    if (result != MA_SUCCESS) {
+        printf("Failed to load sound\n");
+        ma_engine_uninit(engine);
+        return -1;
+    }
+
+    // Start playing
+    result = ma_sound_start(sound);
+    if (result != MA_SUCCESS) {
+        printf("Failed to start sound\n");
+        ma_sound_uninit(sound);
+        ma_engine_uninit(engine);
+        return -1;
+    }
+
+    return 0;
+}
+
+void stop_music(ma_engine *engine, ma_sound *sound)
+{
+    ma_sound_uninit(sound);
+    ma_engine_uninit(engine);
+}
+
+
+
 int	main(int ac, char **av)
 {
 	t_cub		cub;
 	t_config	cfg;
+	ma_engine  engine;
+	ma_sound   sound;
 
 	//TODO: Some map model can't be parsed
 	//TODO: Door Issue
+
+    // Start looping music
+    if (play_music_loop(&engine, &sound, "zomoroda.mp3") != 0)
+        printf("Music failed to start\n");
+	
 	init_config(&cfg);
 	if (parsing(ac, av, &cfg) == 0)
 		return (EXIT_FAILURE);
@@ -60,6 +107,8 @@ int	main(int ac, char **av)
 	init_map_image_buffer(&cub);
 	init_events(&cub);
 	mlx_loop(cub.mlx);
+
+	stop_music(&engine, &sound);
 	ft_exit(&cub);
 	free_config(&cfg);
 	return (EXIT_SUCCESS);
