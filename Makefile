@@ -24,7 +24,7 @@ INC_FILES =			${INC_DIR}/cub3d.h $(INC_DIR)/parsing.h ${INC_DIR}/mlx.h ${INC_DIR
 INIT =				$(INIT_DIR)/init.c
 EVENTS =			$(EVENTS_DIR)/events.c $(EVENTS_DIR)/mouse.c $(EVENTS_DIR)/keys.c $(EVENTS_DIR)/move.c
 RAYCASTING =		$(RAYCASTING_DIR)/raycaster.c $(RAYCASTING_DIR)/dda.c
-TEX = 				$(TEX_DIR)/init.c $(TEX_DIR)/textures.c
+TEX = 				$(TEX_DIR)/init.c $(TEX_DIR)/textures.c $(TEX_DIR)/intro.c
 RENDER = 			$(RENDER_DIR)/render.c $(RENDER_DIR)/minimap.c $(RENDER_DIR)/animation.c
 UTILS = 			$(UTILS_DIR)/cleanup.c $(UTILS_DIR)/utils.c
 

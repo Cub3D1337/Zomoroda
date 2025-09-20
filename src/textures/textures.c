@@ -6,20 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:48:21 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/19 16:49:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/20 16:14:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-static unsigned int	get_texel(const t_img_texture *t, int tx, int ty)
-{
-	if (!t || !t->img_pixels_ptr || !t->pixels_u32)
-		return (0);
-	if (tx < 0 || tx >= t->img_width || ty < 0 || ty >= t->img_height)
-		return (0);
-	return (t->pixels_u32[(unsigned int)ty * t->pitch_u32 + (unsigned int)tx]);
-}
 
 static void	get_tex(t_cub *cub,
 	t_tex_ctx *ctx, t_texture_data *data)
