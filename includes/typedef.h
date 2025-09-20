@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/18 20:27:34 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/20 14:31:32 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_cub
 	t_player	p;
 	// Textures
 	t_img_texture	textures[5];
+	t_img_texture	intro[182];
 	t_animate		gun;
 	//TODO: Default calculation
 	double	fov;
