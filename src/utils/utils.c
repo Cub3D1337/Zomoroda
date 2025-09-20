@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:02:58 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/06 11:07:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/20 16:14:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,13 @@ t_bool	check_screen_edge(int x, int y)
 	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 		return (false);
 	return (true);
+}
+
+unsigned int	get_texel(const t_img_texture *t, int tx, int ty)
+{
+	if (!t || !t->img_pixels_ptr || !t->pixels_u32)
+		return (0);
+	if (tx < 0 || tx >= t->img_width || ty < 0 || ty >= t->img_height)
+		return (0);
+	return (t->pixels_u32[(unsigned int)ty * t->pitch_u32 + (unsigned int)tx]);
 }

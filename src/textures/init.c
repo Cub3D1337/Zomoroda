@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:17:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/19 17:39:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/20 16:13:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	set_sprites_paths(t_cub *cub)
 		= "./textures/animation/bear_click/4.xpm";
 }
 
-static int	prepare_sprite_metadata(t_cub *cub, t_img_texture *t)
+int	prepare_sprite_metadata(t_cub *cub, t_img_texture *t)
 {
 	if (!t)
 		return (EXIT_FAILURE);

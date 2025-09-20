@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 15:25:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/31 17:04:56 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/20 14:53:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ typedef struct s_img_texture
 	char           *relative_path;
 	int             img_width;
 	int             img_height;
-	// Door Utils
-	t_bool			is_door;
-	t_door_status	status;
 }			t_img_texture;
 
 typedef struct s_texture_data

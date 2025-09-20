@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/19 16:52:33 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/20 16:05:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ typedef struct	s_fps
 	double		frame_duration;
 }				t_fps;
 
-# define MAX_SPRITES 32
 
 typedef struct s_animate
 {
@@ -109,9 +108,10 @@ typedef struct s_cub
 	t_map_data	map;
 	t_player	p;
 	// Textures
+	t_img_texture	logo_texture;
+	t_img_texture	intro_textures[182];
 	t_img_texture	textures[5];
 	t_animate		obj;
-	t_img_texture	intro[182];
 	//TODO: Default calculation
 	double	fov;
 	// Projection Plan
