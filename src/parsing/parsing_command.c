@@ -12,24 +12,24 @@
 
 #include <cub3d.h>
 
-int error(const char *msg)
+int	error(const char *msg)
 {
 	fdprintf(2, "%s", msg);
 	return (0);
 }
 
-void vec_init(t_vec *v)
+void	vec_init(t_vec *v)
 {
 	v->data = NULL;
 	v->size = 0;
 	v->cap = 0;
 }
 
-int vec_push(t_vec *v, char *line)
+int	vec_push(t_vec *v, char *line)
 {
-	int newcap;
-	char **nd;
-	int i;
+	int		newcap;
+	char	**nd;
+	int		i;
 
 	if (v->size + 1 > v->cap)
 	{
@@ -54,9 +54,9 @@ int vec_push(t_vec *v, char *line)
 	return (1);
 }
 
-void vec_free(t_vec *v)
+void	vec_free(t_vec *v)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < v->size)
@@ -70,17 +70,17 @@ void vec_free(t_vec *v)
 	v->cap = 0;
 }
 
-int rstrip_newline(char *s)
+int	rstrip_newline(char *s)
 {
-    int len;
+	int	len;
 
-    if (!s)
-        return 0;
-    len = ft_strlen(s);
-    if (len > 0 && (s[len - 1] == '\n' || s[len - 1] == '\r'))
-    {
-        s[len - 1] = '\0';
-        return 1;
-    }
-    return 0;
+	if (!s)
+		return (0);
+	len = ft_strlen(s);
+	if (len > 0 && (s[len - 1] == '\n' || s[len - 1] == '\r'))
+	{
+		s[len - 1] = '\0';
+		return (1);
+	}
+	return (0);
 }

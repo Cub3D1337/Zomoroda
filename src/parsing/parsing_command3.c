@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_command3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:40:40 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/01 18:09:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/19 16:23:54 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int read_int(const char **s, int *out)
+int	read_int(const char **s, int *out)
 {
-	long val;
-	int digits;
+	long	val;
+	int		digits;
 
 	val = 0;
 	digits = 0;
@@ -35,39 +35,24 @@ int read_int(const char **s, int *out)
 	return (1);
 }
 
-int parse_rgb(const char *s, int out[3])
+int	parse_rgb(const char *s, int out[3])
 {
-	int r;
-	int g;
-	int b;
-
 	if (out[0] != -1)
-        return (error("Error\nDuplicate color\n"));
-	if (!read_int(&s, &r))
-		return (error("Error\nInvalid RGB (R)\n"));
-	if (*s != ',')
-		return (error("Error\nInvalid RGB: missing comma\n"));
-	s++;
-	if (!read_int(&s, &g))
-		return (error("Error\nInvalid RGB (G)\n"),0);
-	if (*s != ',')
-		return (error("Error\nInvalid RGB: missing comma\n"));
-	s++;
-	if (!read_int(&s, &b))
-		return (error("Error\nInvalid RGB (B)\n"),0);
-	while (*s == ' ' || *s == '\t')
-		s++;
-	if (*s != '\0' && *s != '\n')
-		return (error("Error\nInvalid RGB: trailing chars\n"));
-	out[0] = r;
-	out[1] = g;
-	out[2] = b;
+		return (error("Error\nDuplicate color\n"));
+	if (!parse_component(&s, &out[0], 'R') || !skip_comma(&s))
+		return (0);
+	if (!parse_component(&s, &out[1], 'G') || !skip_comma(&s))
+		return (0);
+	if (!parse_component(&s, &out[2], 'B'))
+		return (0);
+	if (!check_trailing(s))
+		return (0);
 	return (1);
 }
 
-int is_map_line(const char *line)
+int	is_map_line(const char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i] && line[i] != '\n')
@@ -79,10 +64,10 @@ int is_map_line(const char *line)
 	return (!is_all_space(line));
 }
 
-void fill_row(char *dst, char *src, int w)
+void	fill_row(char *dst, char *src, int w)
 {
-	int j;
-	int len;
+	int	j;
+	int	len;
 
 	len = ft_strlen(src);
 	j = 0;
@@ -97,33 +82,12 @@ void fill_row(char *dst, char *src, int w)
 	dst[w] = '\0';
 }
 
-int build_rect_map(t_config *cfg, t_vec *raw)
+int	build_rect_map(t_config *cfg, t_vec *raw)
 {
-	int i;
-	int w;
-
-	w = 0;
-	i = 0;
-	while (i < raw->size)
-	{
-		if ((int)ft_strlen(raw->data[i]) > w)
-			w = ft_strlen(raw->data[i]);
-		i++;
-	}
 	cfg->map_h = raw->size;
-	cfg->map_w = w;
+	cfg->map_w = get_max_width(raw);
 	cfg->map = (char **)malloc(sizeof(char *) * cfg->map_h);
 	if (!cfg->map)
 		return (error("Error\nOOM\n"));
-	i = 0;
-	while (i < cfg->map_h)
-	{
-		cfg->map[i] = (char *)ft_calloc(cfg->map_w + 1, sizeof(char));
-		if (!cfg->map[i])
-			return (error("Error\nOOM\n"));
-		fill_row(cfg->map[i], raw->data[i], cfg->map_w);
-		free(raw->data[i]);
-		i++;
-	}
-	return (1);
+	return (alloc_map_rows(cfg, raw));
 }

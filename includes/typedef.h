@@ -111,6 +111,7 @@ typedef struct s_cub
 	// Textures
 	t_img_texture	textures[5];
 	t_animate		obj;
+	t_img_texture	intro[182];
 	//TODO: Default calculation
 	double	fov;
 	// Projection Plan
