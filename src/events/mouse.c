@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:27:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/18 18:54:47 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/19 16:51:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ static void apply_mouse_rotation(t_cub *cub, t_pointd *delta)
         cub->p.sinA = sin(cub->p.angle);
 
         // Gun sway horizontally
-        cub->gun.offset.x += delta->x * 0.5; // tweak factor
-        if (cub->gun.offset.x > GUN_OFFSET)
-            cub->gun.offset.x = GUN_OFFSET;
-        else if (cub->gun.offset.x < -GUN_OFFSET)
-            cub->gun.offset.x = -GUN_OFFSET;
+        cub->obj.offset.x += delta->x * 0.5; // tweak factor
+        if (cub->obj.offset.x > GUN_OFFSET)
+            cub->obj.offset.x = GUN_OFFSET;
+        else if (cub->obj.offset.x < -GUN_OFFSET)
+            cub->obj.offset.x = -GUN_OFFSET;
     }
     if (delta->y != 0)
     {
@@ -64,11 +64,11 @@ static void apply_mouse_rotation(t_cub *cub, t_pointd *delta)
         cub->p.horizon = (cub->half_height) + (int)cub->p.pitch;
 
         // Gun sway vertically
-        cub->gun.offset.y += delta->y * 0.5; // tweak factor
-        if (cub->gun.offset.y > GUN_OFFSET)
-            cub->gun.offset.y = GUN_OFFSET;
-        else if (cub->gun.offset.y < -GUN_OFFSET)
-            cub->gun.offset.y = -GUN_OFFSET;
+        cub->obj.offset.y += delta->y * 0.5; // tweak factor
+        if (cub->obj.offset.y > GUN_OFFSET)
+            cub->obj.offset.y = GUN_OFFSET;
+        else if (cub->obj.offset.y < -GUN_OFFSET)
+            cub->obj.offset.y = -GUN_OFFSET;
     }
 }
 

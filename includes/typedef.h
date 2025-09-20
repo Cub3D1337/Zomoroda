@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/20 14:31:32 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/19 16:52:33 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_animate
 {
 	t_bool			inspect;
 	t_img_texture sprites[MAX_SPRITES];
-	t_img_texture click_sprites[MAX_SPRITES];
+	t_img_texture inspect_sprites[MAX_SPRITES];
 	int			sprites_num;
 	int			frame;          // current frame
 	double		timer;          // accumulated time
@@ -110,8 +110,8 @@ typedef struct s_cub
 	t_player	p;
 	// Textures
 	t_img_texture	textures[5];
+	t_animate		obj;
 	t_img_texture	intro[182];
-	t_animate		gun;
 	//TODO: Default calculation
 	double	fov;
 	// Projection Plan

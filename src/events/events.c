@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/18 20:43:18 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/19 16:51:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	mouse_hook(int button, int x, int y, t_cub *cub)
 {
 	if (button == 1)
 	{
-		cub->gun.frame = 0;
-		cub->gun.inspect = true;
+		cub->obj.frame = 0;
+		cub->obj.inspect = true;
 	}
 	else
-		cub->gun.inspect = false;
+		cub->obj.inspect = false;
 	return (0);
 }
 
