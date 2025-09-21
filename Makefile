@@ -19,14 +19,14 @@ LIBFT =				$(LIBFT_DIR)/libft.a
 OBJS =				$(SRCS:.c=.o)
 
 INC_FILES =			${INC_DIR}/cub3d.h $(INC_DIR)/parsing.h ${INC_DIR}/mlx.h ${INC_DIR}/includes.h ${INC_DIR}/events.h \
-					${INC_DIR}/raycasting.h ${INC_DIR}/render.h ${INC_DIR}/utils.h
+					${INC_DIR}/raycasting.h ${INC_DIR}/render.h ${INC_DIR}/utils.h ${INC_DIR}/music.h
 
 INIT =				$(INIT_DIR)/init.c
 EVENTS =			$(EVENTS_DIR)/events.c $(EVENTS_DIR)/mouse.c $(EVENTS_DIR)/keys.c $(EVENTS_DIR)/move.c
 RAYCASTING =		$(RAYCASTING_DIR)/raycaster.c $(RAYCASTING_DIR)/dda.c
 TEX = 				$(TEX_DIR)/init.c $(TEX_DIR)/textures.c $(TEX_DIR)/intro.c
 RENDER = 			$(RENDER_DIR)/render.c $(RENDER_DIR)/minimap.c $(RENDER_DIR)/animation.c
-UTILS = 			$(UTILS_DIR)/cleanup.c $(UTILS_DIR)/utils.c
+UTILS = 			$(UTILS_DIR)/cleanup.c $(UTILS_DIR)/utils.c $(UTILS_DIR)/music.c
 
 SRCS =				$(SRC_DIR)/main.c $(INIT) $(EVENTS) $(RAYCASTING) $(TEX) $(RENDER) $(UTILS) \
 					$(SRC_DIR)/parsing/parsing.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/20 16:37:56 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/21 15:30:30 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@
 // # define WIDTH 1920
 // # define HEIGHT 1080
 
-// # define WIDTH 1080
-// # define HEIGHT 720
+# define WIDTH 1080
+# define HEIGHT 720
 
 // # define WIDTH 800
 // # define HEIGHT 500
 
-# define WIDTH 200
-# define HEIGHT 200
+// # define WIDTH 200
+// # define HEIGHT 200
 
 # define TARGET_FPS 1000
 
