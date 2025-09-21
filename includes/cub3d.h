@@ -20,6 +20,7 @@
 # include "render.h"
 # include "textures.h"
 # include "utils.h"
+# include "music.h"
 
 void    init_map(t_cub *cub, t_config *cfg);
 int     init_cub(t_cub *cub, t_config *cfg);

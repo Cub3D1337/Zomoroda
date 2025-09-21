@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intro.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:12:17 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/20 16:38:16 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/21 15:34:44 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	put_intro(t_cub *cub)
 	{
 		t = &cub->intro_textures[i];
 		put_sprite(cub, t);
-		usleep(50000);
+		usleep(93407);
 		i++;
 		mlx_put_image_to_window(cub->mlx, cub->mlx_win,
 		cub->img.img_ptr, 0, 0);
