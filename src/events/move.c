@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:41:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/19 16:51:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 15:52:30 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	move_with_steps(t_cub *cub, t_pointd *delta)
 	if (steps <= 0)
 		steps = 1;
 	delta_steps.x = delta->x / steps;
-	delta_steps.y = delta->y / steps;
+	delta_steps.y = delta->y / steps;	
 	while (steps--)
 	{
 		cub->p.pos.x += delta_steps.x;

@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/05 16:41:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 15:52:21 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	init_map(t_cub *cub, t_config *cfg)
+void	init_map(t_cub *cub)
 {
-	cub->map.array = cfg->map;
-	cub->map.w = cfg->map_w;
-	cub->map.h = cfg->map_h;
-	cub->map.minimap_width = (cfg->map_w * BLOCK_SIZE) + MINIMAP_SIZE;
-	cub->map.minimap_height = (cfg->map_h * BLOCK_SIZE) + MINIMAP_SIZE;
+	cub->map.array = cub->cfg->map;
+	cub->map.w = cub->cfg->map_w;
+	cub->map.h = cub->cfg->map_h;
+	cub->map.minimap_width = (cub->cfg->map_w * BLOCK_SIZE) + MINIMAP_SIZE;
+	cub->map.minimap_height = (cub->cfg->map_h * BLOCK_SIZE) + MINIMAP_SIZE;
 }
 
-static inline void	init_player(t_cub *cub, t_config *cfg)
+static inline void	init_player(t_cub *cub)
 {
 	// Init Player
 	cub->p.size = PLY_SIZE;
 	cub->p.half = PLY_SIZE / 2;
-	get_player_cfg(cub, cfg);
+	get_player_cfg(cub, cub->cfg);
 	// MVT
 	cub->p.move_up = false;
 	cub->p.move_down = false;
@@ -58,7 +58,7 @@ static inline void	init_default_calculation(t_cub *cub)
 	cub->mouse.y = cub->half_height;
 }
 
-int	init_cub(t_cub	*cub, t_config *cfg)
+int	init_cub(t_cub	*cub)
 {
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
@@ -67,16 +67,17 @@ int	init_cub(t_cub	*cub, t_config *cfg)
 	if (!cub->mlx_win)
 		return (EXIT_FAILURE);
 	init_default_calculation(cub);
-	init_map(cub, cfg);
-	init_player(cub, cfg);
+	init_map(cub);
+	init_player(cub);
 	cub->track_mouse = true;
-	cub->color[1] = create_trgb(0, cfg->ceil_rgb[0],
-					cfg->ceil_rgb[1], cfg->ceil_rgb[2]);
-	cub->color[0] = create_trgb(0, cfg->floor_rgb[0],
-					cfg->floor_rgb[1], cfg->floor_rgb[2]);
+	cub->color[1] = create_trgb(0, cub->cfg->ceil_rgb[0],
+					cub->cfg->ceil_rgb[1], cub->cfg->ceil_rgb[2]);
+	cub->color[0] = create_trgb(0, cub->cfg->floor_rgb[0],
+					cub->cfg->floor_rgb[1], cub->cfg->floor_rgb[2]);
 	cub->fps.frames = 0;
 	cub->fps.last_time = 0.0;
-	cub->fps.last_frame_time = 0.0;
+	cub->fps.last_frame_time = get_time_ms();
+	cub->fps.delta_time = 0.0;
 	return (EXIT_SUCCESS);
 }
 

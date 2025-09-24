@@ -37,7 +37,7 @@ SRCS =				$(SRC_DIR)/main.c $(INIT) $(EVENTS) $(RAYCASTING) $(TEX) $(RENDER) $(U
 all:				$(LIBFT) $(NAME)
 
 $(NAME):			$(OBJS)
-						$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) $(LDFLAGS)
+						$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -lSDL2 -o $(NAME) $(LDFLAGS)
 
 %.o: %.c			$(INC_FILES)
 						$(CC) $(CFLAGS) $(INCLUDES) -O3 -c $< -o $@

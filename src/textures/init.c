@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:17:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/20 16:13:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 15:09:18 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ int	prepare_sprite_metadata(t_cub *cub, t_img_texture *t)
 	return (EXIT_SUCCESS);
 }
 
-int	init_textures(t_cub *cub, t_config *cfg)
+int	init_textures(t_cub *cub)
 {
 	int	i;
 
 	i = 0;
-	set_texture_paths(cub, cfg);
+	set_texture_paths(cub, cub->cfg);
 	while (i < TEX_NUM)
 	{
 		if (prepare_sprite_metadata(cub, &cub->textures[i]) == 1)

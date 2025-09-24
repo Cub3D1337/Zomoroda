@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/21 15:29:14 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:55:58 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,37 +47,28 @@ int	main(int ac, char **av)
 {
 	t_cub		cub;
 	t_config	cfg;
-	ma_engine  engine;
-	ma_sound   sound;
 
-
-	//TODO: Some map model can't be parsed
-	//TODO: Door Issue
-
-	
 	init_config(&cfg);
 	if (parsing(ac, av, &cfg) == 0)
 		return (EXIT_FAILURE);
 	print_config(&cfg);
-	init_cub(&cub, &cfg);
+	cub.cfg = &cfg;
+	init_cub(&cub);
 	init_image_buffer(&cub);
 	//TODO: ========================= Textures =========================
 	put_logo(&cub);
 	init_intro(&cub);
-	init_textures(&cub, &cfg);
+	init_textures(&cub);
 	init_sprites(&cub);
 	//TODO: ============================================================
 	init_map_image_buffer(&cub);
 	init_events(&cub);
-	if (play_music_loop(&engine, &sound, "Music/intro.mp3", 0) != 0)
-		printf("Music failed to start\n");
+
+	// play_music_loop("Music/intro.wav", 1);
 	put_intro(&cub);
-	stop_loop_music(&engine, &sound);
-	if (play_music_loop(&engine, &sound, "Music/zomoroda.mp3", 32) != 0)
-		printf("Music failed to start\n");
+	// SDL_Delay(1000);
+	// stop_loop_music();
 	mlx_loop(cub.mlx);
-	stop_loop_music(&engine, &sound);
 	ft_exit(&cub);
-	free_config(&cfg);
 	return (EXIT_SUCCESS);
 }
