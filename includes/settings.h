@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 22:59:25 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 23:09:47 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define SETTINGS_H
 
 # ifndef M_PI
-#	define M_PI 3.14159265358979323846
-#endif
+#  define M_PI 3.14159265358979323846
+# endif
 
 # ifndef M_PI_2
-#	define M_PI_2 1.57079632679489661923
-#endif
+#  define M_PI_2 1.57079632679489661923
+# endif
 
 // # define WIDTH 1920
 // # define HEIGHT 1080
@@ -60,7 +60,7 @@
 
 # define PATH "./textures/intro/"
 
-enum e_events_hooks
+enum	e_events_hooks
 {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
@@ -69,7 +69,7 @@ enum e_events_hooks
 	ON_DESTROY = 17,
 };
 
-enum e_events_masks
+enum	e_events_masks
 {
 	DestroyNotifyMask = 0L,
 	KeyPressMask = 1L << 0,
@@ -78,7 +78,7 @@ enum e_events_masks
 	PointerMotionMask = 1L << 6,
 };
 
-enum e_events_inputs
+enum	e_events_inputs
 {
 	ZOOM_IN = 4,
 	ZOOM_OUT = 5,

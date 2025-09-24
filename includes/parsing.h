@@ -16,8 +16,8 @@
 int		open_file(int ac, char **av, int *fd);
 int		handle_invalid_line(char *line, int fd);
 int		handle_map_line(char *line, t_config *cfg, int *seen_map, int fd);
-int		handle_line_before_map(char *line, t_config *cfg,
-			int *seen_map, int fd);
+int		handle_line_before_map(char *line, t_config *cfg, int *seen_map,
+			int fd);
 int		parsing(int ac, char **av, t_config *cfg);
 
 int		skip_spaces(char *line, int *i);

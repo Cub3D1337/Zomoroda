@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:40:04 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/24 22:32:16 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 23:08:12 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	toggle_door(t_cub *cub)
 	int			i;
 
 	i = 0;
-	ray_dir = (t_pointd){cub->p.cosA, cub->p.sinA};
+	ray_dir = (t_pointd){cub->p.cos_a, cub->p.sin_a};
 	setup_dda(cub, &dda, ray_dir);
 	while (i < TRACK_DOOR_CELL)
 	{

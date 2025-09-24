@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 22:30:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 23:08:12 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	init_player(t_cub *cub)
 	cub->p.rotate_right = false;
 	cub->p.rotate_up = false;
 	cub->p.rotate_down = false;
-	cub->p.cosA = cos(cub->p.angle);
-	cub->p.sinA = sin(cub->p.angle);
+	cub->p.cos_a = cos(cub->p.angle);
+	cub->p.sin_a = sin(cub->p.angle);
 	cub->p.pitch = 0.0;
 	cub->p.horizon = cub->half_height;
 }
