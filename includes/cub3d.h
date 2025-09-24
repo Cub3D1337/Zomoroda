@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/24 19:13:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 22:54:36 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "music.h"
 
 int		load_textures(t_cub	*cub);
-int     init_cub(t_cub	*cub);
+int		init_cub(t_cub	*cub);
 void	init_image_buffer(t_cub *cub);
 void	init_map_image_buffer(t_cub *cub);
 void	init_events(t_cub *cub);

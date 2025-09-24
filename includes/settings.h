@@ -6,18 +6,18 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 21:41:05 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 22:59:25 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTINGS_H
 # define SETTINGS_H
 
-#ifndef M_PI
+# ifndef M_PI
 #	define M_PI 3.14159265358979323846
 #endif
 
-#ifndef M_PI_2
+# ifndef M_PI_2
 #	define M_PI_2 1.57079632679489661923
 #endif
 

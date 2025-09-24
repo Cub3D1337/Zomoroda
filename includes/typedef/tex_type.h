@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 15:25:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/24 20:36:05 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 22:54:01 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,22 @@
 
 typedef struct s_img_texture
 {
-	// Hot (read every pixel)
-	unsigned int   *pixels_u32;
-	unsigned int    pitch_u32;
-	// MLX
-	void           *img_ptr;
-	char           *img_pixels_ptr;
-	int             bits_per_pixel;
-	int             line_length;
-	int             endian;
-	// Meta
-	char           *relative_path;
-	int             img_w;
-	int             img_h;
+	unsigned int	*pixels_u32;
+	unsigned int	pitch_u32;
+	void			*img_ptr;
+	char			*img_pixels_ptr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	char			*relative_path;
+	int				img_w;
+	int				img_h;
 }			t_img_texture;
 
 typedef struct s_texture_data
 {
 	t_img_texture	*tex;
-	double			wallX;
+	double			wall_x;
 	t_pointi		tex_cord;
 	double			step;
 	double			tex_pos;
