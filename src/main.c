@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/24 18:32:28 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/24 19:16:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-// #include "miniaudio.h"
 
 void print_config(const t_config *cfg)
 {
@@ -42,30 +41,31 @@ void print_config(const t_config *cfg)
 	printf("  Direction: %c\n", cfg->player_dir);
 }
 
-int	main(int ac, char **av)
+static int	loading(t_cub *cub)
 {
-	t_cub		cub;
-	t_config	cfg;
-
-	init_config(&cfg);
-	if (parsing(ac, av, &cfg) == 0)
-		return (EXIT_FAILURE);
-	print_config(&cfg);
-	cub.cfg = &cfg;
-	init_cub(&cub);
-	init_image_buffer(&cub);
+	init_cub(cub);
 	//TODO: ========================= Textures =========================
-	put_logo(&cub);
-	init_intro(&cub);
-	init_textures(&cub);
-	init_sprites(&cub);
+	put_logo(cub);
+	load_textures(cub);
 	//TODO: ============================================================
-	init_map_image_buffer(&cub);
-	init_events(&cub);
+	init_events(cub);
+	//TODO: Audio in BG + Add check of failure
 	play_music(0);
-	put_intro(&cub);
+	put_intro(cub);
 	stop_music();
 	play_music(1);
+	return (EXIT_SUCCESS);
+}
+
+int	main(int ac, char **av)
+{
+	t_cub	cub;
+
+	init_config(&(cub.cfg));
+	if (parsing(ac, av, &(cub.cfg)) == 0)
+		return (EXIT_FAILURE);
+	print_config(&(cub.cfg));
+	loading(&cub);
 	mlx_loop(cub.mlx);
 	ft_exit(&cub);
 	return (EXIT_SUCCESS);

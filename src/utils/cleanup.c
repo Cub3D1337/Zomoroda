@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 18:22:48 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/24 19:01:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	destroy_textures(t_cub *cub)
 
 void	destroy_cub(t_cub *cub)
 {
+	free_config(&(cub->cfg));
 	destroy_textures(cub);
 	if (cub->img.img_ptr)
 		mlx_destroy_image(cub->mlx, cub->img.img_ptr);
@@ -51,7 +52,6 @@ void	destroy_cub(t_cub *cub)
 int	ft_exit(t_cub *cub)
 {
 	stop_music();
-	free_config(cub->cfg);
 	destroy_cub(cub);
 	ft_printf("Programme exit successfuly\n");
 	exit(EXIT_SUCCESS);

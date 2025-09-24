@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 15:11:29 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/24 18:54:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ typedef struct s_cub
 	t_img		map_img;
 	t_map_data	map;
 	t_player	p;
-	t_config	*cfg;
+	t_config	cfg;
 	// Textures
 	t_img_texture	logo_texture;
 	t_img_texture	intro_textures[182];

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:02:58 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/20 16:14:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 18:57:54 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ double	get_time_ms(void)
 	return (tv.tv_sec * 1000.0) + (tv.tv_usec / 1000.0);
 }
 
-void	get_player_cfg(t_cub *cub, t_config *cfg)
+void	get_player_cfg(t_cub *cub)
 {
-	cub->p.pos.x = (cfg->player_x * BLOCK_SIZE) + (BLOCK_SIZE / 2);
-	cub->p.pos.y = (cfg->player_y * BLOCK_SIZE) + (BLOCK_SIZE / 2);
-	if (cfg->player_dir == 'N')
+	cub->p.pos.x = (cub->cfg.player_x * BLOCK_SIZE) + (BLOCK_SIZE / 2);
+	cub->p.pos.y = (cub->cfg.player_y * BLOCK_SIZE) + (BLOCK_SIZE / 2);
+	if (cub->cfg.player_dir == 'N')
 		cub->p.angle = (3 * M_PI) / 2;
-	else if (cfg->player_dir == 'S')
+	else if (cub->cfg.player_dir == 'S')
 		cub->p.angle = M_PI / 2;
-	else if (cfg->player_dir == 'W')
+	else if (cub->cfg.player_dir == 'W')
 		cub->p.angle = 0;
-	else if (cfg->player_dir == 'E')
+	else if (cub->cfg.player_dir == 'E')
 		cub->p.angle = M_PI;
 }
 
