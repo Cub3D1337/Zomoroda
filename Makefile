@@ -1,6 +1,6 @@
 NAME = 				cub3D
 CC =				 cc
-FLAGS = 			-Wall -Wextra -Werror -g
+FLAGS = 			-Wall -Wextra -Werror
 LDFLAGS = 			-L./Libft -lft
 
 INC_DIR =			./includes
