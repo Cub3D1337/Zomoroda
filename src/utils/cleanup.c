@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 16:03:59 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/24 18:22:48 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	destroy_cub(t_cub *cub)
 
 int	ft_exit(t_cub *cub)
 {
+	stop_music();
 	free_config(cub->cfg);
 	destroy_cub(cub);
 	ft_printf("Programme exit successfuly\n");

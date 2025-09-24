@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/24 15:55:58 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/24 18:32:28 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void print_config(const t_config *cfg)
 	printf("  Direction: %c\n", cfg->player_dir);
 }
 
-
 int	main(int ac, char **av)
 {
 	t_cub		cub;
@@ -63,12 +62,12 @@ int	main(int ac, char **av)
 	//TODO: ============================================================
 	init_map_image_buffer(&cub);
 	init_events(&cub);
-
-	// play_music_loop("Music/intro.wav", 1);
+	play_music(0);
 	put_intro(&cub);
-	// SDL_Delay(1000);
-	// stop_loop_music();
+	stop_music();
+	play_music(1);
 	mlx_loop(cub.mlx);
 	ft_exit(&cub);
 	return (EXIT_SUCCESS);
 }
+
