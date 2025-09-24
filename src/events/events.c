@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 16:19:29 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/24 22:31:07 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 int	ft_mouse_enter(t_cub *cub)
 {
 	cub->track_mouse = true;
-	// cub->mouse.x = x;
-	// cub->mouse.y = y;
-	printf("Mouse enter\n");
 	return (EXIT_SUCCESS);
 }
 
@@ -57,14 +54,15 @@ int	mouse_hook(int button, int x, int y, t_cub *cub)
 	return (0);
 }
 
-// TODO: On mouse IN / On Mouse OUT
 void	init_events(t_cub *cub)
 {
 	mlx_hook(cub->mlx_win, ON_KEYDOWN, KeyPressMask, ft_key_press, cub);
 	mlx_hook(cub->mlx_win, ON_KEYUP, KeyReleaseMask, ft_key_release, cub);
 	mlx_hook(cub->mlx_win, ON_DESTROY, DestroyNotifyMask, ft_exit, cub);
-	mlx_hook(cub->mlx_win, ON_MOUSE_MOVE, PointerMotionMask, ft_mouse_move, cub);
-	mlx_hook(cub->mlx_win, ON_MOUSE_ENTER, EnterWindowMask, ft_mouse_enter, cub);
+	mlx_hook(cub->mlx_win, ON_MOUSE_MOVE, PointerMotionMask,
+		ft_mouse_move, cub);
+	mlx_hook(cub->mlx_win, ON_MOUSE_ENTER, EnterWindowMask,
+		ft_mouse_enter, cub);
 	mlx_mouse_hook(cub->mlx_win, mouse_hook, cub);
 	mlx_loop_hook(cub->mlx, ft_loop_hook, cub);
 }

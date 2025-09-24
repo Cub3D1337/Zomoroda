@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:40:04 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/08 11:19:13 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 22:32:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ static void	toggle_escape(int keycode, t_cub *cub)
 	}
 }
 
-t_bool	check_door_state(t_cub *cub, t_dda *dda)
+static t_bool	check_door_state(t_cub *cub, t_dda *dda)
 {
 	char	*cell;
 
 	if (dda->map_pos.x < 0 || dda->map_pos.x >= cub->map.w
-	|| dda->map_pos.y < 0 || dda->map_pos.y >= cub->map.h)
+		|| dda->map_pos.y < 0 || dda->map_pos.y >= cub->map.h)
 		return (false);
 	cell = &cub->map.array[dda->map_pos.y][dda->map_pos.x];
 	if (*cell == 'D')
@@ -49,7 +49,7 @@ static void	toggle_door(t_cub *cub)
 	t_dda		dda;
 	t_pointd	ray_dir;
 	int			i;
-	
+
 	i = 0;
 	ray_dir = (t_pointd){cub->p.cosA, cub->p.sinA};
 	setup_dda(cub, &dda, ray_dir);
@@ -64,7 +64,7 @@ static void	toggle_door(t_cub *cub)
 		else
 		{
 			dda.hypotenuse_dist.y += dda.grid_step.y;
-			dda.map_pos.y += dda.dir_step.y;	
+			dda.map_pos.y += dda.dir_step.y;
 			dda.side = VERTICAL;
 		}
 		if (check_door_state(cub, &dda) == false)
@@ -92,7 +92,7 @@ int	ft_key_press(int keycode, t_cub *cub)
 		cub->p.rotate_up = true;
 	else if (keycode == DOWN_KEY)
 		cub->p.rotate_down = true;
-	else if(keycode == E_KEY)
+	else if (keycode == E_KEY)
 		toggle_door(cub);
 	return (EXIT_SUCCESS);
 }
