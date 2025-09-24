@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:35:50 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/30 15:04:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 22:48:47 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		ft_key_press(int keycode, t_cub *cub);
 int		ft_key_release(int keycode, t_cub *cub);
 
 // MVT
+t_bool	check_boundaries(t_cub *cub);
 void	move(t_cub *cub);
 
 #endif

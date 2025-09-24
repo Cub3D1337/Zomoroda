@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 19:13:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 22:30:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ static void	init_default_values(t_cub *cub)
 	cub->fps.frame_duration = 1000.0 / TARGET_FPS;
 	cub->fov = 60 * (M_PI / 180);
 	cub->projection_plane = (cub->half_width) / tan(cub->fov / 2.0);
+	cub->scale = (double)cub->half_height / 200.0;
 	cub->mouse.x = cub->half_width;
 	cub->mouse.y = cub->half_height;
 	cub->track_mouse = true;
 	cub->color[1] = create_trgb(0, cub->cfg.ceil_rgb[0],
-					cub->cfg.ceil_rgb[1], cub->cfg.ceil_rgb[2]);
+			cub->cfg.ceil_rgb[1], cub->cfg.ceil_rgb[2]);
 	cub->color[0] = create_trgb(0, cub->cfg.floor_rgb[0],
-					cub->cfg.floor_rgb[1], cub->cfg.floor_rgb[2]);
+			cub->cfg.floor_rgb[1], cub->cfg.floor_rgb[2]);
 	cub->fps.frames = 0;
 	cub->fps.last_time = 0.0;
 	cub->fps.last_frame_time = get_time_ms();
@@ -87,4 +88,3 @@ int	init_cub(t_cub	*cub)
 	init_map_image_buffer(cub);
 	return (EXIT_SUCCESS);
 }
-

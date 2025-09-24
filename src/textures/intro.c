@@ -3,100 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   intro.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:12:17 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/21 15:34:44 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/24 22:24:06 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	put_sprite(t_cub *cub, t_img_texture *t)
+static void	put_sprite(t_cub *cub, t_img_texture *t)
 {
-	t_pointi tex;
-	t_pointi screen;
-	int      color;
-	double   scale_x;
-	double   scale_y;
+	t_pointd	scaled;
+	t_sprite	a;
 
-	// Scale factors to match screen resolution exactly
-	scale_x = (double)WIDTH  / (double)t->img_width;
-	scale_y = (double)HEIGHT / (double)t->img_height;
-
-	screen.y = 0;
-	while (screen.y < HEIGHT)
+	scaled.x = (double)WIDTH / (double)t->img_w;
+	scaled.y = (double)HEIGHT / (double)t->img_h;
+	a.pos = (t_pointi){0, 0};
+	while (a.pos.y < HEIGHT)
 	{
-		tex.y = (int)(screen.y / scale_y);
-		screen.x = 0;
-		while (screen.x < WIDTH)
+		a.tex.y = (int)(a.pos.y / scaled.y);
+		a.pos.x = 0;
+		while (a.pos.x < WIDTH)
 		{
-			tex.x = (int)(screen.x / scale_x);
-			color = get_texel(t, tex.x, tex.y);
-			if (color != 0xFF000000)
-				cub->img.pixels[screen.y * cub->img.pitch + screen.x] = color;
-			screen.x++;
+			a.tex.x = (int)(a.pos.x / scaled.x);
+			a.color = get_texel(t, a.tex.x, a.tex.y);
+			if (a.color != 0xFF000000)
+				cub->img.pixels[a.pos.y * cub->img.pitch + a.pos.x] = a.color;
+			a.pos.x++;
 		}
-		screen.y++;
+		a.pos.y++;
 	}
 }
 
-// void	put_centred_sprite(t_cub *cub, t_img_texture *t)
-// {
-// 	t_pointi	pos;
-// 	t_pointi	cord;
-// 	int			color;
-// 	t_pointi	deplacement;
-	
-// 	pos = (t_pointi){0, 0};
-
-// 	while (pos.y < t->img_height)
-// 	{
-// 		pos.x = 0;
-// 		cord.y = (pos.y + (HEIGHT / 2) - t->img_height / 2) * cub->img.pitch;
-// 		while (pos.x < t->img_width)
-// 		{
-// 			color = get_texel(t, pos.x, pos.y);
-// 			cord.x = pos.x + (WIDTH / 2) - t->img_width / 2;
-// 			if (check_screen_edge(cord.x, cord.y / cub->img.pitch) && color != 0xFF000000)
-// 				cub->img.pixels[cord.y + cord.x] = color;
-// 			pos.x++;
-// 		}
-// 		pos.y++;
-// 	}
-// }
-
-void	put_centred_sprite(t_cub *cub, t_img_texture *t)
+static void	put_centred_sprite(t_cub *cub, t_img_texture *t)
 {
-	t_pointi	pos;
-	t_pointi	cord;
-	int			color;
+	t_sprite	a;
 
-	double scale = (double)cub->half_height / 400.0;
-	int target_w = t->img_width * scale;
-	int target_h = t->img_height * scale;
-
-	pos.y = 0;
-	while (pos.y < target_h)
+	a.scaled.x = t->img_w * cub->scale;
+	a.scaled.y = t->img_h * cub->scale;
+	a.pos.y = 0;
+	while (a.pos.y < a.scaled.y)
 	{
-		pos.x = 0;
-		cord.y = (pos.y + (HEIGHT / 2) - target_h / 2) * cub->img.pitch;
-		while (pos.x < target_w)
+		a.pos.x = 0;
+		a.cord.y = (a.pos.y + (HEIGHT / 2) - a.scaled.y / 2) * cub->img.pitch;
+		a.tex.y = (a.pos.y * t->img_h) / a.scaled.y;
+		while (a.pos.x < a.scaled.x)
 		{
-			// Map back to texture coordinates
-			int tex_x = (pos.x * t->img_width) / target_w;
-			int tex_y = (pos.y * t->img_height) / target_h;
-
-			color = get_texel(t, tex_x, tex_y);
-			cord.x = pos.x + (WIDTH / 2) - target_w / 2;
-			if (check_screen_edge(cord.x, cord.y / cub->img.pitch) && color != 0xFF000000)
-				cub->img.pixels[cord.y + cord.x] = color;
-			pos.x++;
+			a.tex.x = (a.pos.x * t->img_w) / a.scaled.x;
+			a.color = get_texel(t, a.tex.x, a.tex.y);
+			a.cord.x = a.pos.x + (WIDTH / 2) - a.scaled.x / 2;
+			if (check_screen_edge(a.cord.x, a.cord.y / cub->img.pitch)
+				&& a.color != 0xFF000000)
+				cub->img.pixels[a.cord.y + a.cord.x] = a.color;
+			a.pos.x++;
 		}
-		pos.y++;
+		a.pos.y++;
 	}
 }
-
 
 int	put_logo(t_cub *cub)
 {
@@ -108,15 +72,15 @@ int	put_logo(t_cub *cub)
 		return (EXIT_FAILURE);
 	put_centred_sprite(cub, t);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win,
-	cub->img.img_ptr, 0, 0);
+		cub->img.img_ptr, 0, 0);
 	return (EXIT_SUCCESS);
 }
 
-void	put_intro(t_cub *cub)
+int	put_intro(t_cub *cub)
 {
-	int	i;
+	int				i;
 	t_img_texture	*t;
-	
+
 	i = 0;
 	while (i < INTRO_NUM)
 	{
@@ -125,17 +89,18 @@ void	put_intro(t_cub *cub)
 		usleep(93407);
 		i++;
 		mlx_put_image_to_window(cub->mlx, cub->mlx_win,
-		cub->img.img_ptr, 0, 0);
+			cub->img.img_ptr, 0, 0);
 	}
+	return (EXIT_SUCCESS);
 }
 
 int	init_intro(t_cub *cub)
 {
-	int	 i;
-	char *idx;
-	char *file_name;
-	char *path;
-	
+	int		i;
+	char	*idx;
+	char	*file_name;
+	char	*path;
+
 	i = 0;
 	while (i < INTRO_NUM)
 	{

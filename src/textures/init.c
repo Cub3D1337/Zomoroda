@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:17:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/24 18:58:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 20:36:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	prepare_sprite_metadata(t_cub *cub, t_img_texture *t)
 	t->img_ptr = mlx_xpm_file_to_image(
 			cub->mlx,
 			t->relative_path,
-			&t->img_width,
-			&t->img_height
+			&t->img_w,
+			&t->img_h
 			);
 	if (!t->img_ptr)
 	{

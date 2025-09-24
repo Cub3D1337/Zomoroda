@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 18:54:55 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 22:22:43 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ typedef struct s_map_data
 {
 	// int	array[MAP_HEIGHT][MAP_WIDTH];
 	char	**array;
-	int	w;
-	int	h;
-	int	minimap_width;
-	int	minimap_height;
-	int	padding;
+	int		w;
+	int		h;
+	int		minimap_width;
+	int		minimap_height;
+	int		padding;
 }				t_map_data;
 
 typedef struct t_map_ctx
@@ -100,20 +100,28 @@ typedef struct	s_fps
 	double		frame_duration;
 }				t_fps;
 
-
 typedef struct s_animate
 {
 	t_bool			inspect;
-	t_img_texture sprites[MAX_SPRITES];
-	t_img_texture inspect_sprites[MAX_SPRITES];
-	int			sprites_num;
-	int			frame;          // current frame
-	double		timer;          // accumulated time
-	double      frame_duration; // time each frame should last in seconds
-	double      last_update;    // last time the animation was updated
-	t_pointi	offset;
+	t_img_texture	sprites[MAX_SPRITES];
+	t_img_texture	inspect_sprites[MAX_SPRITES];
+	int				sprites_num;
+	int				frame;
+	double			timer;
+	double      	frame_duration;
+	double      	last_update;
+	t_pointi		offset;
 }				t_animate;
 
+typedef struct s_sprite
+{
+	t_pointi	pos;
+	t_pointi	cord;
+	t_pointi	deplacement;
+	t_pointi	scaled;
+	t_pointi	tex;
+	int			color;
+}				t_sprite;
 
 typedef struct s_cub
 {
@@ -135,6 +143,7 @@ typedef struct s_cub
 	double	fov;
 	// Projection Plan
 	double		projection_plane;
+	double		scale;
 	// COLOR
 	int			color[2];
 	// Mouse
