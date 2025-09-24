@@ -6,32 +6,13 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:02:26 by wahmane           #+#    #+#             */
-/*   Updated: 2025/09/19 16:38:56 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:11:17 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef PARSING_H
 # define PARSING_H
-
-
-
-typedef struct s_config {
-    char *no_texture, *so_texture, *we_texture, *ea_texture;
-    int   floor_rgb[3];
-    int   ceil_rgb[3];
-    char **map;
-    int   map_h, map_w;
-    int   player_x, player_y;
-    char  player_dir;
-} t_config;
-
-typedef struct s_vec
-{
-    char    **data;
-    int     size;
-    int     cap;
-}   t_vec;
 
 int	open_file(int ac, char **av, int *fd);
 int	handle_invalid_line(char *line, int fd);

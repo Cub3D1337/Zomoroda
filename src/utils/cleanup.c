@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/19 16:52:33 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 18:22:48 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static void	destroy_textures(t_cub *cub)
+static	void clear_text_arr(t_cub *cub, t_img_texture *arr, int text_num)
 {
 	int	i;
 
 	i = 0;
-	while (i < TEX_NUM)
+	while (i < text_num)
 	{
-		if (cub->textures[i].img_ptr)
-			mlx_destroy_image(cub->mlx, cub->textures[i].img_ptr);
+		if (arr[i].img_ptr)
+			mlx_destroy_image(cub->mlx, arr[i].img_ptr);
 		i++;
 	}
-		i = 0;
-	while (i < cub->obj.sprites_num)
-	{
-		if (cub->obj.sprites[i].img_ptr)
-			mlx_destroy_image(cub->mlx, cub->obj.sprites[i].img_ptr);
-		if (cub->obj.inspect_sprites[i].img_ptr)
-			mlx_destroy_image(cub->mlx, cub->obj.inspect_sprites[i].img_ptr);
-		i++;
-	}
+}
+
+static void	destroy_textures(t_cub *cub)
+{
+	clear_text_arr(cub, cub->textures, TEX_NUM);
+	clear_text_arr(cub, cub->obj.sprites,  cub->obj.sprites_num);
+	clear_text_arr(cub, cub->obj.inspect_sprites,  cub->obj.sprites_num);
+	if (cub->logo_texture.img_ptr)
+			mlx_destroy_image(cub->mlx, cub->logo_texture.img_ptr);
+	clear_text_arr(cub, cub->intro_textures,  INTRO_NUM);
 }
 
 void	destroy_cub(t_cub *cub)
@@ -49,6 +50,8 @@ void	destroy_cub(t_cub *cub)
 
 int	ft_exit(t_cub *cub)
 {
+	stop_music();
+	free_config(cub->cfg);
 	destroy_cub(cub);
 	ft_printf("Programme exit successfuly\n");
 	exit(EXIT_SUCCESS);

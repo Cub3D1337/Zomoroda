@@ -1,37 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   music.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/24 18:20:50 by hwahmane          #+#    #+#             */
+/*   Updated: 2025/09/24 18:38:43 by hwahmane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <cub3d.h>
-#include "miniaudio.h"
 
-int play_music_loop(ma_engine *engine, ma_sound *sound, const char *filename, int loop)
+void	play_music(t_bool music)
 {
-    ma_result result;
-
-    result = ma_engine_init(NULL, engine);
-    if (result != MA_SUCCESS)
-    {
-        printf("Failed to initialize audio engine\n");
-        return -1;
-    }
-    result = ma_sound_init_from_file(engine, filename, MA_SOUND_FLAG_LOOPING, NULL, NULL, sound);
-    if (result != MA_SUCCESS)
-    {
-        printf("Failed to load sound\n");
-        ma_engine_uninit(engine);
-        return -1;
-    }
-    result = ma_sound_start(sound);
-    if (result != MA_SUCCESS)
-    {
-        printf("Failed to start sound\n");
-        ma_sound_uninit(sound);
-        ma_engine_uninit(engine);
-        return -1;
-    }
-    return 0;
+	if (music == 0)
+		system("vlc --intf dummy Music/intro.mp3 > /dev/null 2>&1 &");
+	else
+		system("vlc --intf dummy --loop Music/zomoroda.mp3 > /dev/null 2>&1 &");
 }
 
-void stop_loop_music(ma_engine *engine, ma_sound *sound)
+void	stop_music(void)
 {
-    ma_sound_uninit(sound);
-    ma_engine_uninit(engine);
+	system("killall vlc");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/20 16:05:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/24 15:11:29 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,24 @@
 # include "./typedef/dda.h"
 # include "./typedef/tex_type.h"
 # include "settings.h"
+
+typedef struct s_config
+{
+    char *no_texture, *so_texture, *we_texture, *ea_texture;
+    int   floor_rgb[3];
+    int   ceil_rgb[3];
+    char **map;
+    int   map_h, map_w;
+    int   player_x, player_y;
+    char  player_dir;
+}			t_config;
+
+typedef struct s_vec
+{
+    char    **data;
+    int     size;
+    int     cap;
+}   t_vec;
 
 typedef struct s_map_data
 {
@@ -107,6 +125,7 @@ typedef struct s_cub
 	t_img		map_img;
 	t_map_data	map;
 	t_player	p;
+	t_config	*cfg;
 	// Textures
 	t_img_texture	logo_texture;
 	t_img_texture	intro_textures[182];

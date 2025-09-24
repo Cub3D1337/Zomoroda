@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/20 11:59:51 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:10:02 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "utils.h"
 # include "music.h"
 
-void    init_map(t_cub *cub, t_config *cfg);
-int     init_cub(t_cub *cub, t_config *cfg);
+void	init_map(t_cub *cub);
+int     init_cub(t_cub	*cub);
 void	init_image_buffer(t_cub *cub);
 void	init_map_image_buffer(t_cub *cub);
 void	init_events(t_cub *cub);

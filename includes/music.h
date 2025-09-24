@@ -1,11 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   music.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/24 14:28:43 by hwahmane          #+#    #+#             */
+/*   Updated: 2025/09/24 18:24:16 by hwahmane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MUSIC_H
 # define MUSIC_H
 
-#include "miniaudio.h"
-
-#define MINIAUDIO_IMPLEMENTATION
-
-int play_music_loop(ma_engine *engine, ma_sound *sound, const char *filename, int loop);
-void stop_loop_music(ma_engine *engine, ma_sound *sound);
+void	stop_music(void);
+void	play_music(t_bool music);
 
 #endif
