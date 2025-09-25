@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:27:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/24 23:08:12 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:20:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	mouse_handler(t_cub *cub)
 
 int	ft_mouse_move(int x, int y, t_cub *cub)
 {
+	(void)x;
+	(void)y;
 	cub->mouse.x = x;
 	cub->mouse.y = y;
 	return (EXIT_SUCCESS);

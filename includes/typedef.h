@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 23:08:12 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/25 16:47:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,19 @@ typedef struct s_animate
 	t_pointi		offset;
 }					t_animate;
 
+typedef struct s_intro
+{
+	char			*logo_path;
+	char			*intro_path;
+	char			*door_path;
+	char			*bear_path;
+	char			*bear_click_path;
+	t_img_texture	intro_textures[182];
+	double			last_time;
+	int				intro_index;
+	t_bool			intro_done;
+}				t_intro;
+
 typedef struct s_sprite
 {
 	t_pointi		pos;
@@ -135,13 +148,14 @@ typedef struct s_cub
 	int				half_height;
 	int				half_width;
 	t_img			img;
+	int				flag;
 	t_img			map_img;
 	t_map_data		map;
 	t_player		p;
 	t_config		cfg;
 	// Textures
 	t_img_texture	logo_texture;
-	t_img_texture	intro_textures[182];
+	t_intro			intro;
 	t_img_texture	textures[5];
 	t_animate		obj;
 	//TODO: Default calculation

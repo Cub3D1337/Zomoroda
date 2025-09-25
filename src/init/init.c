@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 23:08:12 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/25 16:33:54 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	init_default_values(t_cub *cub)
 {
+	cub->flag = MENU;
 	cub->half_height = HEIGHT / 2;
 	cub->half_width = WIDTH / 2;
 	cub->map.padding = MINIMAP_SIZE / 2;
@@ -66,9 +67,9 @@ int	load_textures(t_cub	*cub)
 {
 	if (init_intro(cub) == 1)
 		return (EXIT_FAILURE);
-	if (init_textures(cub) == 1)
-		return (EXIT_FAILURE);
 	if (init_sprites(cub) == 1)
+		return (EXIT_FAILURE);
+	if (init_textures(cub) == 1)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

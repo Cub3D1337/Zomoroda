@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:17:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/24 20:36:05 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 16:57:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,83 @@ static void	set_texture_paths(t_cub *cub)
 	cub->textures[SOUTH].relative_path = cub->cfg.so_texture;
 	cub->textures[WEST].relative_path = cub->cfg.we_texture;
 	cub->textures[EAST].relative_path = cub->cfg.ea_texture;
-	cub->textures[DOOR].relative_path = "./textures/door.xpm";
+	cub->textures[DOOR].relative_path = cub->intro.door_path;
 }
 
-static void	set_sprites_paths(t_cub *cub)
+// static void	set_sprites_paths(t_cub *cub)
+// {
+// 	cub->obj.sprites[0].relative_path = "./textures/animation/bear/1.xpm";
+// 	cub->obj.sprites[1].relative_path = "./textures/animation/bear/2.xpm";
+// 	cub->obj.sprites[2].relative_path = "./textures/animation/bear/3.xpm";
+// 	cub->obj.sprites[3].relative_path = "./textures/animation/bear/4.xpm";
+// 	cub->obj.inspect_sprites[0].relative_path
+// 		= "./textures/animation/bear_click/1.xpm";
+// 	cub->obj.inspect_sprites[1].relative_path
+// 		= "./textures/animation/bear_click/2.xpm";
+// 	cub->obj.inspect_sprites[2].relative_path
+// 		= "./textures/animation/bear_click/3.xpm";
+// 	cub->obj.inspect_sprites[3].relative_path
+// 		= "./textures/animation/bear_click/4.xpm";
+// }
+
+static int	set_bear_sprites_paths(t_cub *cub)
 {
-	cub->obj.sprites[0].relative_path = "./textures/animation/bear/1.xpm";
-	cub->obj.sprites[1].relative_path = "./textures/animation/bear/2.xpm";
-	cub->obj.sprites[2].relative_path = "./textures/animation/bear/3.xpm";
-	cub->obj.sprites[3].relative_path = "./textures/animation/bear/4.xpm";
-	cub->obj.inspect_sprites[0].relative_path
-		= "./textures/animation/bear_click/1.xpm";
-	cub->obj.inspect_sprites[1].relative_path
-		= "./textures/animation/bear_click/2.xpm";
-	cub->obj.inspect_sprites[2].relative_path
-		= "./textures/animation/bear_click/3.xpm";
-	cub->obj.inspect_sprites[3].relative_path
-		= "./textures/animation/bear_click/4.xpm";
+	int		i;
+	char	*idx;
+	char	*file_name;
+	char	*path;
+
+	printf("fhdfh 444\n");
+	i = 0;
+	while (i < 4)
+	{
+		idx = ft_itoa(i + 1);
+		file_name = ft_strjoin(cub->intro.bear_path, idx);
+		path = ft_strjoin(file_name, ".xpm");
+		cub->obj.sprites[i].relative_path = path;
+		if (prepare_sprite_metadata(cub, &cub->obj.sprites[i]) == 1)
+		{
+			free(idx);
+			free(file_name);
+			free(path);
+			return (EXIT_FAILURE);
+		}
+		free(idx);
+		free(file_name);
+		free(path);
+		i++;
+	}
+	return (EXIT_SUCCESS);
+}
+
+static int	set_bearclick_sprites_paths(t_cub *cub)
+{
+	printf("fhdfh\n");
+	int		i;
+	char	*idx;
+	char	*file_name;
+	char	*path;
+
+	i = 0;
+	while (i < 4)
+	{
+		idx = ft_itoa(i + 1);
+		file_name = ft_strjoin(cub->intro.bear_click_path, idx);
+		path = ft_strjoin(file_name, ".xpm");
+		cub->obj.inspect_sprites[i].relative_path = path;
+		if (prepare_sprite_metadata(cub, &cub->obj.inspect_sprites[i]) == 1)
+		{
+			free(idx);
+			free(file_name);
+			free(path);
+			return (EXIT_FAILURE);
+		}
+		free(idx);
+		free(file_name);
+		free(path);
+		i++;
+	}
+	return (EXIT_SUCCESS);
 }
 
 int	prepare_sprite_metadata(t_cub *cub, t_img_texture *t)
@@ -88,7 +148,8 @@ int	init_sprites(t_cub *cub)
 	cub->obj.last_update = get_time_ms() / 1000.0;
 	cub->obj.sprites_num = 4;
 	cub->obj.offset = (t_pointi){0, 0};
-	set_sprites_paths(cub);
+	set_bear_sprites_paths(cub);
+	set_bearclick_sprites_paths(cub);
 	while (i < cub->obj.sprites_num)
 	{
 		if (prepare_sprite_metadata(cub, &cub->obj.sprites[i]) == 1)
