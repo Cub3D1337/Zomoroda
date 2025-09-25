@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:40:04 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/25 16:24:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 23:17:47 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,23 +82,54 @@ static void	toggle_mvt(int keycode, t_cub *cub, t_bool flag)
 		cub->p.rotate_down = flag;
 }
 
+// int	ft_key_press(int keycode, t_cub *cub)
+// {
+// 	printf("code: %d\n", keycode);
+// 	if (keycode == ESCAPE_KEY)
+// 			ft_exit(cub);
+// 	else if (keycode == E_KEY)
+// 		toggle_door(cub);
+// 	else
+// 		toggle_mvt(keycode, cub, true);
+// 	if (cub->state == STATE_MENU)
+// 	{
+// 		if (keycode == OPTION_1)
+// 			cub->state = 1;
+// 		else if (keycode == OPTION_2)
+// 			cub->state = 2;
+// 	}
+// 	return (EXIT_SUCCESS);
+// }
+
+
 int	ft_key_press(int keycode, t_cub *cub)
 {
+	int	mode_index;
+
 	if (keycode == ESCAPE_KEY)
-			ft_exit(cub);
-	else if (keycode == E_KEY)
-		toggle_door(cub);
-	else
-		toggle_mvt(keycode, cub, true);
-	if (cub->flag == 0)
+		ft_exit(cub);
+	else if (cub->state == STATE_RENDER)
 	{
-		if (keycode == OPTION_1)
-			cub->flag = 1;
-		else if (keycode == OPTION_2)
-			cub->flag = 2;
+		if (keycode == E_KEY)
+			toggle_door(cub);
+		else
+			toggle_mvt(keycode, cub, true);
+	}
+	printf("code: %d\n", keycode);
+	// ===== Menu handling =====
+	if (cub->state == STATE_MENU)
+	{
+		if (keycode >= '1' && keycode < '1' + cub->mode_count)
+		{
+			mode_index = keycode - '1';
+			cub->selected_mode = mode_index;
+			cub->state = STATE_LOADING;
+			printf("Selected Mode %d\n", mode_index + 1);
+		}
 	}
 	return (EXIT_SUCCESS);
 }
+
 
 int	ft_key_release(int keycode, t_cub *cub)
 {

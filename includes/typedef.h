@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 17:41:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 23:55:54 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,16 @@ typedef struct s_sprite
 	int				color;
 }					t_sprite;
 
+typedef struct s_game_mode
+{
+	char	*global_path;
+	char	*logo_path;
+	char	*intro_path;
+	char	*door_path;
+	char	*obj_path;
+	char	*obj_click_path;
+}   t_game_mode;
+
 typedef struct s_cub
 {
 	void			*mlx;
@@ -149,6 +159,10 @@ typedef struct s_cub
 	int				half_width;
 	t_img			img;
 	int				flag;
+	int				state;          // current game state
+    int				selected_mode;  // which map/mode the user picked
+	int				mode_count;
+	t_game_mode		modes[2];
 	t_img			map_img;
 	t_map_data		map;
 	t_player		p;

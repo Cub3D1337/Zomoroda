@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 18:15:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 23:55:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,25 @@ static void	init_map(t_cub *cub)
 	cub->map.h = cub->cfg.map_h;
 	cub->map.minimap_width = (cub->cfg.map_w * BLOCK_SIZE) + MINIMAP_SIZE;
 	cub->map.minimap_height = (cub->cfg.map_h * BLOCK_SIZE) + MINIMAP_SIZE;
+
+	cub->modes[0] = (t_game_mode){
+		"./textures/zomoroda/",
+		"./textures/zomoroda/logo.xpm",
+		"./textures/zomoroda/intro/",
+		"./textures/zomoroda/door.xpm",
+		"./textures/zomoroda/animation/bear/",
+		"./textures/zomoroda/animation/bear_click/",
+	};
+	cub->modes[1] = (t_game_mode){
+		"./textures/action/",
+		"./textures/action/logo.xpm",
+		"./textures/action/intro/",
+		"./textures/action/door.xpm",
+		"./textures/action/animation/bear/",
+		"./textures/action/animation/bear_click/",
+	};
+	cub->mode_count = 2;
+	cub->state = STATE_MENU;
 }
 
 int	load_textures(t_cub	*cub)
@@ -76,9 +95,11 @@ int	load_textures(t_cub	*cub)
 
 int	init_cub(t_cub	*cub)
 {
+	cub->mlx = NULL;
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
 		return (EXIT_FAILURE);
+	cub->mlx_win = NULL;
 	cub->mlx_win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3D");
 	if (!cub->mlx_win)
 		return (EXIT_FAILURE);

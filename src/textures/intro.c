@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:12:17 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/25 19:12:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 23:35:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	put_logo(t_cub *cub)
 {
 	t_img_texture	*t;
 
+	if (cub->logo_texture.img_ptr)
+		mlx_destroy_image(cub->mlx, cub->logo_texture.img_ptr);
 	t = &cub->logo_texture;
 	t->relative_path = cub->intro.logo_path;
 	if (prepare_sprite_metadata(cub, t) == 1)
@@ -76,24 +78,6 @@ int	put_logo(t_cub *cub)
 	return (EXIT_SUCCESS);
 }
 
-// int	put_intro(t_cub *cub)
-// {
-// 	int				i;
-// 	t_img_texture	*t;
-
-// 	i = 0;
-// 	while (i < INTRO_NUM)
-// 	{
-// 		t = &cub->intro.intro_textures[i];
-// 		put_sprite(cub, t);
-// 		usleep(93407);
-// 		i++;
-// 		mlx_put_image_to_window(cub->mlx, cub->mlx_win,
-// 			cub->img.img_ptr, 0, 0);
-// 	}
-// 	return (EXIT_SUCCESS);
-// }
-
 int put_intro(t_cub *cub)
 {
 	t_img_texture	*t;
@@ -101,7 +85,10 @@ int put_intro(t_cub *cub)
 
 	now = get_time_ms();
     if (cub->intro.intro_index >= INTRO_NUM)
-        return (EXIT_FAILURE);
+	{
+		cub->intro.intro_done = true;
+		return (EXIT_SUCCESS);
+	}
     if (now - cub->intro.last_time < 95)
         return (EXIT_SUCCESS);
     cub->intro.last_time = now;
