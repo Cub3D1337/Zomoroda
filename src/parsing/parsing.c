@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:41:59 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/18 17:15:48 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/25 23:34:42 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ int	open_file(int ac, char **av, int *fd)
 		return (error("Error\nCould not open file\n"));
 	return (1);
 }
+void free_all(int fd)
+{
+	char *line;
+	line = get_next_line(fd);
+	while(line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+}
 
 int	handle_invalid_line(char *line, int fd)
 {
@@ -36,6 +46,8 @@ int	handle_map_line(char *line, t_config *cfg, int *seen_map, int fd)
 	*seen_map = 1;
 	if (!collect_map(fd, line, cfg))
 	{
+		free_all(fd);
+		free_config(cfg);
 		close(fd);
 		return (0);
 	}
@@ -50,6 +62,8 @@ int	handle_line_before_map(char *line, t_config *cfg, int *seen_map, int fd)
 	if (r == 0)
 	{
 		free(line);
+		free_all(fd);
+		free_config(cfg);
 		close(fd);
 		return (0);
 	}
@@ -58,6 +72,8 @@ int	handle_line_before_map(char *line, t_config *cfg, int *seen_map, int fd)
 		if (is_map_line(line))
 			return (handle_map_line(line, cfg, seen_map, fd));
 		free(line);
+		free_all(fd);
+		free_config(cfg);
 		close(fd);
 		return (error("Error\nInvalid line before map\n"));
 	}
@@ -80,12 +96,13 @@ int	parsing(int ac, char **av, t_config *cfg)
 		rstrip_newline(line);
 		if (handle_line_before_map(line, cfg, &seen_map, fd) == 0)
 			return (0);
+
 		line = get_next_line(fd);
 	}
 	close(fd);
 	if (!validate_once_all_present(cfg))
-		return (0);
+		return (free_config(cfg),0);
 	if (!validate_player_and_close(cfg))
-		return (0);
+		return (free_config(cfg),0);
 	return (1);
 }
