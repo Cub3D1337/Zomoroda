@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:17:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/25 18:18:57 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 22:25:39 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ static int	set_sprites_paths(t_cub *cub, char *base_path, t_img_texture t[32])
 int	prepare_sprite_metadata(t_cub *cub, t_img_texture *t)
 {
 	if (!t)
+		return (EXIT_FAILURE);
+	t->img_ptr = NULL;
+	if (validate_texture_file(t->relative_path, "loading sprite") == 0)
 		return (EXIT_FAILURE);
 	t->img_ptr = mlx_xpm_file_to_image(
 			cub->mlx,

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:40:04 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/25 16:24:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 00:00:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,25 @@ static void	toggle_mvt(int keycode, t_cub *cub, t_bool flag)
 
 int	ft_key_press(int keycode, t_cub *cub)
 {
+	int	mode_index;
+
 	if (keycode == ESCAPE_KEY)
-			ft_exit(cub);
-	else if (keycode == E_KEY)
-		toggle_door(cub);
-	else
-		toggle_mvt(keycode, cub, true);
-	if (cub->flag == 0)
+		ft_exit(cub);
+	else if (cub->state == STATE_RENDER)
 	{
-		if (keycode == OPTION_1)
-			cub->flag = 1;
-		else if (keycode == OPTION_2)
-			cub->flag = 2;
+		if (keycode == E_KEY)
+			toggle_door(cub);
+		else
+			toggle_mvt(keycode, cub, true);
+	}
+	if (cub->state == STATE_MENU)
+	{
+		if (keycode >= '1' && keycode < '1' + cub->mode_count)
+		{
+			mode_index = keycode - '1';
+			cub->selected_mode = mode_index;
+			cub->state = STATE_LOADING;
+		}
 	}
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 18:18:53 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 23:52:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,29 @@ enum	e_events_inputs
 
 enum	e_render_mode
 {
-	MENU,
-	LAODING_1,
-	LAODING_2,
-	INTRO,
+	MENU = 0,
+	LAODING_1 = 1,
+	LAODING_2 = 2,
+	INTRO = 3,
 	RENDER = 6,
+	ERROR = 7,
 };
+
+typedef enum e_game_state
+{
+    STATE_MENU,
+    STATE_LOADING,
+    STATE_INTRO,
+    STATE_RENDER,
+    STATE_PAUSE,
+    STATE_EXIT,
+}   t_game_state;
+
+
+typedef enum e_audio_state
+{
+	ONCE,
+	LOOP,
+}			t_audio_state;
 
 #endif

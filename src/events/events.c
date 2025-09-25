@@ -6,90 +6,30 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 20:05:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 23:39:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static int loading(t_cub *cub)
+int ft_loop_hook(t_cub *cub)
 {
-	cub->intro.intro_index = 0;
-	cub->intro.intro_done = false;
-	cub->intro.last_time = 0;
-	if (cub->flag == LAODING_1)
-	{
-		cub->intro.logo_path = "./textures/zomoroda/logo.xpm";
-		cub->intro.intro_path = "./textures/zomoroda/intro/";
-		cub->intro.door_path = "./textures/zomoroda/door.xpm";
-		cub->intro.obj_path = "./textures/zomoroda/animation/bear/";
-		cub->intro.obj_click_path = "./textures/zomoroda/animation/bear_click/";
-	}
-	else
-	{
-		cub->intro.logo_path = "./textures/action/logo.xpm";
-		cub->intro.intro_path = "./textures/action/intro/";
-		cub->intro.door_path = "./textures/action/door.xpm";
-		cub->intro.obj_path = "./textures/action/animation/bear/";
-		cub->intro.obj_click_path = "./textures/action/animation/bear_click/";
-	}
-	ft_memset(cub->img.img_pixels_ptr, 0,
-		HEIGHT * cub->img.line_length);
-	if (put_logo(cub))
+	if (!cub)
 		return (EXIT_FAILURE);
-	if (load_textures(cub))
-		return (EXIT_FAILURE);
-	play_music(0, cub->flag);
-	cub->flag += INTRO;
-	return (EXIT_SUCCESS);
-}
-
-static int	menu(t_cub *cub)
-{
-	cub->intro.logo_path = "./textures/menu.xpm";
-	if (put_logo(cub))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-
-int	ft_loop_hook(t_cub *cub)
-{
-	double	current;
-	double	frame_time;
-
-	if (cub->flag == MENU)
-		menu(cub);
-	else if (cub->flag == LAODING_1 || cub->flag == LAODING_2)
-		loading(cub);
-	else if ((cub->flag == (INTRO + LAODING_1)) || (cub->flag == (INTRO + LAODING_2)))
+	switch (cub->state)
 	{
-		if (put_intro(cub) == EXIT_FAILURE)
-		{
-			stop_music();
-			play_music(1, cub->flag - INTRO);
-			cub->flag = RENDER;
-		}
-	}
-	else
-	{
-		current = get_time_ms();
-		frame_time = current - cub->fps.last_frame_time;
-		if (frame_time < cub->fps.frame_duration)
+		case STATE_MENU:
+			return state_menu(cub);
+		case STATE_LOADING:
+			return state_loading(cub);
+		case STATE_INTRO:
+			return state_intro(cub);
+		case STATE_RENDER:
+			return state_render(cub);
+		case STATE_EXIT:
+		default:
 			return (EXIT_SUCCESS);
-		cub->fps.delta_time = frame_time / 1000.0;
-		cub->fps.last_frame_time = current;
-		cub->fps.frames++;
-		if (current - cub->fps.last_time >= 1000.0)
-		{
-			cub->fps.fps = cub->fps.frames;
-			cub->fps.frames = 0;
-			cub->fps.last_time = current;
-		}
-		mouse_handler(cub);
-		move(cub);
-		render(cub);
-	}		
-	return (EXIT_SUCCESS);
+	}
 }
 
 int	mouse_hook(int button, int x, int y, t_cub *cub)

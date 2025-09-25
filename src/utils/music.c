@@ -6,31 +6,37 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:20:50 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 17:49:32 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 23:59:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	play_music(t_bool music, int flag)
+void	play_music(t_cub *cub, t_audio_state audio_state)
 {
-	if (music == 0)
+	t_game_mode	*mode;
+	char		command[512];
+
+	if (cub->selected_mode < 0 || cub->selected_mode >= cub->mode_count)
+		return;
+	mode = &cub->modes[cub->selected_mode];
+
+	if (audio_state == ONCE)
 	{
-		if (flag == LAODING_1)
-			system("vlc --intf dummy textures/zomoroda/Music/intro.mp3 > /dev/null 2>&1 &");
-		else
-			system("vlc --intf dummy textures/action/Music/intro.mp3 > /dev/null 2>&1 &");
+		snprintf(command, sizeof(command),
+			"vlc --intf dummy \"%sMusic/intro.mp3\" > /dev/null 2>&1 &",
+			mode->global_path);
 	}
 	else
 	{
-		if (flag == LAODING_1)
-			system("vlc --intf dummy --loop textures/zomoroda/Music/loop.mp3 > /dev/null 2>&1 &");
-		else
-			system("vlc --intf dummy --loop textures/action/Music/loop.mp3 > /dev/null 2>&1 &");
+		snprintf(command, sizeof(command),
+			"vlc --intf dummy --loop \"%sMusic/loop.mp3\" > /dev/null 2>&1 &",
+			mode->global_path);
 	}
+	system(command);
 }
 
 void	stop_music(void)
 {
-	system("killall vlc");
+	system("killall -q vlc 2>/dev/null");
 }
