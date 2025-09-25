@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:41:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/18 17:12:13 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/25 23:22:58 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	check_row_sides(t_config *cfg, int y)
 
 int	check_gate(t_config *cfg, int x, int y)
 {
+	if (y == 0 || y == cfg->map_h - 1)
+		return (1);
 	if (cfg->map[y][x] == 'D' && !((cfg->map[y][x - 1] == '1' && cfg->map[y][x
 				+ 1] == '1') || (cfg->map[y - 1][x] == '1' && cfg->map[y
 				+ 1][x] == '1')))

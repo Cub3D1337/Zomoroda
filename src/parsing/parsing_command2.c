@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:40:29 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/08/23 14:09:00 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/25 21:37:21 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ void	free_config(t_config *cfg)
 	{
 		i = 0;
 		while (i < cfg->map_h)
-			free(cfg->map[i++]);
+		{
+			if (cfg->map[i])
+                free(cfg->map[i]);
+			i++;
+		}
 		free(cfg->map);
 	}
 }
