@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:27:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/24 22:36:13 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 11:20:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	apply_mouse_rotation_x(t_cub *cub, t_pointd *delta)
 			cub->p.angle += 2 * M_PI;
 		if (cub->p.angle >= 2 * M_PI)
 			cub->p.angle -= 2 * M_PI;
-		cub->p.cosA = cos(cub->p.angle);
-		cub->p.sinA = sin(cub->p.angle);
+		cub->p.cos_a = cos(cub->p.angle);
+		cub->p.sin_a = sin(cub->p.angle);
 		cub->obj.offset.x += delta->x * 0.5;
 		if (cub->obj.offset.x > GUN_OFFSET)
 			cub->obj.offset.x = GUN_OFFSET;
@@ -68,6 +68,8 @@ void	mouse_handler(t_cub *cub)
 
 int	ft_mouse_move(int x, int y, t_cub *cub)
 {
+	(void)x;
+	(void)y;
 	cub->mouse.x = x;
 	cub->mouse.y = y;
 	return (EXIT_SUCCESS);

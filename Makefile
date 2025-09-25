@@ -1,6 +1,6 @@
 NAME = 				cub3D
 CC =				 cc
-FLAGS = 			-Wall -Wextra -Werror -g
+FLAGS = 			-Wall -Wextra -Werror
 LDFLAGS = 			-L./Libft -lft
 
 INC_DIR =			./includes
@@ -54,8 +54,5 @@ fclean:				clean
 						rm -f $(NAME)
 
 re:					fclean all
-
-vg:
-	valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) maps/good/m.cub
 
 .PHONY:				all clean fclean re

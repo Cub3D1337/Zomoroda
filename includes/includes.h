@@ -13,14 +13,13 @@
 #ifndef INCLUDES_H
 # define INCLUDES_H
 
-# include <mlx.h>
-# include <stdio.h>
-# include <math.h>
-# include <time.h>
-# include <sys/time.h>
-
 # include "../Libft/includes/libft.h"
 # include "settings.h"
 # include "typedef.h"
+# include <math.h>
+# include <mlx.h>
+# include <stdio.h>
+# include <sys/time.h>
+# include <time.h>
 
 #endif

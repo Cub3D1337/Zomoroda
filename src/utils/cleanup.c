@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 22:28:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 15:41:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	destroy_textures(t_cub *cub)
 	clear_text_arr(cub, cub->obj.inspect_sprites, cub->obj.sprites_num);
 	if (cub->logo_texture.img_ptr)
 		mlx_destroy_image(cub->mlx, cub->logo_texture.img_ptr);
-	clear_text_arr(cub, cub->intro_textures, INTRO_NUM);
+	clear_text_arr(cub, cub->intro.intro_textures, INTRO_NUM);
 }
 
 static void	destroy_cub(t_cub *cub)

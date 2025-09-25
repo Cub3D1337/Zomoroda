@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:41:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 22:49:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 11:13:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	rotate_horizontal(t_cub *cub)
 			cub->p.angle += 2 * M_PI;
 		if (cub->p.angle >= 2 * M_PI)
 			cub->p.angle -= 2 * M_PI;
-		cub->p.cosA = cos(cub->p.angle);
-		cub->p.sinA = sin(cub->p.angle);
+		cub->p.cos_a = cos(cub->p.angle);
+		cub->p.sin_a = sin(cub->p.angle);
 	}
 }
 
@@ -78,14 +78,14 @@ static void	update_position(t_cub *cub, t_pointd *delta, double speed)
 {
 	if (cub->p.move_up)
 	{
-		delta->x += cub->p.cosA * speed;
-		delta->y += cub->p.sinA * speed;
+		delta->x += cub->p.cos_a * speed;
+		delta->y += cub->p.sin_a * speed;
 		cub->obj.offset.y++;
 	}
 	if (cub->p.move_down)
 	{
-		delta->x -= cub->p.cosA * speed;
-		delta->y -= cub->p.sinA * speed;
+		delta->x -= cub->p.cos_a * speed;
+		delta->y -= cub->p.sin_a * speed;
 		cub->obj.offset.y--;
 	}
 	if (cub->p.move_left)

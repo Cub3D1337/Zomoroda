@@ -1,7 +1,7 @@
-NO                  ./textures/north.xpm
-SO              ./textures/south.xpm
-                        WE ./textures/west.xpm
-            EA ./textures/east.xpm
+NO                  ./textures/zomoroda/north.xpm
+SO              ./textures/zomoroda/south.xpm
+                        WE ./textures/zomoroda/west.xpm
+            EA ./textures/zomoroda/east.xpm
 F 51,51,51
 C 0,153,255
 

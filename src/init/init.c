@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 22:30:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 18:15:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	init_default_values(t_cub *cub)
 {
+	cub->flag = MENU;
 	cub->half_height = HEIGHT / 2;
 	cub->half_width = WIDTH / 2;
 	cub->map.padding = MINIMAP_SIZE / 2;
@@ -47,8 +48,8 @@ static void	init_player(t_cub *cub)
 	cub->p.rotate_right = false;
 	cub->p.rotate_up = false;
 	cub->p.rotate_down = false;
-	cub->p.cosA = cos(cub->p.angle);
-	cub->p.sinA = sin(cub->p.angle);
+	cub->p.cos_a = cos(cub->p.angle);
+	cub->p.sin_a = sin(cub->p.angle);
 	cub->p.pitch = 0.0;
 	cub->p.horizon = cub->half_height;
 }
@@ -66,9 +67,9 @@ int	load_textures(t_cub	*cub)
 {
 	if (init_intro(cub) == 1)
 		return (EXIT_FAILURE);
-	if (init_textures(cub) == 1)
-		return (EXIT_FAILURE);
 	if (init_sprites(cub) == 1)
+		return (EXIT_FAILURE);
+	if (init_textures(cub) == 1)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
