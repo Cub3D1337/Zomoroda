@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 16:47:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 18:16:13 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,23 @@ static int loading(t_cub *cub)
 		cub->intro.logo_path = "./textures/zomoroda/logo.xpm";
 		cub->intro.intro_path = "./textures/zomoroda/intro/";
 		cub->intro.door_path = "./textures/zomoroda/door.xpm";
-		cub->intro.bear_path = "./textures/zomoroda/animation/bear/";
-		cub->intro.bear_click_path = "./textures/zomoroda/animation/bear_click/";
+		cub->intro.obj_path = "./textures/zomoroda/animation/bear/";
+		cub->intro.obj_click_path = "./textures/zomoroda/animation/bear_click/";
 	}
-	// else
-	// 	cub->intro.logo_path = "./textures/action/logo.xpm";
-	// 	cub->intro.intro_path = "./textures/action/intro/";
-	// 	cub->intro.door_path = "./textures/action/door.xpm";
+	else
+	{
+		cub->intro.logo_path = "./textures/action/logo.xpm";
+		cub->intro.intro_path = "./textures/action/intro/";
+		cub->intro.door_path = "./textures/action/door.xpm";
+		cub->intro.obj_path = "./textures/action/animation/bear/";
+		cub->intro.obj_click_path = "./textures/action/animation/bear_click/";
+	}
 	if (put_logo(cub))
 		return (EXIT_FAILURE);
 	if (load_textures(cub))
 		return (EXIT_FAILURE);
-	play_music(0);
-	cub->flag = INTRO;
+	play_music(0, cub->flag);
+	cub->flag += INTRO;
 	return (EXIT_SUCCESS);
 }
 
@@ -57,17 +61,18 @@ int	ft_loop_hook(t_cub *cub)
 		menu(cub);
 	else if (cub->flag == LAODING_1 || cub->flag == LAODING_2)
 		loading(cub);
-	else if (cub->flag == INTRO)
+	else if ((cub->flag == (INTRO + LAODING_1)) || (cub->flag == (INTRO + LAODING_2)))
 	{
 		if (put_intro(cub) == EXIT_FAILURE)
 		{
 			stop_music();
-			play_music(1);
+			play_music(1, cub->flag - INTRO);
 			cub->flag = RENDER;
 		}
 	}
 	else
 	{
+		printf("render\n");
 		current = get_time_ms();
 		frame_time = current - cub->fps.last_frame_time;
 		if (frame_time < cub->fps.frame_duration)

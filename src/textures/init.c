@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:17:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/25 16:57:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 18:18:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,55 +21,8 @@ static void	set_texture_paths(t_cub *cub)
 	cub->textures[DOOR].relative_path = cub->intro.door_path;
 }
 
-// static void	set_sprites_paths(t_cub *cub)
-// {
-// 	cub->obj.sprites[0].relative_path = "./textures/animation/bear/1.xpm";
-// 	cub->obj.sprites[1].relative_path = "./textures/animation/bear/2.xpm";
-// 	cub->obj.sprites[2].relative_path = "./textures/animation/bear/3.xpm";
-// 	cub->obj.sprites[3].relative_path = "./textures/animation/bear/4.xpm";
-// 	cub->obj.inspect_sprites[0].relative_path
-// 		= "./textures/animation/bear_click/1.xpm";
-// 	cub->obj.inspect_sprites[1].relative_path
-// 		= "./textures/animation/bear_click/2.xpm";
-// 	cub->obj.inspect_sprites[2].relative_path
-// 		= "./textures/animation/bear_click/3.xpm";
-// 	cub->obj.inspect_sprites[3].relative_path
-// 		= "./textures/animation/bear_click/4.xpm";
-// }
-
-static int	set_bear_sprites_paths(t_cub *cub)
+static int	set_sprites_paths(t_cub *cub, char *base_path, t_img_texture t[32])
 {
-	int		i;
-	char	*idx;
-	char	*file_name;
-	char	*path;
-
-	printf("fhdfh 444\n");
-	i = 0;
-	while (i < 4)
-	{
-		idx = ft_itoa(i + 1);
-		file_name = ft_strjoin(cub->intro.bear_path, idx);
-		path = ft_strjoin(file_name, ".xpm");
-		cub->obj.sprites[i].relative_path = path;
-		if (prepare_sprite_metadata(cub, &cub->obj.sprites[i]) == 1)
-		{
-			free(idx);
-			free(file_name);
-			free(path);
-			return (EXIT_FAILURE);
-		}
-		free(idx);
-		free(file_name);
-		free(path);
-		i++;
-	}
-	return (EXIT_SUCCESS);
-}
-
-static int	set_bearclick_sprites_paths(t_cub *cub)
-{
-	printf("fhdfh\n");
 	int		i;
 	char	*idx;
 	char	*file_name;
@@ -79,10 +32,10 @@ static int	set_bearclick_sprites_paths(t_cub *cub)
 	while (i < 4)
 	{
 		idx = ft_itoa(i + 1);
-		file_name = ft_strjoin(cub->intro.bear_click_path, idx);
+		file_name = ft_strjoin(base_path, idx);
 		path = ft_strjoin(file_name, ".xpm");
-		cub->obj.inspect_sprites[i].relative_path = path;
-		if (prepare_sprite_metadata(cub, &cub->obj.inspect_sprites[i]) == 1)
+		t[i].relative_path = path;
+		if (prepare_sprite_metadata(cub, &t[i]) == 1)
 		{
 			free(idx);
 			free(file_name);
@@ -148,15 +101,9 @@ int	init_sprites(t_cub *cub)
 	cub->obj.last_update = get_time_ms() / 1000.0;
 	cub->obj.sprites_num = 4;
 	cub->obj.offset = (t_pointi){0, 0};
-	set_bear_sprites_paths(cub);
-	set_bearclick_sprites_paths(cub);
-	while (i < cub->obj.sprites_num)
-	{
-		if (prepare_sprite_metadata(cub, &cub->obj.sprites[i]) == 1)
-			return (EXIT_FAILURE);
-		if (prepare_sprite_metadata(cub, &cub->obj.inspect_sprites[i]) == 1)
-			return (EXIT_FAILURE);
-		i++;
-	}
+	if (set_sprites_paths(cub, cub->intro.obj_path, cub->obj.sprites))
+   		return (EXIT_FAILURE);
+	if (set_sprites_paths(cub, cub->intro.obj_click_path, cub->obj.inspect_sprites))
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 16:47:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 17:41:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ typedef struct s_intro
 	char			*logo_path;
 	char			*intro_path;
 	char			*door_path;
-	char			*bear_path;
-	char			*bear_click_path;
+	char			*obj_path;
+	char			*obj_click_path;
 	t_img_texture	intro_textures[182];
 	double			last_time;
 	int				intro_index;

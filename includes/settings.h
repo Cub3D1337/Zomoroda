@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 16:24:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 18:18:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,6 @@
 # define GRAVITY    15.0
 # define GROUND_Y   0.0
 
-# define PATH_ZOMORODA "./textures/intro/zomoroda"
-# define PATH_ACTION "./textures/intro/action"
-
 enum	e_events_hooks
 {
 	ON_KEYDOWN = 2,
@@ -111,7 +108,7 @@ enum	e_render_mode
 	LAODING_1,
 	LAODING_2,
 	INTRO,
-	RENDER,
+	RENDER = 6,
 };
 
 #endif
