@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 23:55:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 00:01:25 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static void	init_map(t_cub *cub)
 	cub->map.h = cub->cfg.map_h;
 	cub->map.minimap_width = (cub->cfg.map_w * BLOCK_SIZE) + MINIMAP_SIZE;
 	cub->map.minimap_height = (cub->cfg.map_h * BLOCK_SIZE) + MINIMAP_SIZE;
-
 	cub->modes[0] = (t_game_mode){
 		"./textures/zomoroda/",
 		"./textures/zomoroda/logo.xpm",
