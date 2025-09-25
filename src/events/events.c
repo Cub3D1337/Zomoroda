@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 18:16:13 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/25 20:05:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int loading(t_cub *cub)
 {
-	printf("Loading\n");
 	cub->intro.intro_index = 0;
 	cub->intro.intro_done = false;
 	cub->intro.last_time = 0;
@@ -34,6 +33,8 @@ static int loading(t_cub *cub)
 		cub->intro.obj_path = "./textures/action/animation/bear/";
 		cub->intro.obj_click_path = "./textures/action/animation/bear_click/";
 	}
+	ft_memset(cub->img.img_pixels_ptr, 0,
+		HEIGHT * cub->img.line_length);
 	if (put_logo(cub))
 		return (EXIT_FAILURE);
 	if (load_textures(cub))
@@ -45,10 +46,9 @@ static int loading(t_cub *cub)
 
 static int	menu(t_cub *cub)
 {
-	printf("Menu\n");
-	// cub->intro.door_path = "./textures/door.xpm";
-	// if (put_logo(cub))
-	// 	return (EXIT_FAILURE);
+	cub->intro.logo_path = "./textures/menu.xpm";
+	if (put_logo(cub))
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -72,7 +72,6 @@ int	ft_loop_hook(t_cub *cub)
 	}
 	else
 	{
-		printf("render\n");
 		current = get_time_ms();
 		frame_time = current - cub->fps.last_frame_time;
 		if (frame_time < cub->fps.frame_duration)
