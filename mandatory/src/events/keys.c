@@ -1,0 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keys.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/26 15:40:04 by abnsila           #+#    #+#             */
+/*   Updated: 2025/09/26 22:31:46 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+static void	toggle_mvt(int keycode, t_cub *cub, t_bool flag)
+{
+	if (keycode == W_KEY)
+		cub->p.move_up = flag;
+	else if (keycode == S_KEY)
+		cub->p.move_down = flag;
+	else if (keycode == A_KEY)
+		cub->p.move_left = flag;
+	else if (keycode == D_KEY)
+		cub->p.move_right = flag;
+	if (keycode == LEFT_KEY)
+		cub->p.rotate_left = flag;
+	else if (keycode == RIGHT_KEY)
+		cub->p.rotate_right = flag;
+	else if (keycode == UP_KEY)
+		cub->p.rotate_up = flag;
+	else if (keycode == DOWN_KEY)
+		cub->p.rotate_down = flag;
+}
+
+int	ft_key_press(int keycode, t_cub *cub)
+{
+	int	mode_index;
+
+	if (keycode == ESCAPE_KEY)
+		ft_exit(cub);
+	else if (cub->state == STATE_RENDER)
+	{
+		toggle_mvt(keycode, cub, true);
+	}
+	if (cub->state == STATE_MENU)
+	{
+		if (keycode >= '1' && keycode < '1' + cub->mode_count)
+		{
+			mode_index = keycode - '1';
+			cub->selected_mode = mode_index;
+			cub->state = STATE_LOADING;
+		}
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	ft_key_release(int keycode, t_cub *cub)
+{
+	toggle_mvt(keycode, cub, false);
+	return (EXIT_SUCCESS);
+}

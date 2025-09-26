@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 16:33:19 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 22:39:25 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,6 @@ typedef struct s_fps
 	double			frame_duration;
 }					t_fps;
 
-typedef struct s_animate
-{
-	t_bool			inspect;
-	t_img_texture	sprites[MAX_SPRITES];
-	t_img_texture	inspect_sprites[MAX_SPRITES];
-	int				sprites_num;
-	int				frame;
-	double			timer;
-	double			frame_duration;
-	double			last_update;
-	t_pointi		offset;
-}					t_animate;
-
 typedef struct s_intro
 {
 	char			*logo_path;
@@ -135,7 +122,7 @@ typedef struct s_sprite
 	t_pointi		deplacement;
 	t_pointi		scaled;
 	t_pointi		tex;
-	int				color;
+	unsigned int	color;
 }					t_sprite;
 
 typedef struct s_game_mode
@@ -177,13 +164,10 @@ typedef struct s_cub
 	t_img_texture	logo_texture;
 	t_intro			intro;
 	t_img_texture	textures[5];
-	t_animate		obj;
 	double			fov;
 	double			projection_plane;
 	double			scale;
 	int				color[2];
-	t_pointd		mouse;
-	t_bool			track_mouse;
 	t_fps			fps;
 }					t_cub;
 
