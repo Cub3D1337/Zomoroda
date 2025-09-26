@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 16:43:07 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 23:44:09 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+
 # include "includes.h"
 # include "events.h"
-# include "music.h"
 # include "parsing.h"
 # include "raycasting.h"
 # include "render.h"

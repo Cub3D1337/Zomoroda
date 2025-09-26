@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 22:39:25 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:08:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,6 @@ typedef struct s_fps
 	double			frame_duration;
 }					t_fps;
 
-typedef struct s_intro
-{
-	char			*logo_path;
-	char			*intro_path;
-	char			*door_path;
-	char			*obj_path;
-	char			*obj_click_path;
-	t_img_texture	intro_textures[182];
-	double			last_time;
-	int				intro_index;
-	t_bool			intro_done;
-}				t_intro;
-
 typedef struct s_sprite
 {
 	t_pointi		pos;
@@ -153,17 +140,11 @@ typedef struct s_cub
 	int				half_height;
 	int				half_width;
 	t_img			img;
-	int				state;
-	int				selected_mode;
-	int				mode_count;
-	t_game_mode		modes[2];
 	t_img			map_img;
 	t_map_data		map;
 	t_player		p;
 	t_config		cfg;
-	t_img_texture	logo_texture;
-	t_intro			intro;
-	t_img_texture	textures[5];
+	t_img_texture	textures[TEX_NUM];
 	double			fov;
 	double			projection_plane;
 	double			scale;

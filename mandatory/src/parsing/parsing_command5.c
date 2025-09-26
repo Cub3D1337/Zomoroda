@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:41:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 22:31:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:23:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,3 @@ int	check_row_sides(t_config *cfg, int y)
 		return (error("Error\nMap not closed at right edge\n"));
 	return (check_row_sides(cfg, y + 1));
 }
-

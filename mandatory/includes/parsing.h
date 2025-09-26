@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:02:26 by wahmane           #+#    #+#             */
-/*   Updated: 2025/09/26 22:43:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:25:09 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PARSING_H
 
 int		open_file(int ac, char **av, int *fd);
-int		handle_invalid_line(char *line, int fd);
 int		handle_map_line(char *line, t_config *cfg, int *seen_map, int fd);
 int		handle_line_before_map(char *line, t_config *cfg, int *seen_map,
 			int fd);

@@ -1,66 +1,110 @@
 NAME        = cub3D
+BONUS_NAME	= cub3D_bonus
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -O3
 LDFLAGS     = -L./Libft -lft
 
-LIBFT_DIR   = ./Libft
-MAN_DIR     = ./mandatory/src
-MAND_INC     = ./mandatory/includes
-BONUS_INC     = ./bonus/includes
+M_BUILD_DIR = mandatory/build
+B_BUILD_DIR = bonus/build
 
-INIT_DIR    = $(MAN_DIR)/init
-EVENTS_DIR  = $(MAN_DIR)/events
-RAYCASTING_DIR = $(MAN_DIR)/raycasting
-TEX_DIR     = $(MAN_DIR)/textures
-RENDER_DIR  = $(MAN_DIR)/render
-UTILS_DIR   = $(MAN_DIR)/utils
-
-M_INCLUDES    = -I$(MAND_INC) -I$(LIBFT_DIR)/includes
-B_INCLUDES    = -I$(MAND_INC) -I$(LIBFT_DIR)/includes
+LIBFT_DIR	= ./Libft
 LIBFT       = $(LIBFT_DIR)/libft.a
 
-INIT        = $(INIT_DIR)/init.c $(INIT_DIR)/buffers.c
-EVENTS      = $(EVENTS_DIR)/events.c $(EVENTS_DIR)/keys.c \
-              $(EVENTS_DIR)/move.c $(EVENTS_DIR)/utils.c
-RAYCASTING  = $(RAYCASTING_DIR)/raycaster.c $(RAYCASTING_DIR)/dda.c
-TEX         = $(TEX_DIR)/init.c $(TEX_DIR)/textures.c $(TEX_DIR)/intro.c
-RENDER      = $(RENDER_DIR)/render.c $(RENDER_DIR)/minimap.c
-UTILS       = $(UTILS_DIR)/cleanup.c $(UTILS_DIR)/utils.c \
-              $(UTILS_DIR)/music.c $(UTILS_DIR)/gets.c
+MAND_DIR	= ./mandatory/src
+MAND_INC	= ./mandatory/includes
+MAND_INIT_DIR    = $(MAND_DIR)/init
+MAND_EVENTS_DIR  = $(MAND_DIR)/events
+MAND_RAYCASTING_DIR = $(MAND_DIR)/raycasting
+MAND_TEX_DIR     = $(MAND_DIR)/textures
+MAND_RENDER_DIR  = $(MAND_DIR)/render
+MAND_UTILS_DIR   = $(MAND_DIR)/utils
+M_INCLUDES    = -I$(MAND_INC) -I$(LIBFT_DIR)/includes
 
-SRCS        = $(MAN_DIR)/main.c $(INIT) $(EVENTS) $(RAYCASTING) \
-              $(TEX) $(RENDER) $(UTILS) \
-              $(MAN_DIR)/parsing/parsing.c \
-              $(MAN_DIR)/parsing/parsing2.c $(MAN_DIR)/parsing/parsing3.c \
-              $(MAN_DIR)/parsing/parsing4.c $(MAN_DIR)/parsing/parsing_command.c \
-              $(MAN_DIR)/parsing/parsing_command2.c $(MAN_DIR)/parsing/parsing_command3.c \
-              $(MAN_DIR)/parsing/parsing_command4.c $(MAN_DIR)/parsing/parsing_command5.c \
-              $(MAN_DIR)/parsing/parsing_command6.c $(MAN_DIR)/parsing/parsing_command7.c
+BONUS_DIR	= ./bonus/src
+BONUS_INC	= ./bonus/includes
+BONUS_INIT_DIR    = $(BONUS_DIR)/init
+BONUS_EVENTS_DIR  = $(BONUS_DIR)/events
+BONUS_RAYCASTING_DIR = $(BONUS_DIR)/raycasting
+BONUS_TEX_DIR     = $(BONUS_DIR)/textures
+BONUS_RENDER_DIR  = $(BONUS_DIR)/render
+BONUS_UTILS_DIR   = $(BONUS_DIR)/utils
+B_INCLUDES    = -I$(BONUS_INC) -I$(LIBFT_DIR)/includes
 
-OBJS        = $(SRCS:.c=.o)
+# ---------------- Mandatory ----------------
+MAND_INIT        = 	$(MAND_INIT_DIR)/init.c $(MAND_INIT_DIR)/buffers.c
+MAND_EVENTS      = 	$(MAND_EVENTS_DIR)/events.c $(MAND_EVENTS_DIR)/keys.c \
+             		$(MAND_EVENTS_DIR)/move.c $(MAND_EVENTS_DIR)/utils.c
+MAND_RAYCASTING  = 	$(MAND_RAYCASTING_DIR)/raycaster.c $(MAND_RAYCASTING_DIR)/dda.c
+MAND_TEX         = 	$(MAND_TEX_DIR)/init.c $(MAND_TEX_DIR)/textures.c
+MAND_RENDER      = 	$(MAND_RENDER_DIR)/render.c $(MAND_RENDER_DIR)/minimap.c
+MAND_UTILS       = 	$(MAND_UTILS_DIR)/cleanup.c $(MAND_UTILS_DIR)/utils.c $(MAND_UTILS_DIR)/gets.c
+
+MAND_SRCS        =	$(MAND_DIR)/main.c $(MAND_INIT) $(MAND_EVENTS) $(MAND_RAYCASTING) \
+            		$(MAND_TEX) $(MAND_RENDER) $(MAND_UTILS) \
+            		$(MAND_DIR)/parsing/parsing.c \
+            		$(MAND_DIR)/parsing/parsing2.c $(MAND_DIR)/parsing/parsing3.c \
+            		$(MAND_DIR)/parsing/parsing4.c $(MAND_DIR)/parsing/parsing_command.c \
+            		$(MAND_DIR)/parsing/parsing_command2.c $(MAND_DIR)/parsing/parsing_command3.c \
+            		$(MAND_DIR)/parsing/parsing_command4.c $(MAND_DIR)/parsing/parsing_command5.c \
+            		$(MAND_DIR)/parsing/parsing_command6.c $(MAND_DIR)/parsing/parsing_command7.c
+
+# ---------------- Bonus ----------------
+BONUS_INIT        = $(BONUS_INIT_DIR)/init.c $(BONUS_INIT_DIR)/buffers.c
+BONUS_EVENTS      = $(BONUS_EVENTS_DIR)/events.c $(BONUS_EVENTS_DIR)/keys.c \
+              		$(BONUS_EVENTS_DIR)/move.c $(BONUS_EVENTS_DIR)/utils.c $(BONUS_EVENTS_DIR)/mouse.c
+BONUS_RAYCASTING  = $(BONUS_RAYCASTING_DIR)/raycaster.c $(BONUS_RAYCASTING_DIR)/dda.c
+BONUS_TEX         = $(BONUS_TEX_DIR)/init.c $(BONUS_TEX_DIR)/textures.c $(BONUS_TEX_DIR)/intro.c
+BONUS_RENDER      = $(BONUS_RENDER_DIR)/render.c $(BONUS_RENDER_DIR)/minimap.c $(BONUS_RENDER_DIR)/animation.c
+BONUS_UTILS       = $(BONUS_UTILS_DIR)/cleanup.c $(BONUS_UTILS_DIR)/utils.c $(BONUS_UTILS_DIR)/music.c $(BONUS_UTILS_DIR)/gets.c
+BONUS_SRCS        = $(BONUS_DIR)/main.c $(BONUS_INIT) $(BONUS_EVENTS) $(BONUS_RAYCASTING) \
+       				$(BONUS_TEX) $(BONUS_RENDER) $(BONUS_UTILS) \
+       				$(BONUS_DIR)/parsing/parsing.c \
+       				$(BONUS_DIR)/parsing/parsing2.c $(BONUS_DIR)/parsing/parsing3.c \
+       				$(BONUS_DIR)/parsing/parsing4.c $(BONUS_DIR)/parsing/parsing_command.c \
+       				$(BONUS_DIR)/parsing/parsing_command2.c $(BONUS_DIR)/parsing/parsing_command3.c \
+       				$(BONUS_DIR)/parsing/parsing_command4.c $(BONUS_DIR)/parsing/parsing_command5.c \
+       				$(BONUS_DIR)/parsing/parsing_command6.c $(BONUS_DIR)/parsing/parsing_command7.c
+
+
+MAND_OBJS = $(MAND_SRCS:$(MAND_DIR)/%.c=$(M_BUILD_DIR)/%.o)
+BONUS_OBJS = $(BONUS_SRCS:$(BONUS_DIR)/%.c=$(B_BUILD_DIR)/%.o)
 
 # ---------------- Rules ----------------
 all: $(LIBFT) $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) \
+bonus: $(LIBFT) $(BONUS_NAME)
+
+$(NAME): $(MAND_OBJS)
+	$(CC) $(CFLAGS) $(MAND_OBJS) $(LIBFT) $(M_INCLUDES) \
 		-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux \
 		-lXext -lX11 -lm -lz -o $(NAME) $(LDFLAGS)
 
-%.o: %.c $(INC_DIR)/* $(INC_DIR)/typedef/*
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(BONUS_NAME): $(BONUS_OBJS)
+	$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT) $(B_INCLUDES) \
+		-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux \
+		-lXext -lX11 -lm -lz -o $(BONUS_NAME) $(LDFLAGS)
+
+mandatory/build/%.o: $(MAND_DIR)/%.c $(MAND_INC)/* $(MAND_INC)/typedef/*
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(M_INCLUDES) -c $< -o $@
+
+bonus/build/%.o: $(BONUS_DIR)/%.c $(BONUS_INC)/* $(BONUS_INC)/typedef/*
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(B_INCLUDES) -c $< -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 clean:
 	make clean -C $(LIBFT_DIR)
-	rm -f $(OBJS)
+	rm -rf $(M_BUILD_DIR)
+	rm -rf $(B_BUILD_DIR)
 
 fclean: clean
 	make fclean -C $(LIBFT_DIR)
-	rm -f $(NAME)
+	rm -rf $(NAME)
+	rm -rf $(BONUS_NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

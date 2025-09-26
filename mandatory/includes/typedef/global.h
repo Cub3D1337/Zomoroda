@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 15:24:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 22:38:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:04:11 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef enum e_tex_side
 	NORTH,
 	WEST,
 	EAST,
-	DOOR,
 }			t_tex_side;
 
 typedef struct s_pointi

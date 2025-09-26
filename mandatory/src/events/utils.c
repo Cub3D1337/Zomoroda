@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 22:48:20 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 22:38:18 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:06:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,53 +38,6 @@ t_bool	check_boundaries(t_cub *cub)
 		i_h.x++;
 	}
 	return (true);
-}
-
-int	state_menu(t_cub *cub)
-{
-	if (!cub->logo_texture.img_ptr)
-	{
-		cub->intro.logo_path = "./textures/menu.xpm";
-		if (put_logo(cub) == EXIT_FAILURE)
-			return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
-}
-
-int	state_loading(t_cub *cub)
-{
-	t_game_mode	*mode;
-
-	mode = &cub->modes[cub->selected_mode];
-	cub->intro.intro_index = 0;
-	cub->intro.intro_done = false;
-	cub->intro.last_time = 0;
-	cub->intro.logo_path = mode->logo_path;
-	cub->intro.intro_path = mode->intro_path;
-	cub->intro.door_path = mode->door_path;
-	cub->intro.obj_path = mode->obj_path;
-	cub->intro.obj_click_path = mode->obj_click_path;
-	ft_memset(cub->img.img_pixels_ptr, 0,
-		HEIGHT * cub->img.line_length);
-	if (put_logo(cub) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	if (load_textures(cub) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	play_music(cub, ONCE);
-	cub->state = STATE_INTRO;
-	return (EXIT_SUCCESS);
-}
-
-int	state_intro(t_cub *cub)
-{
-		put_intro(cub);
-		if (cub->intro.intro_done)
-		{
-			stop_music();
-			play_music(cub, LOOP);
-			cub->state = STATE_RENDER;
-		}
-	return (EXIT_SUCCESS);
 }
 
 int	state_render(t_cub *cub)

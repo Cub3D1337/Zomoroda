@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:48:21 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 16:14:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:48:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	mapping_textures(t_cub *cub, t_ray_ctx *ctx)
 		else if (data.tex_cord.y >= data.tex->img_h)
 			data.tex_cord.y = data.tex->img_h - 1;
 		data.color = get_texel(data.tex, data.tex_cord.x, data.tex_cord.y);
-		if (check_minimap_edge(cub, ctx->x, ctx->start_y))
+		if (check_minimap_edge(ctx->x, ctx->start_y))
 		{
 			cub->img.pixels[ctx->start_y * cub->img.pitch + ctx->x]
 				= data.color;

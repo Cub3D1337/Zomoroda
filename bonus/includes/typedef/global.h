@@ -6,14 +6,14 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 15:24:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/31 17:03:57 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:47:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GLOBAL_H
 # define GLOBAL_H
 
-# include "../Libft/includes/libft.h"
+# include "../../Libft/includes/libft.h"
 
 typedef enum e_side
 {

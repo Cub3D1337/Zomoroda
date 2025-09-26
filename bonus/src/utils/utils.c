@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:02:58 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/24 22:27:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:48:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-t_bool	check_minimap_edge(t_cub *cub, int x, int y)
+t_bool	check_minimap_edge(int x, int y)
 {
 	if (x >= MINIMAP_SIZE + BORDER * 2
 		|| y >= MINIMAP_SIZE + BORDER * 2)

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 16:29:04 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 22:43:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 22:55:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	skip_trailing_spaces(int fd, char *line)
 
 int	process_line(t_vec *raw, char *line)
 {
-	(void)fd;
 	rstrip_newline(line);
 	if (!is_map_line(line))
 	{

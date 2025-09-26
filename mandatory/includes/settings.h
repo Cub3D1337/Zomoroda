@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 22:26:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:08:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@
 # define X_SENSITIVITY 0.0007
 # define Y_SENSITIVITY 0.5
 
-# define TEX_NUM 5
-# define INTRO_NUM 182
-
+# define TEX_NUM 4
 
 enum	e_events_hooks
 {
@@ -94,21 +92,5 @@ enum	e_render_mode
 	RENDER = 6,
 	ERROR = 7,
 };
-
-typedef enum e_game_state
-{
-	STATE_MENU,
-	STATE_LOADING,
-	STATE_INTRO,
-	STATE_RENDER,
-	STATE_PAUSE,
-	STATE_EXIT,
-}			t_game_state;
-
-typedef enum e_audio_state
-{
-	ONCE,
-	LOOP,
-}			t_audio_state;
 
 #endif

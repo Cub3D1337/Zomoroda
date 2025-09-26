@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:44:45 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 22:31:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:22:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ char	*trim_texture_path(const char *path)
 	if (!p)
 		return (NULL);
 	len = ft_strlen(p);
-	while (len > 0 && (p[len - 1] == ' ' || p[len - 1] == '\t' || p[len
-			- 1] == '\n' || p[len - 1] == '\r'))
+	while (len > 0 && (p[len - 1] == ' ' || p[len - 1] == '\t'
+			|| p[len - 1] == '\n' || p[len - 1] == '\r'))
 		p[--len] = '\0';
 	if (len == 0)
 	{

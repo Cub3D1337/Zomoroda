@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:02:26 by wahmane           #+#    #+#             */
-/*   Updated: 2025/09/26 19:49:23 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 23:48:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		parse_component(const char **s, int *val, char comp);
 int		check_trailing(const char *s);
 
 int		skip_trailing_spaces(int fd, char *line);
-int		process_line(int fd, t_vec *raw, char *line);
+int		process_line(t_vec *raw, char *line);
 int		check_cell(t_config *cfg, int x, int y, int *pos[3]);
 void	free_all(int fd);
 

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:48:21 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 22:40:44 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:16:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ static void	get_tex(t_cub *cub,
 
 	cord.y = (ctx->result.map_pos.y);
 	cord.x = (ctx->result.map_pos.x);
-	if (cub->map.array[cord.y][cord.x] == 'D')
-		data->tex = &cub->textures[DOOR];
-	else if (ctx->result.side == VERTICAL && ctx->result.dir_step.y == 1)
+	if (ctx->result.side == VERTICAL && ctx->result.dir_step.y == 1)
 		data->tex = &cub->textures[NORTH];
 	else if (ctx->result.side == VERTICAL && ctx->result.dir_step.y == -1)
 		data->tex = &cub->textures[SOUTH];

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 13:01:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:47:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void	draw_line(t_cub *cub, t_line line)
 
 static void	draw_player(t_cub *cub)
 {
-	t_pointi	pos;
 	t_pointi	minimap_pos;
 
 	minimap_pos.x = cub->map.padding + BORDER;

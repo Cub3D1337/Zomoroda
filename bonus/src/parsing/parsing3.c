@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:43:28 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 20:55:15 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 23:48:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	read_map_lines(int fd, t_vec *raw)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!process_line(fd, raw, line))
+		if (!process_line(raw, line))
 			return (0);
 		line = get_next_line(fd);
 	}

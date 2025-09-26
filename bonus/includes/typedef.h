@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 22:23:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:50:49 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ typedef struct s_sprite
 	t_pointi		deplacement;
 	t_pointi		scaled;
 	t_pointi		tex;
-	int				color;
+	unsigned int	color;
 }					t_sprite;
 
 typedef struct s_game_mode

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 22:31:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 23:14:23 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int ac, char **av)
 	if (parsing(ac, av, &(cub.cfg)) == 0)
 		return (EXIT_FAILURE);
 	if (init_cub(&cub))
+		return (EXIT_FAILURE);
+	if (init_textures(&cub) == 1)
 		return (EXIT_FAILURE);
 	init_events(&cub);
 	mlx_loop(cub.mlx);

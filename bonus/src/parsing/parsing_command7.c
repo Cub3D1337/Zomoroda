@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_command7.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 16:29:04 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 21:03:05 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 23:48:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	skip_trailing_spaces(int fd, char *line)
 	return (1);
 }
 
-int	process_line(int fd, t_vec *raw, char *line)
+int	process_line(t_vec *raw, char *line)
 {
 	rstrip_newline(line);
 	if (!is_map_line(line))
