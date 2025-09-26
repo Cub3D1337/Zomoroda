@@ -6,30 +6,27 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 23:39:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 15:48:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int ft_loop_hook(t_cub *cub)
+int	ft_loop_hook(t_cub *cub)
 {
 	if (!cub)
 		return (EXIT_FAILURE);
-	switch (cub->state)
-	{
-		case STATE_MENU:
-			return state_menu(cub);
-		case STATE_LOADING:
-			return state_loading(cub);
-		case STATE_INTRO:
-			return state_intro(cub);
-		case STATE_RENDER:
-			return state_render(cub);
-		case STATE_EXIT:
-		default:
-			return (EXIT_SUCCESS);
-	}
+	if (cub->state == STATE_MENU)
+		return (state_menu(cub));
+	else if (cub->state == STATE_LOADING)
+		return (state_loading(cub));
+	else if (cub->state == STATE_INTRO)
+		return (state_intro(cub));
+	else if (cub->state == STATE_RENDER)
+		return (state_render(cub));
+	else if (cub->state == STATE_EXIT)
+		return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
 
 int	mouse_hook(int button, int x, int y, t_cub *cub)

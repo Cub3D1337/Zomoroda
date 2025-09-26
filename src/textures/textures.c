@@ -6,14 +6,14 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:48:21 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/24 22:54:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 16:14:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 static void	get_tex(t_cub *cub,
-	t_tex_ctx *ctx, t_texture_data *data)
+	t_ray_ctx *ctx, t_texture_data *data)
 {
 	t_pointi	cord;
 
@@ -31,7 +31,7 @@ static void	get_tex(t_cub *cub,
 		data->tex = &cub->textures[WEST];
 }
 
-static void	setup(t_cub *cub, t_tex_ctx *ctx, t_texture_data *data)
+static void	setup(t_cub *cub, t_ray_ctx *ctx, t_texture_data *data)
 {
 	if (ctx->result.side == HORIZONTAL)
 		data->wall_x = ctx->result.hit_point.y / BLOCK_SIZE;
@@ -50,7 +50,7 @@ static void	setup(t_cub *cub, t_tex_ctx *ctx, t_texture_data *data)
 			+ (ctx->line_height / 2.0)) * data->step;
 }
 
-void	mapping_textures(t_cub *cub, t_tex_ctx *ctx)
+void	mapping_textures(t_cub *cub, t_ray_ctx *ctx)
 {
 	t_texture_data	data;
 

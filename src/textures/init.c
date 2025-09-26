@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:17:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/25 22:25:39 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 16:22:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,9 @@ int	init_sprites(t_cub *cub)
 	cub->obj.sprites_num = 4;
 	cub->obj.offset = (t_pointi){0, 0};
 	if (set_sprites_paths(cub, cub->intro.obj_path, cub->obj.sprites))
-   		return (EXIT_FAILURE);
-	if (set_sprites_paths(cub, cub->intro.obj_click_path, cub->obj.inspect_sprites))
+		return (EXIT_FAILURE);
+	if (set_sprites_paths(cub, cub->intro.obj_click_path,
+			cub->obj.inspect_sprites))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

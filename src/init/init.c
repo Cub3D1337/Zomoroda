@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 00:01:25 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 15:48:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	init_default_values(t_cub *cub)
 {
-	cub->flag = MENU;
 	cub->half_height = HEIGHT / 2;
 	cub->half_width = WIDTH / 2;
 	cub->map.padding = MINIMAP_SIZE / 2;
