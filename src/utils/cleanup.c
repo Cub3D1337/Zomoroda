@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:11:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 21:29:41 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 16:50:31 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ int	ft_exit(t_cub *cub)
 	cub->state = STATE_EXIT;
 	stop_music();
 	destroy_cub(cub);
-	ft_printf("Program exited successfully\n");
+	printf("Program exited successfully\n");
 	exit(EXIT_SUCCESS);
 }

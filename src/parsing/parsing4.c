@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:44:45 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 21:35:04 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 16:32:36 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ char	*trim_texture_path(const char *path)
 	if (!p)
 		return (NULL);
 	len = ft_strlen(p);
-	while (len > 0 && (p[len - 1] == ' ' || p[len - 1] == '\t'
-			|| p[len - 1] == '\n' || p[len - 1] == '\r'))
+	while (len > 0 && (p[len - 1] == ' ' || p[len - 1] == '\t' || p[len
+			- 1] == '\n' || p[len - 1] == '\r'))
 		p[--len] = '\0';
 	if (len == 0)
 	{

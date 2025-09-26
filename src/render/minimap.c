@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 14:35:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/24 22:24:59 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 17:49:47 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	draw_init_minimap(t_cub *cub)
 				color = 0xffffff;
 			else if (cub->map.array[pos.y][pos.x] == 'D')
 				color = 0x5555ff;
+			else if (cub->map.array[pos.y][pos.x] == ' ')
+				color = 0x0;
 			else
 				color = 0x333333;
 			draw_map_square(cub,

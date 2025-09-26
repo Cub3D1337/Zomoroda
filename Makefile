@@ -18,7 +18,7 @@ LIBFT =				$(LIBFT_DIR)/libft.a
 
 OBJS =				$(SRCS:.c=.o)
 
-INC_FILES =			${INC_DIR}/cub3d.h $(INC_DIR)/parsing.h ${INC_DIR}/mlx.h ${INC_DIR}/includes.h ${INC_DIR}/events.h \
+INC_FILES =			${INC_DIR}/cub3d.h $(INC_DIR)/parsing.h ${INC_DIR}/includes.h ${INC_DIR}/events.h \
 					${INC_DIR}/raycasting.h ${INC_DIR}/render.h ${INC_DIR}/utils.h ${INC_DIR}/music.h
 
 INIT =				$(INIT_DIR)/init.c $(INIT_DIR)/buffers.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:17:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 16:22:57 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 16:48:49 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	prepare_sprite_metadata(t_cub *cub, t_img_texture *t)
 			);
 	if (!t->img_ptr)
 	{
-		printf("Failed to load Texture: %s\n", t->relative_path);
+		fdprintf(2, "Failed to load Texture: %s\n", t->relative_path);
 		return (EXIT_FAILURE);
 	}
 	t->img_pixels_ptr = mlx_get_data_addr(
