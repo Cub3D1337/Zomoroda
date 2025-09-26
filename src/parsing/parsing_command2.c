@@ -50,7 +50,7 @@ void	free_config(t_config *cfg)
 		while (i < cfg->map_h)
 		{
 			if (cfg->map[i])
-                free(cfg->map[i]);
+				free(cfg->map[i]);
 			i++;
 		}
 		free(cfg->map);

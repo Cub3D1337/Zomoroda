@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:35:50 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/25 23:39:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 16:42:56 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENTS_H
 # define EVENTS_H
-
-# include "includes.h"
 
 void	mouse_handler(t_cub *cub);
 int		ft_mouse_move(int x, int y, t_cub *cub);

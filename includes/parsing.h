@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:02:26 by wahmane           #+#    #+#             */
-/*   Updated: 2025/09/25 20:59:50 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 16:30:42 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ int		check_trailing(const char *s);
 int		skip_trailing_spaces(int fd, char *line);
 int		process_line(int fd, t_vec *raw, char *line);
 int		check_cell(t_config *cfg, int x, int y, int *pos[3]);
-// void	free_config(t_config *cfg);
+void	free_all(int fd);
 
 #endif

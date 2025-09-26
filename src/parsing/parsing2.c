@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:43:09 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 22:36:52 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 16:32:13 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	skip_spaces(char *line, int *i)
 	return (*i);
 }
 
-int		parse_identifier_line(char *line, t_config *cfg, int i)
+int	parse_identifier_line(char *line, t_config *cfg, int i)
 {
 	if (!ft_strncmp(&line[i], "NO", 2) && (line[i + 2] == ' '
 			|| line[i + 2] == '\t'))
