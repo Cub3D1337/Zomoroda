@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:20:50 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 23:59:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 16:24:13 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void	play_music(t_cub *cub, t_audio_state audio_state)
 	char		command[512];
 
 	if (cub->selected_mode < 0 || cub->selected_mode >= cub->mode_count)
-		return;
+		return ;
 	mode = &cub->modes[cub->selected_mode];
-
 	if (audio_state == ONCE)
 	{
 		snprintf(command, sizeof(command),

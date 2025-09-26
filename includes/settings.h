@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 23:52:44 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 15:44:17 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,8 @@
 #  define M_PI_2 1.57079632679489661923
 # endif
 
-// # define WIDTH 1920
-// # define HEIGHT 1080
-
 # define WIDTH 1080
 # define HEIGHT 720
-
-// # define WIDTH 800
-// # define HEIGHT 500
-
-// # define WIDTH 200
-// # define HEIGHT 200
 
 # define TARGET_FPS 1000
 
@@ -114,14 +105,13 @@ enum	e_render_mode
 
 typedef enum e_game_state
 {
-    STATE_MENU,
-    STATE_LOADING,
-    STATE_INTRO,
-    STATE_RENDER,
-    STATE_PAUSE,
-    STATE_EXIT,
-}   t_game_state;
-
+	STATE_MENU,
+	STATE_LOADING,
+	STATE_INTRO,
+	STATE_RENDER,
+	STATE_PAUSE,
+	STATE_EXIT,
+}			t_game_state;
 
 typedef enum e_audio_state
 {
