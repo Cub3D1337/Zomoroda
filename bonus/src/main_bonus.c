@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/27 00:24:48 by abnsila          ###   ########.fr       */
+/*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
+/*   Updated: 2025/09/27 00:08:09 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d_bonus.h"
 
-# include "includes.h"
-# include "events.h"
-# include "parsing.h"
-# include "raycasting.h"
-# include "render.h"
-# include "textures.h"
-# include "utils.h"
+int	main(int ac, char **av)
+{
+	t_cub	cub;
 
-int		load_textures(t_cub *cub);
-int		init_cub(t_cub *cub);
-void	init_image_buffer(t_cub *cub);
-void	init_map_image_buffer(t_cub *cub);
-void	init_events(t_cub *cub);
-
-#endif
+	ft_memset((void *)&cub, 0, sizeof(t_cub));
+	init_config(&(cub.cfg));
+	if (parsing(ac, av, &(cub.cfg)) == 0)
+		return (EXIT_FAILURE);
+	if (init_cub(&cub))
+		return (EXIT_FAILURE);
+	init_events(&cub);
+	mlx_loop(cub.mlx);
+	ft_exit(&cub);
+	return (EXIT_SUCCESS);
+}

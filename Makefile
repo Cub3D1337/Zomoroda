@@ -49,21 +49,21 @@ MAND_SRCS        =	$(MAND_DIR)/main.c $(MAND_INIT) $(MAND_EVENTS) $(MAND_RAYCAST
             		$(MAND_DIR)/parsing/parsing_command6.c $(MAND_DIR)/parsing/parsing_command7.c
 
 # ---------------- Bonus ----------------
-BONUS_INIT        = $(BONUS_INIT_DIR)/init.c $(BONUS_INIT_DIR)/buffers.c
-BONUS_EVENTS      = $(BONUS_EVENTS_DIR)/events.c $(BONUS_EVENTS_DIR)/keys.c \
-              		$(BONUS_EVENTS_DIR)/move.c $(BONUS_EVENTS_DIR)/utils.c $(BONUS_EVENTS_DIR)/mouse.c
-BONUS_RAYCASTING  = $(BONUS_RAYCASTING_DIR)/raycaster.c $(BONUS_RAYCASTING_DIR)/dda.c
-BONUS_TEX         = $(BONUS_TEX_DIR)/init.c $(BONUS_TEX_DIR)/textures.c $(BONUS_TEX_DIR)/intro.c
-BONUS_RENDER      = $(BONUS_RENDER_DIR)/render.c $(BONUS_RENDER_DIR)/minimap.c $(BONUS_RENDER_DIR)/animation.c
-BONUS_UTILS       = $(BONUS_UTILS_DIR)/cleanup.c $(BONUS_UTILS_DIR)/utils.c $(BONUS_UTILS_DIR)/music.c $(BONUS_UTILS_DIR)/gets.c
-BONUS_SRCS        = $(BONUS_DIR)/main.c $(BONUS_INIT) $(BONUS_EVENTS) $(BONUS_RAYCASTING) \
+BONUS_INIT        = $(BONUS_INIT_DIR)/init_bonus.c $(BONUS_INIT_DIR)/buffers_bonus.c
+BONUS_EVENTS      = $(BONUS_EVENTS_DIR)/events_bonus.c $(BONUS_EVENTS_DIR)/keys_bonus.c \
+              		$(BONUS_EVENTS_DIR)/move_bonus.c $(BONUS_EVENTS_DIR)/utils_bonus.c $(BONUS_EVENTS_DIR)/mouse_bonus.c
+BONUS_RAYCASTING  = $(BONUS_RAYCASTING_DIR)/raycaster_bonus.c $(BONUS_RAYCASTING_DIR)/dda_bonus.c
+BONUS_TEX         = $(BONUS_TEX_DIR)/init_bonus.c $(BONUS_TEX_DIR)/textures_bonus.c $(BONUS_TEX_DIR)/intro_bonus.c
+BONUS_RENDER      = $(BONUS_RENDER_DIR)/render_bonus.c $(BONUS_RENDER_DIR)/minimap_bonus.c $(BONUS_RENDER_DIR)/animation_bonus.c
+BONUS_UTILS       = $(BONUS_UTILS_DIR)/cleanup_bonus.c $(BONUS_UTILS_DIR)/utils_bonus.c $(BONUS_UTILS_DIR)/music_bonus.c $(BONUS_UTILS_DIR)/gets_bonus.c
+BONUS_SRCS        = $(BONUS_DIR)/main_bonus.c $(BONUS_INIT) $(BONUS_EVENTS) $(BONUS_RAYCASTING) \
        				$(BONUS_TEX) $(BONUS_RENDER) $(BONUS_UTILS) \
-       				$(BONUS_DIR)/parsing/parsing.c \
-       				$(BONUS_DIR)/parsing/parsing2.c $(BONUS_DIR)/parsing/parsing3.c \
-       				$(BONUS_DIR)/parsing/parsing4.c $(BONUS_DIR)/parsing/parsing_command.c \
-       				$(BONUS_DIR)/parsing/parsing_command2.c $(BONUS_DIR)/parsing/parsing_command3.c \
-       				$(BONUS_DIR)/parsing/parsing_command4.c $(BONUS_DIR)/parsing/parsing_command5.c \
-       				$(BONUS_DIR)/parsing/parsing_command6.c $(BONUS_DIR)/parsing/parsing_command7.c
+       				$(BONUS_DIR)/parsing/parsing_bonus.c \
+       				$(BONUS_DIR)/parsing/parsing2_bonus.c $(BONUS_DIR)/parsing/parsing3_bonus.c \
+       				$(BONUS_DIR)/parsing/parsing4_bonus.c $(BONUS_DIR)/parsing/parsing_command_bonus.c \
+       				$(BONUS_DIR)/parsing/parsing_command2_bonus.c $(BONUS_DIR)/parsing/parsing_command3_bonus.c \
+       				$(BONUS_DIR)/parsing/parsing_command4_bonus.c $(BONUS_DIR)/parsing/parsing_command5_bonus.c \
+       				$(BONUS_DIR)/parsing/parsing_command6_bonus.c $(BONUS_DIR)/parsing/parsing_command7_bonus.c
 
 
 MAND_OBJS = $(MAND_SRCS:$(MAND_DIR)/%.c=$(M_BUILD_DIR)/%.o)

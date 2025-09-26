@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   music_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/27 00:24:48 by abnsila          ###   ########.fr       */
+/*   Created: 2025/09/24 14:28:43 by hwahmane          #+#    #+#             */
+/*   Updated: 2025/09/27 00:14:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef MUSIC_BONUS_H
+# define MUSIC_BONUS_H
 
-# include "includes.h"
-# include "events.h"
-# include "parsing.h"
-# include "raycasting.h"
-# include "render.h"
-# include "textures.h"
-# include "utils.h"
-
-int		load_textures(t_cub *cub);
-int		init_cub(t_cub *cub);
-void	init_image_buffer(t_cub *cub);
-void	init_map_image_buffer(t_cub *cub);
-void	init_events(t_cub *cub);
+void	stop_music(void);
+void	play_music(t_cub *cub, t_audio_state audio_state);
 
 #endif

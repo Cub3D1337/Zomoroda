@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   dda_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/27 00:24:48 by abnsila          ###   ########.fr       */
+/*   Created: 2025/08/30 15:27:26 by abnsila           #+#    #+#             */
+/*   Updated: 2025/09/27 00:14:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef DDA_BONUS_H
+# define DDA_BONUS_H
 
-# include "includes.h"
-# include "events.h"
-# include "parsing.h"
-# include "raycasting.h"
-# include "render.h"
-# include "textures.h"
-# include "utils.h"
+# include "global_bonus.h"
 
-int		load_textures(t_cub *cub);
-int		init_cub(t_cub *cub);
-void	init_image_buffer(t_cub *cub);
-void	init_map_image_buffer(t_cub *cub);
-void	init_events(t_cub *cub);
+typedef struct s_dda
+{
+	t_pointi	map_pos;
+	t_pointd	p_cell;
+	t_pointi	dir_step;
+	t_pointd	grid_step;
+	t_bool		hit;
+	t_side		side;			
+	t_pointd	hypotenuse_dist;
+}				t_dda;
+
+typedef struct s_dda_result
+{
+	t_side		side;
+	t_pointi	dir_step;
+	t_pointi	map_pos;
+	t_pointd	hit_point;
+	double		dist;
+}				t_dda_result;
 
 #endif

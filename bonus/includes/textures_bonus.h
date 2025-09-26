@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   textures_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 13:48:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/27 00:24:48 by abnsila          ###   ########.fr       */
+/*   Created: 2025/08/07 10:50:00 by abnsila           #+#    #+#             */
+/*   Updated: 2025/09/27 00:14:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef TEXTURES_BONUS_H
+# define TEXTURES_BONUS_H
 
-# include "includes.h"
-# include "events.h"
-# include "parsing.h"
-# include "raycasting.h"
-# include "render.h"
-# include "textures.h"
-# include "utils.h"
+# include "includes_bonus.h"
 
-int		load_textures(t_cub *cub);
-int		init_cub(t_cub *cub);
-void	init_image_buffer(t_cub *cub);
-void	init_map_image_buffer(t_cub *cub);
-void	init_events(t_cub *cub);
+int		put_logo(t_cub *cub);
+int		put_intro(t_cub *cub);
+int		prepare_sprite_metadata(t_cub *cub, t_img_texture *t);
+int		init_intro(t_cub *cub);
+int		init_textures(t_cub *cub);
+int		init_sprites(t_cub *cub);
+void	mapping_textures(t_cub *cub, t_ray_ctx *ctx);
 
 #endif
