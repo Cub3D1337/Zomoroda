@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/25 20:24:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 21:41:15 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_cub	cub;
+	while(1);
 
 	ft_memset((void *)&cub, 0, sizeof(t_cub));
 	init_config(&(cub.cfg));

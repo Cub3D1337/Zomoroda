@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:40:29 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/25 21:37:21 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 19:56:49 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ int	is_all_space(const char *s)
 		return (1);
 	while (s[i])
 	{
-		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\n' && s[i] != '\r'
-			&& s[i] != '\v' && s[i] != '\f')
+		if (s[i] != '\t' && s[i] != '\n' && s[i] != '\r' && s[i] != '\v'
+			&& s[i] != '\f')
 			return (0);
 		i++;
 	}

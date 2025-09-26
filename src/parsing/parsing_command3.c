@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:40:40 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/19 16:23:54 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 20:38:02 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	read_int(const char **s, int *out)
 {
 	long	val;
+	long	old;
 	int		digits;
 
 	val = 0;
@@ -23,7 +24,10 @@ int	read_int(const char **s, int *out)
 		(*s)++;
 	while (ft_isdigit(**s))
 	{
+		old = val;
 		val = val * 10 + (**s - '0');
+		if (val < old)
+			return (0);
 		(*s)++;
 		digits++;
 	}

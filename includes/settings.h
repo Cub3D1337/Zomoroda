@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 16:46:53 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/09/26 21:18:07 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 #  define M_PI_2 1.57079632679489661923
 # endif
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1080
+# define HEIGHT 720
 
 # define TARGET_FPS 1000
 

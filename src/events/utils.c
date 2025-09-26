@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 22:48:20 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 15:57:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/26 18:25:43 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ int	state_loading(t_cub *cub)
 
 int	state_intro(t_cub *cub)
 {
-	put_intro(cub);
-	if (cub->intro.intro_done)
-	{
-		stop_music();
-		play_music(cub, LOOP);
-		cub->state = STATE_RENDER;
-	}
+		put_intro(cub);
+		if (cub->intro.intro_done)
+		{
+			stop_music();
+			play_music(cub, LOOP);
+			cub->state = STATE_RENDER;
+		}
 	return (EXIT_SUCCESS);
 }
 

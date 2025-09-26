@@ -25,8 +25,8 @@ char	*trim_texture_path(const char *path)
 	if (!p)
 		return (NULL);
 	len = ft_strlen(p);
-	while (len > 0 && (p[len - 1] == ' ' || p[len - 1] == '\t'
-			|| p[len - 1] == '\n' || p[len - 1] == '\r'))
+	while (len > 0 && (p[len - 1] == ' ' || p[len - 1] == '\t' || p[len
+			- 1] == '\n' || p[len - 1] == '\r'))
 		p[--len] = '\0';
 	if (len == 0)
 	{
