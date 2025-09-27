@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:40:04 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 23:16:19 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 08:45:32 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ static void	toggle_mvt(int keycode, t_cub *cub, t_bool flag)
 		cub->p.rotate_left = flag;
 	else if (keycode == RIGHT_KEY)
 		cub->p.rotate_right = flag;
-	else if (keycode == UP_KEY)
-		cub->p.rotate_up = flag;
-	else if (keycode == DOWN_KEY)
-		cub->p.rotate_down = flag;
 }
 
 int	ft_key_press(int keycode, t_cub *cub)

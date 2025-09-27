@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 23:08:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 08:58:17 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ typedef struct s_map_data
 	char			**array;
 	int				w;
 	int				h;
-	int				minimap_width;
-	int				minimap_height;
-	int				padding;
 }					t_map_data;
 
 typedef struct t_map_ctx
@@ -86,10 +83,6 @@ typedef struct s_player
 	double			angle;
 	double			cos_a;
 	double			sin_a;
-	double			pitch;
-	double			horizon;
-	t_bool			rotate_up;
-	t_bool			rotate_down;
 }					t_player;
 
 typedef struct s_fps
@@ -111,16 +104,6 @@ typedef struct s_sprite
 	t_pointi		tex;
 	unsigned int	color;
 }					t_sprite;
-
-typedef struct s_game_mode
-{
-	char	*global_path;
-	char	*logo_path;
-	char	*intro_path;
-	char	*door_path;
-	char	*obj_path;
-	char	*obj_click_path;
-}				t_game_mode;
 
 typedef struct s_ray_ctx
 {

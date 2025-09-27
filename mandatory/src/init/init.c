@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 23:09:36 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 08:52:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	init_default_values(t_cub *cub)
 {
 	cub->half_height = HEIGHT / 2;
 	cub->half_width = WIDTH / 2;
-	cub->map.padding = MINIMAP_SIZE / 2;
 	cub->fps.frame_duration = 1000.0 / TARGET_FPS;
 	cub->fov = 60 * (M_PI / 180);
 	cub->projection_plane = (cub->half_width) / tan(cub->fov / 2.0);
@@ -42,12 +41,8 @@ static void	init_player(t_cub *cub)
 	cub->p.move_right = false;
 	cub->p.rotate_left = false;
 	cub->p.rotate_right = false;
-	cub->p.rotate_up = false;
-	cub->p.rotate_down = false;
 	cub->p.cos_a = cos(cub->p.angle);
 	cub->p.sin_a = sin(cub->p.angle);
-	cub->p.pitch = 0.0;
-	cub->p.horizon = cub->half_height;
 }
 
 static void	init_map(t_cub *cub)
@@ -55,8 +50,6 @@ static void	init_map(t_cub *cub)
 	cub->map.array = cub->cfg.map;
 	cub->map.w = cub->cfg.map_w;
 	cub->map.h = cub->cfg.map_h;
-	cub->map.minimap_width = (cub->cfg.map_w * BLOCK_SIZE) + MINIMAP_SIZE;
-	cub->map.minimap_height = (cub->cfg.map_h * BLOCK_SIZE) + MINIMAP_SIZE;
 }
 
 int	init_cub(t_cub	*cub)
@@ -73,6 +66,5 @@ int	init_cub(t_cub	*cub)
 	init_map(cub);
 	init_player(cub);
 	init_image_buffer(cub);
-	init_map_image_buffer(cub);
 	return (EXIT_SUCCESS);
 }

@@ -36,7 +36,7 @@ MAND_EVENTS      = 	$(MAND_EVENTS_DIR)/events.c $(MAND_EVENTS_DIR)/keys.c \
              		$(MAND_EVENTS_DIR)/move.c $(MAND_EVENTS_DIR)/utils.c
 MAND_RAYCASTING  = 	$(MAND_RAYCASTING_DIR)/raycaster.c $(MAND_RAYCASTING_DIR)/dda.c
 MAND_TEX         = 	$(MAND_TEX_DIR)/init.c $(MAND_TEX_DIR)/textures.c
-MAND_RENDER      = 	$(MAND_RENDER_DIR)/render.c $(MAND_RENDER_DIR)/minimap.c
+MAND_RENDER      = 	$(MAND_RENDER_DIR)/render.c
 MAND_UTILS       = 	$(MAND_UTILS_DIR)/cleanup.c $(MAND_UTILS_DIR)/utils.c $(MAND_UTILS_DIR)/gets.c
 
 MAND_SRCS        =	$(MAND_DIR)/main.c $(MAND_INIT) $(MAND_EVENTS) $(MAND_RAYCASTING) \

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 16:08:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 22:31:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 08:53:36 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ static void	draw_ray(t_cub *cub, int x, double ray_angle)
 	dda(cub, ctx.ray_dir, &ctx.result);
 	ctx.perp_dist = ctx.result.dist * cos(ray_angle - cub->p.angle);
 	ctx.line_height = (BLOCK_SIZE / ctx.perp_dist) * cub->projection_plane;
-	ctx.start_y = cub->half_height - (int)(ctx.line_height / 2)
-		+ (int)cub->p.pitch;
+	ctx.start_y = cub->half_height - (int)(ctx.line_height / 2);
 	if (ctx.start_y < 0)
 		ctx.start_y = 0;
-	ctx.end_y = cub->half_height + (int)(ctx.line_height / 2)
-		+ (int)cub->p.pitch;
+	ctx.end_y = cub->half_height + (int)(ctx.line_height / 2);
 	if (ctx.end_y >= HEIGHT)
 		ctx.end_y = HEIGHT - 1;
 	mapping_textures(cub, &ctx);

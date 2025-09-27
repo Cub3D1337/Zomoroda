@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 12:41:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/26 22:31:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 08:46:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,6 @@ static void	rotate_horizontal(t_cub *cub)
 			cub->p.angle -= 2 * M_PI;
 		cub->p.cos_a = cos(cub->p.angle);
 		cub->p.sin_a = sin(cub->p.angle);
-	}
-}
-
-static void	rotate_vertical(t_cub *cub)
-{
-	double	rot_speed;
-
-	if (cub->p.rotate_up || cub->p.rotate_down)
-	{
-		rot_speed = V_ROT_SPEED * cub->fps.delta_time;
-		if (cub->p.rotate_up)
-			cub->p.pitch += rot_speed;
-		else if (cub->p.rotate_down)
-			cub->p.pitch -= rot_speed;
-		if (cub->p.pitch > MAX_PITCH)
-			cub->p.pitch = MAX_PITCH;
-		if (cub->p.pitch < MIN_PITCH)
-			cub->p.pitch = MIN_PITCH;
-		cub->p.horizon = (cub->half_height) + (int)cub->p.pitch;
 	}
 }
 
@@ -103,11 +84,9 @@ void	move(t_cub *cub)
 	t_pointd	delta;
 	double		speed;
 
-	if (cub->p.rotate_left || cub->p.rotate_right
-		|| cub->p.rotate_up || cub->p.rotate_down)
+	if (cub->p.rotate_left || cub->p.rotate_right)
 	{
 		rotate_horizontal(cub);
-		rotate_vertical(cub);
 	}
 	if (cub->p.move_up || cub->p.move_down
 		|| cub->p.move_left || cub->p.move_right)
