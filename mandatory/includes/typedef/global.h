@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 15:24:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 23:04:11 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 09:03:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,5 @@ typedef struct s_pointd
 	double	x;
 	double	y;
 }				t_pointd;
-
-typedef struct s_rect
-{
-	t_pointi	pos;
-	int			len;
-	int			wid;
-	t_side		side;
-	int			color;
-}				t_rect;
-
-typedef struct s_line
-{
-	t_pointi	start;
-	double		angle;
-	int			line_len;
-	int			color;
-}				t_line;
 
 #endif

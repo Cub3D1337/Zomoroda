@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 19:08:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 22:31:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 08:55:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,4 @@ void	init_image_buffer(t_cub *cub)
 	cub->img.bytes_per_pixel = cub->img.bits_per_pixel / 8;
 	cub->img.pixels = (unsigned int *) cub->img.img_pixels_ptr;
 	cub->img.pitch = cub->img.line_length / sizeof(unsigned int);
-}
-
-void	init_map_image_buffer(t_cub *cub)
-{
-	cub->map_img.img_ptr = mlx_new_image(cub->mlx,
-			cub->map.minimap_width, cub->map.minimap_height);
-	cub->map_img.img_pixels_ptr = mlx_get_data_addr(cub->map_img.img_ptr,
-			&cub->map_img.bits_per_pixel, &cub->map_img.line_length,
-			&cub->map_img.endian);
-	cub->map_img.bytes_per_pixel = cub->map_img.bits_per_pixel / 8;
-	cub->map_img.pixels = (unsigned int *) cub->map_img.img_pixels_ptr;
-	cub->map_img.pitch = cub->map_img.line_length / sizeof(unsigned int);
-	draw_init_minimap(cub);
 }

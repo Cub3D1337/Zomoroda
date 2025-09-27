@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:48:21 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 23:16:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 08:54:25 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	setup(t_cub *cub, t_ray_ctx *ctx, t_texture_data *data)
 		data->tex_cord.x = data->tex->img_w - data->tex_cord.x - 1;
 	}
 	data->step = (double)data->tex->img_h / ctx->line_height;
-	data->tex_pos = (ctx->start_y - cub->p.horizon
+	data->tex_pos = (ctx->start_y - cub->half_height
 			+ (ctx->line_height / 2.0)) * data->step;
 }
 
@@ -61,11 +61,8 @@ void	mapping_textures(t_cub *cub, t_ray_ctx *ctx)
 		else if (data.tex_cord.y >= data.tex->img_h)
 			data.tex_cord.y = data.tex->img_h - 1;
 		data.color = get_texel(data.tex, data.tex_cord.x, data.tex_cord.y);
-		if (check_minimap_edge(ctx->x, ctx->start_y))
-		{
-			cub->img.pixels[ctx->start_y * cub->img.pitch + ctx->x]
-				= data.color;
-		}
+		cub->img.pixels[ctx->start_y * cub->img.pitch + ctx->x]
+			= data.color;
 		data.tex_pos += data.step;
 		ctx->start_y++;
 	}
