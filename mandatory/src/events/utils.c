@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 22:48:20 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/26 23:06:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 09:37:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_bool	check_boundaries(t_cub *cub)
 	p = (t_pointd){cub->p.pos.x, cub->p.pos.y};
 	i_h = (t_pointi){0, cub->p.half};
 	if ((int)p.x - i_h.y < BLOCK_SIZE || (int)p.y - i_h.y < BLOCK_SIZE
-		|| (int) p.x + i_h.y >= (cub->map.w * BLOCK_SIZE) + 1 - BLOCK_SIZE
-		|| (int)p.y + i_h.y >= (cub->map.h * BLOCK_SIZE) + 1 - BLOCK_SIZE)
+		|| (int) p.x + i_h.y >= (cub->map.w * BLOCK_SIZE) - 1 - BLOCK_SIZE
+		|| (int)p.y + i_h.y >= (cub->map.h * BLOCK_SIZE) - 1 - BLOCK_SIZE)
 		return (false);
 	ply_corners[0] = (t_pointi){(int)(p.x - i_h.y), (int)(p.y - i_h.y)};
 	ply_corners[1] = (t_pointi){(int)(p.x + i_h.y - 1), (int)(p.y - i_h.y)};
